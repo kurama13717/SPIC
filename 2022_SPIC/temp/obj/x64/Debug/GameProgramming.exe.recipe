@@ -2,39 +2,39 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\2022_SPIC\temp\bin\x64\Debug\GameProgramming.exe</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\bin\x64\Debug\GameProgramming.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\DebugPS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\DebugPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\DebugVS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\DebugVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\ImGuiPS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\ImGuiPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\ImGuiVS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\ImGuiVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\LambertPS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\LambertPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\LambertVS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\LambertVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\LinePS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\LinePS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\LineVS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\LineVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\SpritePS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\SpritePS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\2022_SPIC\temp\Shader\SpriteVS.cso</FullPath>
+      <FullPath>D:\github cheam\2022_SPIC\2022_SPIC\temp\Shader\SpriteVS.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

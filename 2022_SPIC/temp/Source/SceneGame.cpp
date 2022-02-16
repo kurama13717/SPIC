@@ -140,7 +140,7 @@ void SceneGame::Render()
 		shader->Begin(dc, rc);
 		StageManager::Instance().Render(dc, shader);
 		player->Render(dc, shader);
-		EnemyManager::Instance().Render(dc, shader);
+		//EnemyManager::Instance().Render(dc, shader);
 		shader->End(dc);
 	}
 	//3Dエフェクト描画
@@ -151,7 +151,7 @@ void SceneGame::Render()
 	{
 		//プリミティブデバック描画
 		player->DrawDebugPrimitive();
-		EnemyManager::Instance().DrawDebugPrimitive();
+		//EnemyManager::Instance().DrawDebugPrimitive();
 		// ラインレンダラ描画実行
 		graphics.GetLineRenderer()->Render(dc, rc.view, rc.projection);
 
