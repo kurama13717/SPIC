@@ -1,0 +1,1186 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ImGuiStorage::ImGuiStoragePair::<unnamed-tag>::val_p' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.h"
+                },
+                "region": {
+                  "startLine": 1852,
+                  "startColumn": 9,
+                  "endLine": 1852,
+                  "endColumn": 9
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiStoragePair@ImGuiStorage@@QEAA@IH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuiStorage::ImGuiStoragePair::<unnamed-tag>::val_p"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ImGuiStorage::ImGuiStoragePair::<unnamed-tag>::val_p' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.h"
+                },
+                "region": {
+                  "startLine": 1853,
+                  "startColumn": 9,
+                  "endLine": 1853,
+                  "endColumn": 9
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiStoragePair@ImGuiStorage@@QEAA@IM@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuiStorage::ImGuiStoragePair::<unnamed-tag>::val_p"
+          }
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiInputSource' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1371,
+                  "startColumn": 9,
+                  "endLine": 1371,
+                  "endColumn": 26
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiContext@@QEAA@PEAUImFontAtlas@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiNavLayer' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1387,
+                  "startColumn": 9,
+                  "endLine": 1387,
+                  "endColumn": 20
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiContext@@QEAA@PEAUImFontAtlas@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiNavForward' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1399,
+                  "startColumn": 9,
+                  "endLine": 1399,
+                  "endColumn": 33
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiContext@@QEAA@PEAUImFontAtlas@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiLogType' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1453,
+                  "startColumn": 9,
+                  "endLine": 1453,
+                  "endColumn": 19
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiContext@@QEAA@PEAUImFontAtlas@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiInputReadMode' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1918,
+                  "startColumn": 29,
+                  "endLine": 1918,
+                  "endColumn": 29
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?IsNavInputTest@ImGui@@YA_NHW4ImGuiInputReadMode@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ImGuiColorMod::Col' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 811,
+                  "startColumn": 1,
+                  "endLine": 811,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiColorMod@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuiColorMod::Col"
+          }
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 3515,
+                  "startColumn": 44,
+                  "endLine": 3515,
+                  "endColumn": 73
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?UpdateMouseInputs@ImGui@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiCol_' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 3938,
+                  "startColumn": 46,
+                  "endLine": 3938,
+                  "endColumn": 75
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?UpdateDebugToolItemPicker@ImGui@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C28182",
+          "message": {
+            "text": "NULL ポインターを逆参照しています。'window' には、'hovered_window' と同じ NULL 値が含まれます。これが行われる可能性のある以前の行 4368 を参照してください"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 4394,
+                  "startColumn": 13,
+                  "endLine": 4394,
+                  "endColumn": 118
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?FindHoveredWindow@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4356,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4358,
+                            "startColumn": 18
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4359,
+                            "startColumn": 18
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4360,
+                            "startColumn": 24
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4363,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4364,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4365,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4365,
+                            "startColumn": 40
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4367,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4368,
+                            "startColumn": 29
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4370,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4374,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4375,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4378,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4379,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4384,
+                            "startColumn": 39
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4392,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4393,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4394,
+                            "startColumn": 59
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4396,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4365,
+                            "startColumn": 47
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4365,
+                            "startColumn": 40
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4367,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4368,
+                            "startColumn": 29
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4370,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4374,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4375,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4378,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4379,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4384,
+                            "startColumn": 39
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4392,
+                            "startColumn": 28
+                          }
+                        },
+                        "message": {
+                          "text": "'window' は NULL である可能性があります"
+                        }
+                      },
+                      "kinds": [
+                        "宣言"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4393,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4394,
+                            "startColumn": 59
+                          }
+                        },
+                        "message": {
+                          "text": "この分岐をスキップする ('<分岐条件>' が false と仮定)"
+                        }
+                      },
+                      "kinds": [
+                        "分岐"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                          },
+                          "region": {
+                            "startLine": 4394,
+                            "startColumn": 59
+                          }
+                        },
+                        "message": {
+                          "text": "'window' は逆参照されますが、NULL のままである可能性があります"
+                        }
+                      },
+                      "kinds": [
+                        "使用法"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ImGuiSizeCallbackData::UserData' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.h"
+                },
+                "region": {
+                  "startLine": 1693,
+                  "startColumn": 1,
+                  "endLine": 1693,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiSizeCallbackData@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuiSizeCallbackData::UserData"
+          }
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiMouseCursor_' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 5164,
+                  "startColumn": 30,
+                  "endLine": 5164,
+                  "endColumn": 81
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?UpdateWindowManualResize@ImGui@@YA_NPEAUImGuiWindow@@AEBUImVec2@@PEAHHQEAIAEBUImRect@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImDrawCornerFlags_' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 5328,
+                  "startColumn": 150,
+                  "endLine": 5328,
+                  "endColumn": 213
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?RenderWindowDecorations@ImGui@@YAXPEAUImGuiWindow@@AEBUImRect@@_NHQEBIM@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 6158,
+                  "startColumn": 84,
+                  "endLine": 6158,
+                  "endColumn": 115
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?BringWindowToFocusFront@ImGui@@YAXPEAUImGuiWindow@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 6158,
+                  "startColumn": 84,
+                  "endLine": 6158,
+                  "endColumn": 111
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?BringWindowToFocusFront@ImGui@@YAXPEAUImGuiWindow@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 6173,
+                  "startColumn": 64,
+                  "endLine": 6173,
+                  "endColumn": 85
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?BringWindowToDisplayFront@ImGui@@YAXPEAUImGuiWindow@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 6173,
+                  "startColumn": 64,
+                  "endLine": 6173,
+                  "endColumn": 81
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?BringWindowToDisplayFront@ImGui@@YAXPEAUImGuiWindow@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiPopupPositionPolicy' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 8041,
+                  "startColumn": 15,
+                  "endLine": 8041,
+                  "endColumn": 15
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?FindBestWindowPosForPopupEx@ImGui@@YA?AUImVec2@@AEBU2@0PEAHAEBUImRect@@2W4ImGuiPopupPositionPolicy@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiDir_' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 8217,
+                  "startColumn": 17,
+                  "endLine": 8217,
+                  "endColumn": 47
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?ImGetDirQuadrantFromDelta@@YAHMM@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 10516,
+                  "startColumn": 71,
+                  "endLine": 10516,
+                  "endColumn": 97
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?NodeColumns@Funcs@?1??ShowMetricsWindow@ImGui@@YAXPEA_N@Z@SAXPEBUImGuiColumns@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "列挙型 'ImGuiTreeNodeFlags_' は対象範囲外です。'enum' (Enum.3) より 'enum class' を優先します。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+                },
+                "region": {
+                  "startLine": 10546,
+                  "startColumn": 51,
+                  "endLine": 10546,
+                  "endColumn": 106
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?NodeWindow@Funcs@?1??ShowMetricsWindow@ImGui@@YAXPEA_N@Z@SAXPEAUImGuiWindow@@PEBD@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.29.30037.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\bin\\HostX86\\x64\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00EEC1C0 -il C:\\Users\\2200053\\AppData\\Local\\Temp\\_CL_e64b40daast -typedil -f External\\imgui\\imgui.cpp -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1929 -D_MSC_FULL_VER=192930037 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -GR -D_CPPRTTI -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\Source -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\DirectXTex -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\imgui -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\cereal-1.3.0\\include -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\stb -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -D_DEBUG -D_WINDOWS -D_UNICODE -DUNICODE -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MTd -clrNoPureCRT -D_DEBUG -D_MT -GS -D_M_FP_PRECISE -Zc:wchar_t -Zc:forScope -Foobj\\x64\\Debug\\imgui.obj -Fdobj\\x64\\Debug\\vc142.pdb -external:W 3 -Gd -analyze:projectdirectory D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\atlmfc\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -MPdiagMutex 00000000000001A0",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "0447fe95784c94fc382415b56f204521"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui_internal.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "48949443d0bd76ee401196e98ad7afd6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "ad8687ec2f7153e156656beb14614ec1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/imgui/imconfig.h"
+          },
+          "hashes": {
+            "md5": "491c2e2fb43f05bba3ca46a3ac7a6a98"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/imgui/imstb_textedit.h"
+          },
+          "hashes": {
+            "md5": "09258460d2a2faf76b118e1051fa5a89"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4734 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '+' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '+' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 952,
+                  "startColumn": 24,
+                  "endLine": 952,
+                  "endColumn": 30
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad2@@YAPEAXHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 952,
+                  "startColumn": 24,
+                  "endLine": 952,
+                  "endColumn": 26
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad2@@YAPEAXHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '+' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '+' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 958,
+                  "startColumn": 24,
+                  "endLine": 958,
+                  "endColumn": 32
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad3@@YAPEAXHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 958,
+                  "startColumn": 24,
+                  "endLine": 958,
+                  "endColumn": 28
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad3@@YAPEAXHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 958,
+                  "startColumn": 24,
+                  "endLine": 958,
+                  "endColumn": 26
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad3@@YAPEAXHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '+' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '+' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 965,
+                  "startColumn": 24,
+                  "endLine": 965,
+                  "endColumn": 34
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad4@@YAPEAXHHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 965,
+                  "startColumn": 24,
+                  "endLine": 965,
+                  "endColumn": 30
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad4@@YAPEAXHHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 965,
+                  "startColumn": 24,
+                  "endLine": 965,
+                  "endColumn": 28
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad4@@YAPEAXHHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 965,
+                  "startColumn": 24,
+                  "endLine": 965,
+                  "endColumn": 26
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__malloc_mad4@@YAPEAXHHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1071,
+                  "startColumn": 45,
+                  "endLine": 1071,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_8_to_16@@YAPEAGPEAEHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1090,
+                  "startColumn": 32,
+                  "endLine": 1090,
+                  "endColumn": 42
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__vertical_flip@@YAXPEAXHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1090,
+                  "startColumn": 32,
+                  "endLine": 1090,
+                  "endColumn": 36
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__vertical_flip@@YAXPEAXHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1596,
+                  "startColumn": 36,
+                  "endLine": 1596,
+                  "endColumn": 44
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format@@YAPEAEPEAEHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1596,
+                  "startColumn": 36,
+                  "endLine": 1596,
+                  "endColumn": 40
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format@@YAPEAEPEAEHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1597,
+                  "startColumn": 36,
+                  "endLine": 1597,
+                  "endColumn": 44
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format@@YAPEAEPEAEHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1597,
+                  "startColumn": 36,
+                  "endLine": 1597,
+                  "endColumn": 40
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format@@YAPEAEPEAEHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1638,
+                  "startColumn": 41,
+                  "endLine": 1638,
+                  "endColumn": 60
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format16@@YAPEAGPEAGHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1638,
+                  "startColumn": 41,
+                  "endLine": 1638,
+                  "endColumn": 56
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format16@@YAPEAGPEAGHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1638,
+                  "startColumn": 41,
+                  "endLine": 1638,
+                  "endColumn": 52
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format16@@YAPEAGPEAGHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1645,
+                  "startColumn": 35,
+                  "endLine": 1645,
+                  "endColumn": 43
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format16@@YAPEAGPEAGHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1645,
+                  "startColumn": 35,
+                  "endLine": 1645,
+                  "endColumn": 39
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format16@@YAPEAGPEAGHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1646,
+                  "startColumn": 35,
+                  "endLine": 1646,
+                  "endColumn": 43
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format16@@YAPEAGPEAGHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 1646,
+                  "startColumn": 35,
+                  "endLine": 1646,
+                  "endColumn": 39
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__convert_format16@@YAPEAGPEAGHHII@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2825,
+                  "startColumn": 53,
+                  "endLine": 2825,
+                  "endColumn": 81
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__parse_entropy_coded_data@@YAHPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2856,
+                  "startColumn": 62,
+                  "endLine": 2856,
+                  "endColumn": 92
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__parse_entropy_coded_data@@YAHPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2770,
+                  "startColumn": 57,
+                  "endLine": 2770,
+                  "endColumn": 77
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__parse_entropy_coded_data@@YAHPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2770,
+                  "startColumn": 57,
+                  "endLine": 2770,
+                  "endColumn": 75
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__parse_entropy_coded_data@@YAHPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2770,
+                  "startColumn": 79,
+                  "endLine": 2770,
+                  "endColumn": 81
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__parse_entropy_coded_data@@YAHPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2798,
+                  "startColumn": 66,
+                  "endLine": 2798,
+                  "endColumn": 84
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__parse_entropy_coded_data@@YAHPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2893,
+                  "startColumn": 53,
+                  "endLine": 2893,
+                  "endColumn": 81
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__jpeg_finish@@YAXPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2895,
+                  "startColumn": 57,
+                  "endLine": 2895,
+                  "endColumn": 77
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__jpeg_finish@@YAXPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2895,
+                  "startColumn": 57,
+                  "endLine": 2895,
+                  "endColumn": 75
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__jpeg_finish@@YAXPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 2895,
+                  "startColumn": 79,
+                  "endLine": 2895,
+                  "endColumn": 81
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__jpeg_finish@@YAXPEAUstbi__jpeg@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 3361,
+                  "startColumn": 43,
+                  "endLine": 3361,
+                  "endColumn": 45
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__resample_row_hv_2_simd@@YAPEAEPEAE00HH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6011",
+          "message": {
+            "text": "NULL ポインター 'y' を逆参照しています。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 3784,
+                  "startColumn": 51,
+                  "endLine": 3784,
+                  "endColumn": 63
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?load_jpeg_image@@YAPEAEPEAUstbi__jpeg@@PEAH11H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3641,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3641,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3641,
+                            "startColumn": 21
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3642,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3645,
+                            "startColumn": 21
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3648,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3651,
+                            "startColumn": 6
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3653,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3655,
+                            "startColumn": 34
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3658,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3662,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3663,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3663,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3664,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3665,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3667,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3669,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3669,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3692,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3693,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3696,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3696,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3697,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3698,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3698,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3712,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3755,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3765,
+                            "startColumn": 41
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3775,
+                            "startColumn": 41
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3782,
+                            "startColumn": 25
+                          }
+                        },
+                        "message": {
+                          "text": "'y' は NULL である可能性があります"
+                        }
+                      },
+                      "kinds": [
+                        "宣言"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3783,
+                            "startColumn": 22
+                          }
+                        },
+                        "message": {
+                          "text": "この分岐に入る ('n==1' と仮定)"
+                        }
+                      },
+                      "kinds": [
+                        "分岐"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3784,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3784,
+                            "startColumn": 31
+                          }
+                        },
+                        "message": {
+                          "text": "このループに入る ('i<z->s->img_x' と仮定)"
+                        }
+                      },
+                      "kinds": [
+                        "分岐"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 3784,
+                            "startColumn": 58
+                          }
+                        },
+                        "message": {
+                          "text": "'y' は逆参照されますが、NULL のままである可能性があります"
+                        }
+                      },
+                      "kinds": [
+                        "使用法"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '+' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '+' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 3674,
+                  "startColumn": 60,
+                  "endLine": 3674,
+                  "endColumn": 74
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?load_jpeg_image@@YAPEAEPEAUstbi__jpeg@@PEAH11H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 3697,
+                  "startColumn": 34,
+                  "endLine": 3697,
+                  "endColumn": 52
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?load_jpeg_image@@YAPEAEPEAUstbi__jpeg@@PEAH11H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 3697,
+                  "startColumn": 34,
+                  "endLine": 3697,
+                  "endColumn": 42
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?load_jpeg_image@@YAPEAEPEAUstbi__jpeg@@PEAH11H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4423,
+                  "startColumn": 31,
+                  "endLine": 4423,
+                  "endColumn": 38
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image_raw@@YAHPEAUstbi__png@@PEAEIHIIHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4432,
+                  "startColumn": 17,
+                  "endLine": 4432,
+                  "endColumn": 19
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image_raw@@YAHPEAUstbi__png@@PEAEIHIIHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4512,
+                  "startColumn": 28,
+                  "endLine": 4512,
+                  "endColumn": 35
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image_raw@@YAHPEAUstbi__png@@PEAEIHIIHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4525,
+                  "startColumn": 34,
+                  "endLine": 4525,
+                  "endColumn": 41
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image_raw@@YAHPEAUstbi__png@@PEAEIHIIHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4526,
+                  "startColumn": 34,
+                  "endLine": 4526,
+                  "endColumn": 41
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image_raw@@YAHPEAUstbi__png@@PEAEIHIIHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4526,
+                  "startColumn": 45,
+                  "endLine": 4526,
+                  "endColumn": 47
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image_raw@@YAHPEAUstbi__png@@PEAEIHIIHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4575,
+                  "startColumn": 28,
+                  "endLine": 4575,
+                  "endColumn": 35
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image_raw@@YAHPEAUstbi__png@@PEAEIHIIHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4638,
+                  "startColumn": 31,
+                  "endLine": 4638,
+                  "endColumn": 49
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image@@YAHPEAUstbi__png@@PEAEIHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4638,
+                  "startColumn": 31,
+                  "endLine": 4638,
+                  "endColumn": 41
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image@@YAHPEAUstbi__png@@PEAEIHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4638,
+                  "startColumn": 61,
+                  "endLine": 4638,
+                  "endColumn": 67
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image@@YAHPEAUstbi__png@@PEAEIHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4639,
+                  "startColumn": 33,
+                  "endLine": 4639,
+                  "endColumn": 40
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image@@YAHPEAUstbi__png@@PEAEIHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '+' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '+' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4639,
+                  "startColumn": 33,
+                  "endLine": 4639,
+                  "endColumn": 37
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image@@YAHPEAUstbi__png@@PEAEIHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 4639,
+                  "startColumn": 33,
+                  "endLine": 4639,
+                  "endColumn": 35
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__create_png_image@@YAHPEAUstbi__png@@PEAEIHHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5367,
+                  "startColumn": 35,
+                  "endLine": 5367,
+                  "endColumn": 51
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__bmp_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5367,
+                  "startColumn": 35,
+                  "endLine": 5367,
+                  "endColumn": 43
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__bmp_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5368,
+                  "startColumn": 31,
+                  "endLine": 5368,
+                  "endColumn": 54
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__bmp_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5368,
+                  "startColumn": 31,
+                  "endLine": 5368,
+                  "endColumn": 46
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__bmp_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5368,
+                  "startColumn": 31,
+                  "endLine": 5368,
+                  "endColumn": 42
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__bmp_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5583,
+                  "startColumn": 40,
+                  "endLine": 5583,
+                  "endColumn": 54
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__tga_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5583,
+                  "startColumn": 40,
+                  "endLine": 5583,
+                  "endColumn": 44
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__tga_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5842,
+                  "startColumn": 38,
+                  "endLine": 5842,
+                  "endColumn": 44
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__psd_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5842,
+                  "startColumn": 38,
+                  "endLine": 5842,
+                  "endColumn": 42
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__psd_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5924,
+                  "startColumn": 58,
+                  "endLine": 5924,
+                  "endColumn": 60
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__psd_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 5936,
+                  "startColumn": 42,
+                  "endLine": 5936,
+                  "endColumn": 44
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__psd_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6061,
+                  "startColumn": 33,
+                  "endLine": 6061,
+                  "endColumn": 41
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__pic_load_core@@YAPEAEPEAUstbi__context@@HHPEAHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6061,
+                  "startColumn": 33,
+                  "endLine": 6061,
+                  "endColumn": 35
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__pic_load_core@@YAPEAEPEAUstbi__context@@HHPEAHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6160,
+                  "startColumn": 25,
+                  "endLine": 6160,
+                  "endColumn": 29
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__pic_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6160,
+                  "startColumn": 25,
+                  "endLine": 6160,
+                  "endColumn": 27
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__pic_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6422,
+                  "startColumn": 41,
+                  "endLine": 6422,
+                  "endColumn": 45
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load_next@@YAPEAEPEAUstbi__context@@PEAUstbi__gif@@PEAHHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6423,
+                  "startColumn": 48,
+                  "endLine": 6423,
+                  "endColumn": 52
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load_next@@YAPEAEPEAUstbi__context@@PEAUstbi__gif@@PEAHHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6431,
+                  "startColumn": 28,
+                  "endLine": 6431,
+                  "endColumn": 32
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load_next@@YAPEAEPEAUstbi__context@@PEAUstbi__gif@@PEAHHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6432,
+                  "startColumn": 35,
+                  "endLine": 6432,
+                  "endColumn": 39
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load_next@@YAPEAEPEAUstbi__context@@PEAUstbi__gif@@PEAHHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6465,
+                  "startColumn": 38,
+                  "endLine": 6465,
+                  "endColumn": 50
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load_next@@YAPEAEPEAUstbi__context@@PEAUstbi__gif@@PEAHHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6465,
+                  "startColumn": 38,
+                  "endLine": 6465,
+                  "endColumn": 43
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load_next@@YAPEAEPEAUstbi__context@@PEAUstbi__gif@@PEAHHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6469,
+                  "startColumn": 30,
+                  "endLine": 6469,
+                  "endColumn": 38
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load_next@@YAPEAEPEAUstbi__context@@PEAUstbi__gif@@PEAHHPEAE@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6308",
+          "message": {
+            "text": "'realloc' は null ポインターを返す可能性があります: null ポインターを、引数として 'realloc' へ渡された 'out' に割り当てると、元のメモリ ブロックにメモリ リークを発生させる原因となります。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6606,
+                  "startColumn": 33,
+                  "endLine": 6606,
+                  "endColumn": 33
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6308",
+          "message": {
+            "text": "'realloc' は null ポインターを返す可能性があります: null ポインターを、引数として 'realloc' へ渡された '*delays' に割り当てると、元のメモリ ブロックにメモリ リークを発生させる原因となります。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6608,
+                  "startColumn": 36,
+                  "endLine": 6608,
+                  "endColumn": 36
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6262",
+          "message": {
+            "text": "関数はスタックの '35012' バイトを使用します: /analyze:stacksize '16384' を超えています。 データの一部をヒープに移動することを考慮してください。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6581,
+                  "startColumn": 14,
+                  "endLine": 6581,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6387",
+          "message": {
+            "text": "'out+((((layers-1))*stride))' は '0' である可能性があります: この動作は、関数 'memcpy' の指定に従っていません。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6616,
+                  "startColumn": 13,
+                  "endLine": 6616,
+                  "endColumn": 55
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6583,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6584,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6585,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6586,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6587,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6588,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6589,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6590,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6591,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6596,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6597,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6599,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6600,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6601,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6602,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6603,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6605,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6611,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6612,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6616,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6617,
+                            "startColumn": 24
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6621,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6625,
+                            "startColumn": 18
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6596,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6597,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6599,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6600,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6601,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6602,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6603,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6605,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6606,
+                            "startColumn": 20
+                          }
+                        },
+                        "message": {
+                          "text": "'out' は NULL である可能性があります"
+                        }
+                      },
+                      "kinds": [
+                        "宣言"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6607,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6616,
+                            "startColumn": 19
+                          }
+                        },
+                        "message": {
+                          "text": "'out' は 'memcpy' への入力/出力引数です (c:\\program files (x86)\\microsoft visual studio\\2019\\community\\vc\\tools\\msvc\\14.29.30037\\include\\vcruntime_string.h:43 で宣言)"
+                        }
+                      },
+                      "kinds": [
+                        "宣言"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6616,
+                            "startColumn": 19
+                          }
+                        },
+                        "message": {
+                          "text": "'out+((((layers-1))*stride))' を NULL にすることはできません。この値は 'memcpy' の SAL 注釈と一致しません"
+                        }
+                      },
+                      "kinds": [
+                        "使用法"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C28182",
+          "message": {
+            "text": "NULL ポインターを逆参照しています。'*delays' には、'realloc()`6608' と同じ NULL 値が含まれます。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6622,
+                  "startColumn": 17,
+                  "endLine": 6622,
+                  "endColumn": 42
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6583,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6584,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6585,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6586,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6587,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6588,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6589,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6590,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6591,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6592,
+                            "startColumn": 18
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6596,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6597,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6599,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6600,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6601,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6602,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6603,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6605,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6611,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6612,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6613,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6616,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6617,
+                            "startColumn": 24
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6621,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6622,
+                            "startColumn": 39
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6625,
+                            "startColumn": 18
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6596,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6597,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6599,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6600,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6601,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6602,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6603,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6605,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6606,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6607,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6608,
+                            "startColumn": 27
+                          }
+                        },
+                        "message": {
+                          "text": "'*delays' は NULL である可能性があります"
+                        }
+                      },
+                      "kinds": [
+                        "宣言"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6616,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6617,
+                            "startColumn": 24
+                          }
+                        },
+                        "message": {
+                          "text": "この分岐に入る ('layers>=2' と仮定)"
+                        }
+                      },
+                      "kinds": [
+                        "分岐"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6618,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6621,
+                            "startColumn": 17
+                          }
+                        },
+                        "message": {
+                          "text": "この分岐に入る ('delays' と仮定)"
+                        }
+                      },
+                      "kinds": [
+                        "分岐"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                          },
+                          "region": {
+                            "startLine": 6622,
+                            "startColumn": 39
+                          }
+                        },
+                        "message": {
+                          "text": "'*delays' は逆参照されますが、NULL のままである可能性があります"
+                        }
+                      },
+                      "kinds": [
+                        "使用法"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6606,
+                  "startColumn": 33,
+                  "endLine": 6606,
+                  "endColumn": 33
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6611,
+                  "startColumn": 46,
+                  "endLine": 6611,
+                  "endColumn": 55
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6616,
+                  "startColumn": 29,
+                  "endLine": 6616,
+                  "endColumn": 43
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '-' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '-' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6616,
+                  "startColumn": 29,
+                  "endLine": 6616,
+                  "endColumn": 38
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6618,
+                  "startColumn": 33,
+                  "endLine": 6618,
+                  "endColumn": 37
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__load_gif_main@@YAPEAXPEAUstbi__context@@PEAPEAHPEAH222H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6262",
+          "message": {
+            "text": "関数はスタックの '34980' バイトを使用します: /analyze:stacksize '16384' を超えています。 データの一部をヒープに移動することを考慮してください。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6643,
+                  "startColumn": 14,
+                  "endLine": 6643,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__gif_load@@YAPEAXPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6815,
+                  "startColumn": 42,
+                  "endLine": 6815,
+                  "endColumn": 54
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__hdr_load@@YAPEAMPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6815,
+                  "startColumn": 42,
+                  "endLine": 6815,
+                  "endColumn": 46
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__hdr_load@@YAPEAMPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6815,
+                  "startColumn": 65,
+                  "endLine": 6815,
+                  "endColumn": 69
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__hdr_load@@YAPEAMPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6872,
+                  "startColumn": 41,
+                  "endLine": 6872,
+                  "endColumn": 54
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__hdr_load@@YAPEAMPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '+' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '+' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6872,
+                  "startColumn": 41,
+                  "endLine": 6872,
+                  "endColumn": 51
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__hdr_load@@YAPEAMPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6872,
+                  "startColumn": 41,
+                  "endLine": 6872,
+                  "endColumn": 43
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__hdr_load@@YAPEAMPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "演算のオーバーフロー: 4 バイトの値に演算子 '*' を使用し、結果を 8 バイトの値にキャストしています。オーバーフローを避けるため、演算子 '*' を呼び出す前に値を幅の広い型にキャストしてください (io.2)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+                },
+                "region": {
+                  "startLine": 6872,
+                  "startColumn": 75,
+                  "endLine": 6872,
+                  "endColumn": 77
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?stbi__hdr_load@@YAPEAMPEAUstbi__context@@PEAH11HPEAUstbi__result_info@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Node::scale' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 2,
+                  "endLine": 29,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Node@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Node::scale"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Node::id' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 2,
+                  "endLine": 29,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Node@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Node::id"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Node::translate' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 2,
+                  "endLine": 29,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Node@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Node::translate"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Node::rotate' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 2,
+                  "endLine": 29,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Node@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Node::rotate"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Node::parentIndex' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 2,
+                  "endLine": 29,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Node@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Node::parentIndex"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Animation::secondsLength' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 115,
+                  "startColumn": 2,
+                  "endLine": 115,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Animation@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Animation::secondsLength"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Mesh::nodeIndex' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 2,
+                  "endLine": 87,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Mesh@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Mesh::nodeIndex"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Mesh::boundsMin' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 2,
+                  "endLine": 87,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Mesh@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Mesh::boundsMin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Mesh::boundsMax' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 2,
+                  "endLine": 87,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Mesh@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Mesh::boundsMax"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "変数 'ModelResource::Keyframe::seconds' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Graphics/ModelResource.h"
+                },
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 2,
+                  "endLine": 106,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Keyframe@ModelResource@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ModelResource::Keyframe::seconds"
+          }
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.29.30037.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\bin\\HostX86\\x64\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00EEC1C0 -il C:\\Users\\2200053\\AppData\\Local\\Temp\\_CL_0fb918a6ast -typedil -f Source\\Graphics\\ModelResource.cpp -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1929 -D_MSC_FULL_VER=192930037 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -GR -D_CPPRTTI -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\Source -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\DirectXTex -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\imgui -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\cereal-1.3.0\\include -I D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming\\External\\stb -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -D_DEBUG -D_WINDOWS -D_UNICODE -DUNICODE -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MTd -clrNoPureCRT -D_DEBUG -D_MT -GS -D_M_FP_PRECISE -Zc:wchar_t -Zc:forScope -Foobj\\x64\\Debug\\ModelResource.obj -Fdobj\\x64\\Debug\\vc142.pdb -external:W 3 -Gd -analyze:projectdirectory D:\\ECC\\2年前期\\ゲームプログラミングⅢ・Ⅳ\\GameProgramming（配布）\\GameProgramming -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\atlmfc\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30037\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -MPdiagMutex 00000000000001A0",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/Source/Camera.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "28d4bebf57c8fab7d3f51375bdf0b546"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/camera.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "a34cc0df0802052c05f6c5d5cc10d04e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/imgui/imgui.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "0447fe95784c94fc382415b56f204521"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/enemymanager.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "3787397e6072ed363e1f6ebcba43f042"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/enemymanager.h"
+          },
+          "hashes": {
+            "md5": "81eed33d257732ff9a565e97555176db"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/enemy.h"
+          },
+          "hashes": {
+            "md5": "b597b213b18f270a9ae983a949f6eea1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/shader.h"
+          },
+          "hashes": {
+            "md5": "c51adf9d5d1405fb85e9d013b44f5d6a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/rendercontext.h"
+          },
+          "hashes": {
+            "md5": "9a54bd8dac4c404e9ca3bda0fbf2d94d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/model.h"
+          },
+          "hashes": {
+            "md5": "cc972f4290c7fe2ded8f3e8ceaf63501"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/modelresource.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "c01bd30e221ff243b57f1b2adbc5df05"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/character.h"
+          },
+          "hashes": {
+            "md5": "d8daa1a8773e3c9d8a3501c437897d1d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/graphics.h"
+          },
+          "hashes": {
+            "md5": "4dff057c223d0861051b8f3aa3a45fa9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/debugrenderer.h"
+          },
+          "hashes": {
+            "md5": "85d7acbeb7fb20681944292034fb43d1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/linerenderer.h"
+          },
+          "hashes": {
+            "md5": "84f20ee9df1f3dfeed3147eb0c9c13b7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/imguirenderer.h"
+          },
+          "hashes": {
+            "md5": "74af48d481548ca5b010a4c3132fec22"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/imgui/imconfig.h"
+          },
+          "hashes": {
+            "md5": "491c2e2fb43f05bba3ca46a3ac7a6a98"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/collision.h"
+          },
+          "hashes": {
+            "md5": "447157db5a618c1e95b633eb87f64f65"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/ECC/2年前期/ゲームプログラミングⅢ・Ⅳ/GameProgramming（配布）/GameProgramming/External/stb/stb_image.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "b0c6ce69362e6fb529d8662fbf4cd5aa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/graphics/modelresource.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "2fb8cd66a25605106e70099ce9442dfd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/cereal.hpp"
+          },
+          "hashes": {
+            "md5": "c97b4b56859c2580af559666d00739e8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/macros.hpp"
+          },
+          "hashes": {
+            "md5": "a03f395aab1f8004f406e35eb9fb0087"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/details/traits.hpp"
+          },
+          "hashes": {
+            "md5": "97b21b9ffe31932bae7386585fe5c771"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/access.hpp"
+          },
+          "hashes": {
+            "md5": "776845d9644d2fcc750c7d0cbc4cc86a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/specialize.hpp"
+          },
+          "hashes": {
+            "md5": "c72d5946b269000d556175ee7114de77"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/details/helpers.hpp"
+          },
+          "hashes": {
+            "md5": "e714adf02aba71b1a81128516d593217"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/details/static_object.hpp"
+          },
+          "hashes": {
+            "md5": "eb11df69fd76f6f0ddde4cf76f094fb2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/types/base_class.hpp"
+          },
+          "hashes": {
+            "md5": "428e8291e0b84586209692d2aba66c4d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/details/polymorphic_impl_fwd.hpp"
+          },
+          "hashes": {
+            "md5": "6ea4d137cab7636a3027d8b8cd83cbf5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/types/common.hpp"
+          },
+          "hashes": {
+            "md5": "2bcdbf7a7909d52deef9a286780a61c4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/archives/binary.hpp"
+          },
+          "hashes": {
+            "md5": "cf36d9216a9da7bc8af77bc030ae8af1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/types/string.hpp"
+          },
+          "hashes": {
+            "md5": "d5dd6aa92b069f2ddba3e1165c529f1f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/cereal-1.3.0/include/cereal/types/vector.hpp"
+          },
+          "hashes": {
+            "md5": "98a655088474f6613fe4a63b2a0fa36e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/external/directxtex/wictextureloader.h"
+          },
+          "hashes": {
+            "md5": "438b701a965c65ea5887eba482e66b23"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/misc.h"
+          },
+          "hashes": {
+            "md5": "ad06b43ec89218185efd2733b994ffc4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/ecc/2年前期/ゲームプログラミングⅲ・ⅳ/gameprogramming（配布）/gameprogramming/source/logger.h"
+          },
+          "hashes": {
+            "md5": "17c9e8092b3a3d814e8a5158a5d224ed"
+          }
+        }
+      ]
+    }
+  ]
+}
