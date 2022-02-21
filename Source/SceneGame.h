@@ -9,6 +9,10 @@
 #include "Audio/Audio.h"
 #include "Audio/AudioSource.h"
 #include "Shake.h"
+#include "Cube.h"
+
+
+
 // ゲームシーン
 class SceneGame : public Scene
 {
@@ -42,6 +46,7 @@ private:
 	ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
 	RenderContext rc;
 	Player* player = nullptr;
+	Cube* stageMain = nullptr;
 	CameraController* cameracontroller = nullptr;
 
 	EnemySlime* enemyslime = nullptr;
@@ -51,5 +56,10 @@ private:
 private:
 	//カメラ選択
 	int state = -1;
+
+public:
+	bool ViewMode = false;
+	bool SpectatorMode = false;
+
 
 };

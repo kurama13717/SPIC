@@ -58,6 +58,7 @@ void CameraController::cameraDebugGUI()
         {
             //ÉJÉÅÉâä¥ìx
             ImGui::SliderFloat("Fov", &fov,2.0f,100.0f);
+            ImGui::SliderFloat3("Angle", &angle.x, 0, 360.0f);
             ImGui::SliderFloat2("Sensitivity", &sensitivity.x,1.0f,10.0f);
             if (ImGui::Button("reverse:true"))
             {

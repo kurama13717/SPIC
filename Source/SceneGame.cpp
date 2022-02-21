@@ -8,11 +8,12 @@
 #include "Input/Input.h"
 #include "StageManager.h"
 #include "StageMain.h"
+#include "Cube.h"
 // 初期化
 void SceneGame::Initialize()
 {
 	StageManager& stageManager = StageManager::Instance();
-	StageMain* stageMain = new StageMain();
+	stageMain = new Cube();
 	stageManager.Register(stageMain);
 	
 
@@ -29,6 +30,7 @@ void SceneGame::Initialize()
 	);
 	cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(15), 0.0f, 0.0f));
 	cameracontroller->SetFov(35.0f);
+	
 	//エネミー初期化
 	//EnemyManager& enemyManager = EnemyManager::Instance();
 #if 0
@@ -71,22 +73,46 @@ void SceneGame::Finalize()
 		delete player;
 		player = nullptr;
 	}
+
 }
 
 // 更新処理
 void SceneGame::Update(float elapsedTime)
 {
+	GamePad& gamePad = Input::Instance().GetGamePad();
+
+
 	//カメラコントローラー更新処理
-	TargetCamera();
+	if(!ViewMode)TargetCamera();
+	
 	cameracontroller->Update(elapsedTime);
 
 	StageManager::Instance().Update(elapsedTime);
+	//stageMain->Update(elapsedTime);
 	player->Update(elapsedTime);
 	//EnemyManager::Instance().Update(elapsedTime);
 	//エフェクト更新処理
 	EffectManager::Instance().Update(elapsedTime);
 
 	shake.ShakeUpdate(elapsedTime);
+
+	if (gamePad.GetButtonDown() & GamePad::BTN_ENTER)
+	{
+		ViewMode = true;
+		cameracontroller->SetFov(120.0f);
+		cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(0), 0.0f, 0.0f));
+		cameracontroller->SetTarget(DirectX::XMFLOAT3(0, 0, -30));
+	}
+	if (gamePad.GetButtonDown() & GamePad::BTN_A)
+	{
+		SpectatorMode = true;
+		ViewMode = false;
+
+
+	}
+
+
+
 }
 
 // 描画処理
@@ -138,12 +164,15 @@ void SceneGame::Render()
 
 	// 3Dモデル描画
 	{
-		Shader* shader = graphics.GetShader();
+		Shader* shader = graphics.GetShader(0);
 		shader->Begin(dc, rc);
-		StageManager::Instance().Render(dc, shader);
-		player->Render(dc, shader);
+		//StageManager::Instance().Render(dc, shader);
+		stageMain->Render(dc, shader,ViewMode);
+		//player->Render(dc, shader);
 		//EnemyManager::Instance().Render(dc, shader);
 		shader->End(dc);
+
+
 	}
 	//3Dエフェクト描画
 	{
@@ -169,6 +198,7 @@ void SceneGame::Render()
 	// 2DデバッグGUI描画
 	{
 		player->DrawDebugGUI();
+		stageMain->DrawDebugGUI();
 		cameracontroller->cameraDebugGUI();
 	}
 #endif // _DEBUG
@@ -291,7 +321,9 @@ void SceneGame::TargetCamera()
 
 
 	DirectX::XMFLOAT3 target;
-	if(state == -1)target = player->GetPosition();
+	if (state == -1) {
+		target = player->GetPosition();
+	}
 	for (int i = 0; i < enemyCount; ++i)
 	{
 		Enemy* enemy = enemyManager.GetEnemy(i);
@@ -300,8 +332,8 @@ void SceneGame::TargetCamera()
 			target = enemy->GetPosition();
 		}
 	}
-
-	target.y += 0.5f;
+	//target.z -= 10.0f;
+	target.y += 1.0f;
 	cameracontroller->SetTarget(target);
 };
 

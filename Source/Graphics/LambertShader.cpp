@@ -1,6 +1,9 @@
 #include "Misc.h"
 #include "Graphics/LambertShader.h"
 
+HRESULT hr{ S_OK };
+
+
 LambertShader::LambertShader(ID3D11Device* device)
 {
 	// 頂点シェーダー
@@ -116,7 +119,23 @@ LambertShader::LambertShader(ID3D11Device* device)
 		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 
-		HRESULT hr = device->CreateDepthStencilState(&desc, depthStencilState.GetAddressOf());
+		HRESULT hr = device->CreateDepthStencilState(&desc, depthStencilStates[0].GetAddressOf());
+		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
+
+		desc.DepthEnable = TRUE;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+		hr = device->CreateDepthStencilState(&desc, depthStencilStates[1].GetAddressOf());
+		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
+		desc.DepthEnable = FALSE;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+		hr = device->CreateDepthStencilState(&desc, depthStencilStates[2].GetAddressOf());
+		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
+		desc.DepthEnable = FALSE;
+		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+		hr = device->CreateDepthStencilState(&desc, depthStencilStates[3].GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 
@@ -135,8 +154,28 @@ LambertShader::LambertShader(ID3D11Device* device)
 		desc.CullMode = D3D11_CULL_BACK;
 		desc.AntialiasedLineEnable = false;
 
-		HRESULT hr = device->CreateRasterizerState(&desc, rasterizerState.GetAddressOf());
+		// ソリッド描画(裏面非表示)
+		desc.FillMode = D3D11_FILL_SOLID;
+		desc.CullMode = D3D11_CULL_BACK;
+		desc.AntialiasedLineEnable = FALSE;
+		hr = device->CreateRasterizerState(&desc, rasterizerStates[0].GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
+
+
+		// ソリッド描画(両面表示)
+		desc.FillMode = D3D11_FILL_SOLID;
+		desc.CullMode = D3D11_CULL_NONE;
+		desc.AntialiasedLineEnable = FALSE;
+		hr = device->CreateRasterizerState(&desc, rasterizerStates[1].GetAddressOf());
+		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
+
+		// ワイヤーフレーム(両面表示)
+		desc.FillMode = D3D11_FILL_WIREFRAME;
+		desc.CullMode = D3D11_CULL_NONE;
+		desc.AntialiasedLineEnable = TRUE;
+		hr = device->CreateRasterizerState(&desc, rasterizerStates[2].GetAddressOf());
+		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
+
 	}
 
 	// サンプラステート
@@ -180,8 +219,8 @@ void LambertShader::Begin(ID3D11DeviceContext* dc, const RenderContext& rc)
 
 	const float blend_factor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	dc->OMSetBlendState(blendState.Get(), blend_factor, 0xFFFFFFFF);
-	dc->OMSetDepthStencilState(depthStencilState.Get(), 0);
-	dc->RSSetState(rasterizerState.Get());
+	dc->OMSetDepthStencilState(depthStencilStates[0].Get(), 0);
+	dc->RSSetState(rasterizerStates[0].Get());
 	dc->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 
 	// シーン用定数バッファ更新
@@ -195,8 +234,40 @@ void LambertShader::Begin(ID3D11DeviceContext* dc, const RenderContext& rc)
 	dc->UpdateSubresource(sceneConstantBuffer.Get(), 0, 0, &cbScene, 0, 0);
 }
 
+void LambertInsideShader::Begin(ID3D11DeviceContext* dc, const RenderContext& rc)
+{
+	dc->VSSetShader(vertexShader.Get(), nullptr, 0);
+	dc->PSSetShader(pixelShader.Get(), nullptr, 0);
+	dc->IASetInputLayout(inputLayout.Get());
+
+	ID3D11Buffer* constantBuffers[] =
+	{
+		sceneConstantBuffer.Get(),
+		meshConstantBuffer.Get(),
+		subsetConstantBuffer.Get()
+	};
+	dc->VSSetConstantBuffers(0, ARRAYSIZE(constantBuffers), constantBuffers);
+	dc->PSSetConstantBuffers(0, ARRAYSIZE(constantBuffers), constantBuffers);
+
+	const float blend_factor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	dc->OMSetBlendState(blendState.Get(), blend_factor, 0xFFFFFFFF);
+	dc->OMSetDepthStencilState(depthStencilStates[0].Get(), 0);
+	dc->RSSetState(rasterizerStates[2].Get());
+	dc->PSSetSamplers(0, 1, samplerState.GetAddressOf());
+
+	// シーン用定数バッファ更新
+	CbScene cbScene;
+
+	DirectX::XMMATRIX V = DirectX::XMLoadFloat4x4(&rc.view);
+	DirectX::XMMATRIX P = DirectX::XMLoadFloat4x4(&rc.projection);
+	DirectX::XMStoreFloat4x4(&cbScene.viewProjection, V * P);
+
+	cbScene.lightDirection = rc.lightDirection;
+	dc->UpdateSubresource(sceneConstantBuffer.Get(), 0, 0, &cbScene, 0, 0);
+}
+
 // 描画
-void LambertShader::Draw(ID3D11DeviceContext* dc, const Model* model)
+void LambertShader::Draw(ID3D11DeviceContext* dc, const Model* model, DirectX::XMFLOAT4* color)
 {
 	const ModelResource* resource = model->GetResource();
 	const std::vector<Model::Node>& nodes = model->GetNodes();
@@ -232,6 +303,7 @@ void LambertShader::Draw(ID3D11DeviceContext* dc, const Model* model)
 		{
 			CbSubset cbSubset;
 			cbSubset.materialColor = subset.material->color;
+			cbSubset.materialColor = *color;
 			dc->UpdateSubresource(subsetConstantBuffer.Get(), 0, 0, &cbSubset, 0, 0);
 			dc->PSSetShaderResources(0, 1, subset.material->shaderResourceView.GetAddressOf());
 			dc->PSSetSamplers(0, 1, samplerState.GetAddressOf());

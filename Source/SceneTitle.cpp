@@ -83,7 +83,7 @@ void SceneTitle::Render()
 {
     ID3D11RenderTargetView* rtv = graphics.GetRenderTargetView();
     ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
-    Shader* shader = graphics.GetShader();
+    Shader* shader = graphics.GetShader(0);
 
     //画面クリア＆レンダーターゲット設定
     FLOAT color[] = { 0.0f,0.0f,0.5f,1.0f };

@@ -35,7 +35,7 @@ public:
 	ID3D11DepthStencilView* GetDepthStencilView() const { return depthStencilView.Get(); }
 
 	// シェーダー取得
-	Shader* GetShader() const { return shader.get(); }
+	Shader* GetShader(int index) const { return shader[index].get(); }
 
 	// スクリーン幅取得
 	float GetScreenWidth() const { return screenWidth; }
@@ -65,7 +65,7 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11Texture2D>			depthStencilBuffer;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView>	depthStencilView;
 
-	std::unique_ptr<Shader>							shader;
+	std::unique_ptr<Shader>							shader[2];
 	std::unique_ptr<DebugRenderer>					debugRenderer;
 	std::unique_ptr<LineRenderer>					lineRenderer;
 	std::unique_ptr<ImGuiRenderer>					imguiRenderer;

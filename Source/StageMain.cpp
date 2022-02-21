@@ -1,6 +1,5 @@
 #include "StageMain.h"
 
-
 StageMain::StageMain()
 {
     model = new Model("Data/Model/Stage/flat.mdl");//ステージ読み込み

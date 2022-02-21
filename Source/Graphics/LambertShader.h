@@ -4,6 +4,13 @@
 #include <wrl.h>
 #include "Graphics/Shader.h"
 #include "CameraShake.h"
+
+
+class Color {
+public:
+	float r, g, b, a;
+};
+
 class LambertShader : public Shader
 {
 public:
@@ -11,10 +18,10 @@ public:
 	~LambertShader() override {}
 
 	void Begin(ID3D11DeviceContext* dc, const RenderContext& rc) override;
-	void Draw(ID3D11DeviceContext* dc, const Model* model) override;
+	void Draw(ID3D11DeviceContext* dc, const Model* model, DirectX::XMFLOAT4* color) override;
 	void End(ID3D11DeviceContext* dc) override;
 
-private:
+protected:
 	static const int MaxBones = 128;
 
 	struct CbScene
@@ -43,10 +50,18 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11InputLayout>		inputLayout;
 
 	Microsoft::WRL::ComPtr<ID3D11BlendState>		blendState;
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState>	rasterizerState;
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilState>	depthStencilState;
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState>	rasterizerStates[4];
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState>	depthStencilStates[4];
 
 	Microsoft::WRL::ComPtr<ID3D11SamplerState>		samplerState;
 
 	CameraShake& camerashake = CameraShake::Instance();
+};
+
+class LambertInsideShader : public LambertShader {
+public:
+	LambertInsideShader(ID3D11Device* device) : LambertShader(device) {}
+	~LambertInsideShader()override {}
+
+	void Begin(ID3D11DeviceContext* dc, const RenderContext& rc)override;
 };
