@@ -9,15 +9,19 @@ public:
     ~CameraController() {}
     //XVˆ—
     void Update(float elapsedTime);
+    void FpsUpdate(float elapsedTime);
     void SetTarget(const DirectX::XMFLOAT3& target) { this->target = target; }
     void cameraDebugGUI();
     float GetFov() { return fov; }
     void SetFov(float fov_) { fov = fov_; }
     void SetAngle(DirectX::XMFLOAT3 angle_) { angle = angle_; }
+    void SetEye(DirectX::XMFLOAT3 eye_) { eye = eye_; }
+
 private:
     DirectX::XMFLOAT3 target = { 0,0,0 };
     DirectX::XMFLOAT3 angle = { 0,0,0 };
     DirectX::XMFLOAT2 sensitivity = { 1,1 };
+    DirectX::XMFLOAT3 eye;
     bool Inversion = false;
     int reverse = 1;
     float rollSpeed = DirectX::XMConvertToRadians(90);

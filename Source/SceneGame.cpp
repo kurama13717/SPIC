@@ -29,7 +29,9 @@ void SceneGame::Initialize()
 		1000.0f
 	);
 	cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(15), 0.0f, 0.0f));
-	cameracontroller->SetFov(35.0f);
+	cameracontroller->SetFov(120.0f);
+
+	FpsMode = true;
 	
 	//エネミー初期化
 	//EnemyManager& enemyManager = EnemyManager::Instance();
@@ -83,9 +85,14 @@ void SceneGame::Update(float elapsedTime)
 
 
 	//カメラコントローラー更新処理
-	if(!ViewMode)TargetCamera();
+	if (ViewMode) {
+		cameracontroller->Update(elapsedTime);
+	}
+	if (FpsMode) {
+		FpsCamera();
+		cameracontroller->FpsUpdate(elapsedTime);
+	}
 	
-	cameracontroller->Update(elapsedTime);
 
 	StageManager::Instance().Update(elapsedTime);
 	//stageMain->Update(elapsedTime);
@@ -99,13 +106,14 @@ void SceneGame::Update(float elapsedTime)
 	if (gamePad.GetButtonDown() & GamePad::BTN_ENTER)
 	{
 		ViewMode = true;
+		FpsMode = false;
 		cameracontroller->SetFov(120.0f);
 		cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(0), 0.0f, 0.0f));
 		cameracontroller->SetTarget(DirectX::XMFLOAT3(0, 0, -30));
 	}
-	if (gamePad.GetButtonDown() & GamePad::BTN_A)
+	if (gamePad.GetButtonDown() & GamePad::BTN_A) //スペース
 	{
-		SpectatorMode = true;
+		FpsMode = true;
 		ViewMode = false;
 
 
@@ -192,7 +200,6 @@ void SceneGame::Render()
 
 	// 2Dスプライト描画
 	{
-		RenderEnemyGauge(dc, rc.view, rc.projection);
 	}
 #ifdef _DEBUG
 	// 2DデバッグGUI描画
@@ -302,6 +309,12 @@ void SceneGame::RenderEnemyGauge(ID3D11DeviceContext* dc,
 		}
 	}
 		
+}
+
+void SceneGame::FpsCamera()
+{
+	cameracontroller->SetEye(player->GetPosition());
+
 }
 
 void SceneGame::TargetCamera()

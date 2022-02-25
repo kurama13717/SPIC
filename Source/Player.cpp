@@ -21,6 +21,9 @@ Player::Player()
     //model->PlayAnimation(0);
     scale.x = scale.y = scale.z = 0.01f;
 
+    position.y = 5;
+
+
     hitEffect = new Effect("Data/Effect/Hit.efk");
     //待機ステートへ遷移
     TransitionIdleState();
@@ -46,9 +49,6 @@ void Player::Update(float elapsedTime)
         break;
     case State::Move:
         UpdateMoveState(elapsedTime);
-        break;
-    case State::Jump:
-        UpdateJumpState(elapsedTime);
         break;
     case State::Land:
         UpdateLandState(elapsedTime);
@@ -382,11 +382,11 @@ void Player::UpdateIdleState(float elapsedTime)
         // 移動ステートへ遷移
         TransitionMoveState();
     }
-    //ジャンプ入力処理
-    if (InputJump())
-    {
-        TransitionJumpState();
-    }
+    ////ジャンプ入力処理
+    //if (InputJump())
+    //{
+    //    TransitionJumpState();
+    //}
     //弾丸入力処理
     InputProjectile();
     if (InputAttack())
@@ -407,10 +407,10 @@ void Player::UpdateMoveState(float elapsedTime)
         TransitionIdleState();
     }
     //ジャンプ入力処理
-    if (InputJump())
+   /* if (InputJump())
     {
         TransitionJumpState();
-    }
+    }*/
     //弾丸入力処理
     InputProjectile();
     if (InputAttack())

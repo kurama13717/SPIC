@@ -48,6 +48,48 @@ void CameraController::Update(float elapsedTime)
     Camera::Instance().SetLookAt(eye, target, DirectX::XMFLOAT3(0, 1, 0));
 }
 
+void CameraController::FpsUpdate(float elapsedTime)
+{
+    GamePad& gamePad = Input::Instance().GetGamePad();
+
+
+    float ax = gamePad.GetAxisRY();
+    float ay = gamePad.GetAxisRX();
+    //ÉJÉÅÉâÇÃâÒì]ë¨ìx
+    float speed = rollSpeed * elapsedTime;
+
+    angle.x += (ax * speed);
+    angle.y += (ay * speed);
+
+    DirectX::XMFLOAT3 forwardf = { 0, 0, -1 };
+    DirectX::XMFLOAT3 leftf = { -1, 0, 0 };
+    DirectX::XMFLOAT3 upf = { 0, 1, 0 };
+
+
+    auto forwardv = DirectX::XMVector3TransformNormal(DirectX::XMLoadFloat3(&forwardf), DirectX::XMMatrixRotationRollPitchYaw(angle.x, angle.y, 0));
+    auto leftv = DirectX::XMVector3TransformNormal(DirectX::XMLoadFloat3(&leftf), DirectX::XMMatrixRotationRollPitchYaw(angle.x, angle.y, 0));
+    auto upv = DirectX::XMVector3TransformNormal(DirectX::XMLoadFloat3(&upf), DirectX::XMMatrixRotationRollPitchYaw(angle.x, angle.y, 0));
+
+    DirectX::XMFLOAT3 position = { 0,0,0 };
+
+    DirectX::XMFLOAT3 cameraForward;
+    DirectX::XMStoreFloat3(&cameraForward, forwardv);
+
+    DirectX::XMFLOAT3 cameraTarget;
+  
+
+    cameraTarget.x = eye.x + cameraForward.x;
+    cameraTarget.y = eye.y + cameraForward.y;
+    cameraTarget.z = eye.z + cameraForward.z;
+
+    DirectX::XMFLOAT3 cameraUp;
+    DirectX::XMStoreFloat3(&cameraUp, upv);
+
+    Camera::Instance().SetLookAt(eye, cameraTarget, cameraUp);
+
+
+}
+
 void CameraController::cameraDebugGUI()
 {
     ImGui::SetNextWindowPos(ImVec2(10, 310), ImGuiCond_FirstUseEver);

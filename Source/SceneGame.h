@@ -37,6 +37,7 @@ private:
 		const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection);
 
 	void TargetCamera();
+	void FpsCamera();
 
 private:
 	Graphics& graphics = Graphics::Instance();
@@ -60,6 +61,7 @@ private:
 public:
 	bool ViewMode = false;
 	bool SpectatorMode = false;
+	bool FpsMode = false;
 
 
 };
