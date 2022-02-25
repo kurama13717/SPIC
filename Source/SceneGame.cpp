@@ -176,11 +176,11 @@ void SceneGame::Render()
 		shader->Begin(dc, rc);
 		//StageManager::Instance().Render(dc, shader);
 		stageMain->Render(dc, shader,ViewMode);
+
 		//player->Render(dc, shader);
+
 		//EnemyManager::Instance().Render(dc, shader);
 		shader->End(dc);
-
-
 	}
 	//3Dエフェクト描画
 	{

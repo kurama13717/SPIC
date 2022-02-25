@@ -3,6 +3,8 @@
 #include "Graphics/Model.h"
 #include "Character.h"
 #include "Effect.h"
+#include "BurretManager.h"
+
 enum Animation
 {
     Anim_Attack,
@@ -29,12 +31,17 @@ public:
     //デバッグ
     void DrawDebugGUI();
     void DrawDebugPrimitive();
+
+    // 弾丸入力処理
+    void InputBurret();
+
     //ジャンプ入力処理
     bool InputJump();
 
     //プレイヤーとエネミー衝突
     void CollisionPlayerVsEnemies();
-    //弾と敵の衝突
+    
+    
     
     static Player& Instance();
 protected:
@@ -45,8 +52,7 @@ private:
     DirectX::XMFLOAT3 GetMoveVec() const;
     
     bool InputMove(float elapsedTime);
-    
-    void InputProjectile();
+
     bool InputAttack();
     //待機ステート遷移
     void TransitionIdleState();
@@ -94,4 +100,6 @@ private:
     Effect* hitEffect = nullptr;
     float leftHandRadius = 0.4f;
     bool attackCollisionFlag = false;
+
+    BurretManager burretManager;
 };

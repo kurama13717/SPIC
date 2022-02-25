@@ -208,6 +208,9 @@
     <ClInclude Include="Source\Audio\Audio.h" />
     <ClInclude Include="Source\Audio\AudioResource.h" />
     <ClInclude Include="Source\Audio\AudioSource.h" />
+    <ClInclude Include="Source\Burret.h" />
+    <ClInclude Include="Source\BurretManager.h" />
+    <ClInclude Include="Source\BurretStraite.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\CameraController.h" />
     <ClInclude Include="Source\CameraShake.h" />
@@ -262,6 +265,9 @@
     <ClCompile Include="Source\Audio\Audio.cpp" />
     <ClCompile Include="Source\Audio\AudioResource.cpp" />
     <ClCompile Include="Source\Audio\AudioSource.cpp" />
+    <ClCompile Include="Source\Burret.cpp" />
+    <ClCompile Include="Source\BurretManager.cpp" />
+    <ClCompile Include="Source\BurretStraite.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Cameracontroller.cpp" />
     <ClCompile Include="Source\CameraShake.cpp" />

@@ -192,6 +192,15 @@
     <ClInclude Include="Source\Reflection.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Burret.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BurretStraite.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BurretManager.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -333,6 +342,15 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Reflection.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Burret.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BurretStraite.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BurretManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

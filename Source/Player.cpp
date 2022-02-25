@@ -5,6 +5,8 @@
 #include "Collision.h"
 #include"Input/Input.h"
 #include "Graphics/Graphics.h"
+#include "BurretStraite.h"
+#include <functional>
 
 static Player* instance = nullptr;
 
@@ -41,6 +43,13 @@ void Player::Update(float elapsedTime)
     /*InputMove(elapsedTime);
     InputJump();
     InputProjectile();*/
+
+    //弾丸入力処理
+    InputBurret();
+
+    // 弾丸更新処理
+    burretManager.Update(elapsedTime);
+
     //ステート毎の処理
     switch (state)
     {
@@ -87,6 +96,31 @@ void Player::OnLanding()
         TransitionLandState();
     }
 }
+
+void Player::InputBurret()
+{
+    GamePad& gamePad = Input::Instance().GetGamePad();
+
+    //直進弾丸発射
+    if (gamePad.GetButtonDown() & GamePad::BTN_B)
+    {
+        //前方向
+        DirectX::XMFLOAT3 dir;
+        dir.x = sinf(angle.y);
+        dir.y = 0.0f;
+        dir.z = cosf(angle.y);
+        //発射位置
+        DirectX::XMFLOAT3 pos;
+        pos.x = position.x;
+        pos.y = position.y + height * 0.5f;
+        pos.z = position.z;
+        //発射
+        BurretStraite* burret = new BurretStraite(&burretManager);
+        burret->Launch(dir, pos);
+        //projectileManager.Register(projectile);
+    }
+}
+
 bool Player::InputMove(float elapsedTime)
 {
     DirectX::XMFLOAT3 moveVec = GetMoveVec();
@@ -115,64 +149,8 @@ bool Player::InputJump()
     }
     return false;
 }
-//弾丸発射
-void Player::InputProjectile()
-{
-    GamePad& gamePad = Input::Instance().GetGamePad();
-    if (gamePad.GetButtonDown() & GamePad::BTN_X)
-    {
-        DirectX::XMFLOAT3 dir;
-        dir.x = sinf(angle.y);
-        dir.y = 0.0f;
-        dir.z = cosf(angle.y);
-        DirectX::XMFLOAT3 pos;
-        pos.x = position.x;
-        pos.y = position.y + height * 0.5f;//腰
-        pos.z = position.z;
-     //   projectileManager.Register(projectile);
-    }
-    if (gamePad.GetButtonDown() & GamePad::BTN_Y)
-    {
-        DirectX::XMFLOAT3 dir;
-        dir.x = sinf(angle.y);
-        dir.y = 0.0f;
-        dir.z = cosf(angle.y);
 
-        DirectX::XMFLOAT3 pos;
-        pos.x = position.x;
-        pos.y = position.y + height * 0.5f;//腰
-        pos.z = position.z;
 
-        DirectX::XMFLOAT3 target;
-        target.x = pos.x + dir.x * 1000.0f; 
-        target.y = pos.y + dir.y * 1000.0f;
-        target.z = pos.z + dir.z * 1000.0f;
-
-        EnemyManager& enemyManager = EnemyManager::Instance();
-        // 全ての敵と総当たりで衝突処理
-        int enemyCount = enemyManager.GetEnemyCount();
-        for (int i = 0; i < enemyCount; ++i)
-        {
-            Enemy* enemy = enemyManager.GetEnemy(i);
-            DirectX::XMVECTOR P = DirectX::XMLoadFloat3(&position);
-            DirectX::XMVECTOR E = DirectX::XMLoadFloat3(&enemy->GetPosition());
-            DirectX::XMVECTOR V = DirectX::XMVectorSubtract(E, P);
-            DirectX::XMVECTOR D = DirectX::XMVector3LengthSq(V);
-            float d;
-            DirectX::XMStoreFloat(&d, D);
-            float dist = FLT_MAX;
-            //プレイヤーから一番近い敵を判定
-            if (d < dist)
-            {
-                dist = d;
-                //敵をターゲット
-                target = enemy->GetPosition();
-                //敵の真ん中をターゲット
-                target.y += enemy->GetHeight() * 0.5f;
-            }
-        }
-    }
-}
 
 bool Player::InputAttack()
 {
@@ -185,7 +163,20 @@ bool Player::InputAttack()
 }
 void Player::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
-    shader->Draw(dc, model);
+
+    DirectX::XMFLOAT4 color{ 1.0f, 1.0f, 1.0f, 1.0f };
+
+    std::function<void(DirectX::XMFLOAT4* c)> callback = {
+        [&](DirectX::XMFLOAT4* c) {
+            shader->Draw(dc, model,c);
+            }
+    };
+
+    color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+    callback(&color);
+
+    // 弾丸描画処理
+    burretManager.Render(dc,shader);
 }
 
 void Player::DrawDebugGUI()
@@ -255,7 +246,7 @@ DirectX::XMFLOAT3 Player::GetMoveVec() const
 void Player::DrawDebugPrimitive()
 {
     DebugRenderer* debugRendere = Graphics::Instance().GetDebugRenderer();
-    debugRendere->DrawCylinder(position, radius,height, DirectX::XMFLOAT4(0, 0, 1, 1));
+    //debugRendere->DrawCylinder(position, radius,height, DirectX::XMFLOAT4(0, 0, 1, 1));
 
    /* Model::Node* leftHandBone = model->FindNode("mixamorig:LeftHand");
     debugRendere->DrawSphere(DirectX::XMFLOAT3(
@@ -265,17 +256,21 @@ void Player::DrawDebugPrimitive()
         leftHandRadius,
         DirectX::XMFLOAT4(1, 0, 0, 1)
     );*/
-    if (attackCollisionFlag)
-    {
-        Model::Node* leftHandBone = model->FindNode("mixamorig:LeftHand");
-        debugRendere->DrawSphere(DirectX::XMFLOAT3(
-            leftHandBone->worldTransform._41,
-            leftHandBone->worldTransform._42,
-            leftHandBone->worldTransform._43),
-            leftHandRadius,
-            DirectX::XMFLOAT4(1, 0, 0, 1)
-        );
-    }
+    //if (attackCollisionFlag)
+    //{
+    //    Model::Node* leftHandBone = model->FindNode("mixamorig:LeftHand");
+    //    debugRendere->DrawSphere(DirectX::XMFLOAT3(
+    //        leftHandBone->worldTransform._41,
+    //        leftHandBone->worldTransform._42,
+    //        leftHandBone->worldTransform._43),
+    //        leftHandRadius,
+    //        DirectX::XMFLOAT4(1, 0, 0, 1)
+    //    );
+    //}
+
+    //弾丸デバッグプリミティブ描画
+    burretManager.DrawDebugPrimitive();
+
 }
 
 void Player::CollisionPlayerVsEnemies()
@@ -387,8 +382,7 @@ void Player::UpdateIdleState(float elapsedTime)
     //{
     //    TransitionJumpState();
     //}
-    //弾丸入力処理
-    InputProjectile();
+
     if (InputAttack())
     {
         TransitionAttackState();
@@ -411,8 +405,6 @@ void Player::UpdateMoveState(float elapsedTime)
     {
         TransitionJumpState();
     }*/
-    //弾丸入力処理
-    InputProjectile();
     if (InputAttack())
     {
         TransitionAttackState();
@@ -439,8 +431,6 @@ void Player::UpdateJumpState(float elapsedTime)
         // 落下アニメーション再生
         model->PlayAnimation(Anim_Falling, true);
     }
-    // 弾丸入力処理
-    InputProjectile();
 }
 
 void Player::TransitionLandState()
