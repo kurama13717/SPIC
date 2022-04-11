@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "Effect.h"
 #include "BurretManager.h"
+#include "CameraController.h"
 
 enum Animation
 {
@@ -40,8 +41,12 @@ public:
 
     //プレイヤーとエネミー衝突
     void CollisionPlayerVsEnemies();
+
     
-    
+    DirectX::XMFLOAT3 ct = {};
+
+    DirectX::XMFLOAT3 moveVec;
+
     
     static Player& Instance();
 protected:
@@ -102,4 +107,9 @@ private:
     bool attackCollisionFlag = false;
 
     BurretManager burretManager;
+
+    CameraController* camera;
+
+
+
 };

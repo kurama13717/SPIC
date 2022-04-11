@@ -120,6 +120,8 @@ void SceneGame::Update(float elapsedTime)
 	}
 
 
+	player->ct = cameracontroller->GetForward();
+	//player->ct.y = cameracontroller->GetUp().y;
 
 }
 

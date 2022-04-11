@@ -28,6 +28,7 @@ void BurretStraite::Update(float elapsedTime)
 	//移動
 	float speed = this->speed * elapsedTime;
 	position.x += direction.x * speed;
+	position.y += direction.y * speed;
 	position.z += direction.z * speed;
 
 	//オブジェクト行列を更新

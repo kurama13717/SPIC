@@ -6,6 +6,7 @@
 #include"Input/Input.h"
 #include "Graphics/Graphics.h"
 #include "BurretStraite.h"
+#include "CameraController.h"
 #include <functional>
 
 static Player* instance = nullptr;
@@ -29,6 +30,9 @@ Player::Player()
     hitEffect = new Effect("Data/Effect/Hit.efk");
     //待機ステートへ遷移
     TransitionIdleState();
+
+    
+
 }
 
 Player::~Player()
@@ -46,6 +50,7 @@ void Player::Update(float elapsedTime)
 
     //弾丸入力処理
     InputBurret();
+
 
     // 弾丸更新処理
     burretManager.Update(elapsedTime);
@@ -106,9 +111,22 @@ void Player::InputBurret()
     {
         //前方向
         DirectX::XMFLOAT3 dir;
-        dir.x = sinf(angle.y);
+      /*  dir.x = sinf(angle.y);
         dir.y = 0.0f;
-        dir.z = cosf(angle.y);
+        dir.z = cosf(angle.y);*/
+
+        //dir.x = vec.x;
+        //dir.y = 0;
+        //dir.z = vec.z;
+
+        dir.x = ct.x;
+        dir.y = ct.y;
+        dir.z = ct.z;
+        
+
+
+
+
         //発射位置
         DirectX::XMFLOAT3 pos;
         pos.x = position.x;
@@ -123,7 +141,7 @@ void Player::InputBurret()
 
 bool Player::InputMove(float elapsedTime)
 {
-    DirectX::XMFLOAT3 moveVec = GetMoveVec();
+    moveVec = GetMoveVec();
   //  Move(elapsedTime, moveVec.x, moveVec.z, moveSpeed);
     Move(moveVec.x, moveVec.z, moveSpeed);
     Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
@@ -237,6 +255,7 @@ DirectX::XMFLOAT3 Player::GetMoveVec() const
         cameraFrontZ /= cameraFrontLength;
     }
     DirectX::XMFLOAT3 vec;
+
     vec.x = cameraFrontX * ay + cameraRightX * ax;
     vec.z = cameraFrontZ * ay + cameraRightZ * ax;
     vec.y = 0.0f;

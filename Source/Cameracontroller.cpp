@@ -72,17 +72,16 @@ void CameraController::FpsUpdate(float elapsedTime)
 
     DirectX::XMFLOAT3 position = { 0,0,0 };
 
-    DirectX::XMFLOAT3 cameraForward;
+    
     DirectX::XMStoreFloat3(&cameraForward, forwardv);
 
-    DirectX::XMFLOAT3 cameraTarget;
+
   
 
     cameraTarget.x = eye.x + cameraForward.x;
     cameraTarget.y = eye.y + cameraForward.y;
     cameraTarget.z = eye.z + cameraForward.z;
 
-    DirectX::XMFLOAT3 cameraUp;
     DirectX::XMStoreFloat3(&cameraUp, upv);
 
     Camera::Instance().SetLookAt(eye, cameraTarget, cameraUp);

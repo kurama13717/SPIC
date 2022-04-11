@@ -15,13 +15,23 @@ public:
     float GetFov() { return fov; }
     void SetFov(float fov_) { fov = fov_; }
     void SetAngle(DirectX::XMFLOAT3 angle_) { angle = angle_; }
+    const DirectX::XMFLOAT3& GetAngle() const { return angle; }
+
+
     void SetEye(DirectX::XMFLOAT3 eye_) { eye = eye_; }
+
+    const DirectX::XMFLOAT3& GetTarget() const { return cameraTarget; }
+    const DirectX::XMFLOAT3& GetForward() const { return cameraForward; }
+    const DirectX::XMFLOAT3& GetUp() const { return cameraUp; }
 
 private:
     DirectX::XMFLOAT3 target = { 0,0,0 };
     DirectX::XMFLOAT3 angle = { 0,0,0 };
     DirectX::XMFLOAT2 sensitivity = { 1,1 };
     DirectX::XMFLOAT3 eye;
+    DirectX::XMFLOAT3 cameraTarget;
+    DirectX::XMFLOAT3 cameraForward;
+    DirectX::XMFLOAT3 cameraUp;
     bool Inversion = false;
     int reverse = 1;
     float rollSpeed = DirectX::XMConvertToRadians(90);
