@@ -3,7 +3,7 @@
 #include "Graphics/Model.h"
 #include "Character.h"
 #include "Effect.h"
-#include "BurretManager.h"
+#include "BulletManager.h"
 #include "CameraController.h"
 
 enum Animation
@@ -34,7 +34,7 @@ public:
     void DrawDebugPrimitive();
 
     // ’eŠÛ“ü—Íˆ—
-    void InputBurret();
+    void InputBullet();
 
     //ƒWƒƒƒ“ƒv“ü—Íˆ—
     bool InputJump();
@@ -106,7 +106,7 @@ private:
     float leftHandRadius = 0.4f;
     bool attackCollisionFlag = false;
 
-    BurretManager burretManager;
+    BulletManager bulletManager;
 
     CameraController* camera;
 

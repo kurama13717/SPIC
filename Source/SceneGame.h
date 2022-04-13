@@ -10,7 +10,8 @@
 #include "Audio/AudioSource.h"
 #include "Shake.h"
 #include "Cube.h"
-
+#include "BulletStraite.h"
+#include "Bullet.h"
 
 
 // ÉQÅ[ÉÄÉVÅ[Éì
@@ -48,6 +49,8 @@ private:
 	RenderContext rc;
 	Player* player = nullptr;
 	Cube* stageMain = nullptr;
+	Bullet* bullet = nullptr;
+
 	CameraController* cameracontroller = nullptr;
 
 	EnemySlime* enemyslime = nullptr;

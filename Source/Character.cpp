@@ -1,6 +1,7 @@
 #include "Character.h"
 #include "Mathf.h"
 #include "StageManager.h"
+#include "BulletManager.h"
 void Character::UpdateTransform()
 {
     DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x,scale.y,scale.z);
@@ -214,7 +215,7 @@ void Character::UpdateHorizontalMove(float elapsedTime)
             DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
             //逆ベクトルと法線ベクトルの内積
             DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
-
+            
             // 補正位置の計算
             //法線ベクトル*内積+レイの終端//Rベクトル求める
             DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
@@ -228,18 +229,21 @@ void Character::UpdateHorizontalMove(float elapsedTime)
                 position.x = collectPosition.x;
                 position.z = collectPosition.z;
             }
+
+            
+
+                else
+                {
+                    position.x = hit2.position.x;
+                    position.z = hit2.position.z;
+                }
+            }
             else
             {
-                position.x = hit2.position.x;
-                position.z = hit2.position.z;
+                position.x += mx;
+                position.z += mz;
             }
         }
-        else
-        {
-            position.x += mx;
-            position.z += mz;
-        }
-    }
 }
 void Character::Turn(float elapsedTime, float vx, float vz, float speed)
 {

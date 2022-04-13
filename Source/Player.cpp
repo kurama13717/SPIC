@@ -5,7 +5,7 @@
 #include "Collision.h"
 #include"Input/Input.h"
 #include "Graphics/Graphics.h"
-#include "BurretStraite.h"
+#include "BulletStraite.h"
 #include "CameraController.h"
 #include <functional>
 
@@ -49,11 +49,11 @@ void Player::Update(float elapsedTime)
     InputProjectile();*/
 
     //弾丸入力処理
-    InputBurret();
+    InputBullet();
 
 
     // 弾丸更新処理
-    burretManager.Update(elapsedTime);
+    bulletManager.Update(elapsedTime);
 
     //ステート毎の処理
     switch (state)
@@ -102,7 +102,7 @@ void Player::OnLanding()
     }
 }
 
-void Player::InputBurret()
+void Player::InputBullet()
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
 
@@ -111,30 +111,23 @@ void Player::InputBurret()
     {
         //前方向
         DirectX::XMFLOAT3 dir;
-      /*  dir.x = sinf(angle.y);
-        dir.y = 0.0f;
-        dir.z = cosf(angle.y);*/
 
-        //dir.x = vec.x;
-        //dir.y = 0;
-        //dir.z = vec.z;
 
         dir.x = ct.x;
         dir.y = ct.y;
         dir.z = ct.z;
         
 
-
-
-
         //発射位置
         DirectX::XMFLOAT3 pos;
         pos.x = position.x;
         pos.y = position.y + height * 0.5f;
         pos.z = position.z;
-        //発射
-        BurretStraite* burret = new BurretStraite(&burretManager);
-        burret->Launch(dir, pos);
+        //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
+        Bullet* bullet = new Bullet();
+        bullet->Launch(dir, pos);
+        bulletManager.Register(bullet);
+
         //projectileManager.Register(projectile);
     }
 }
@@ -194,7 +187,7 @@ void Player::Render(ID3D11DeviceContext* dc, Shader* shader)
     callback(&color);
 
     // 弾丸描画処理
-    burretManager.Render(dc,shader);
+    bulletManager.Render(dc,shader);
 }
 
 void Player::DrawDebugGUI()
@@ -288,7 +281,7 @@ void Player::DrawDebugPrimitive()
     //}
 
     //弾丸デバッグプリミティブ描画
-    burretManager.DrawDebugPrimitive();
+    bulletManager.DrawDebugPrimitive();
 
 }
 

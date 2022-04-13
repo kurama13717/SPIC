@@ -151,8 +151,7 @@ void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, bool flag)
 	//		color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
 
 	//	}
-	//	
-
+	//
 
 		if(flag)color =  DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
 
@@ -166,11 +165,6 @@ void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, bool flag)
 		callback[4](&color);
 		callback[5](&color);
 	//}
-
-
-	
-
-	
 }
 
 bool Cube::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
@@ -186,7 +180,7 @@ bool Cube::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 		return true;
 	return false;
 
-	//return Collision::IntersectRayVsModel(start, end, flat_Down, hit);
+	//return Collision::IntersectRayVsModel(start, end, flat_Left, hit);
 }
 
 void Cube::DrawDebugGUI()

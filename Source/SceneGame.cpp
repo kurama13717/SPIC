@@ -9,6 +9,8 @@
 #include "StageManager.h"
 #include "StageMain.h"
 #include "Cube.h"
+#include "Bullet.h"
+#include "BulletManager.h"
 // ‰Šú‰»
 void SceneGame::Initialize()
 {
@@ -16,6 +18,10 @@ void SceneGame::Initialize()
 	stageMain = new Cube();
 	stageManager.Register(stageMain);
 	
+	BulletManager& bulletManager = BulletManager::Instance();
+	bullet = new Bullet();
+	bulletManager.Register(bullet);
+
 
 	player = new Player();
 	cameracontroller = new CameraController();
@@ -65,6 +71,7 @@ void SceneGame::Finalize()
 	enemyManager.Clear();*/
 	//EnemyManager::Instance().Clear();
 	StageManager::Instance().Clear();
+	BulletManager::Instance().Clear();
 	if (cameracontroller != nullptr)
 	{
 		delete cameracontroller;
@@ -121,7 +128,6 @@ void SceneGame::Update(float elapsedTime)
 
 
 	player->ct = cameracontroller->GetForward();
-	//player->ct.y = cameracontroller->GetUp().y;
 
 }
 
@@ -178,6 +184,7 @@ void SceneGame::Render()
 		shader->Begin(dc, rc);
 		//StageManager::Instance().Render(dc, shader);
 		stageMain->Render(dc, shader,ViewMode);
+		BulletManager::Instance().Render(dc, shader);
 
 		//player->Render(dc, shader);
 
@@ -209,6 +216,7 @@ void SceneGame::Render()
 		player->DrawDebugGUI();
 		stageMain->DrawDebugGUI();
 		cameracontroller->cameraDebugGUI();
+		bullet->DrawDebugGUI();
 	}
 #endif // _DEBUG
 	
