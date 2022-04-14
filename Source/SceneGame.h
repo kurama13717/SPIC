@@ -50,7 +50,7 @@ private:
 	RenderContext rc;
 	Player* player = nullptr;
 	Cube* stageMain = nullptr;
-	//Bullet* bullet = nullptr;
+	Bullet* bullet = nullptr;
 
 	CameraController* cameracontroller = nullptr;
 

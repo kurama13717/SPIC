@@ -19,8 +19,8 @@ void SceneGame::Initialize()
 	stageManager.Register(stageMain);
 	
 	BulletManager& bulletManager = BulletManager::Instance();
-	//bullet = new Bullet();
-	//bulletManager.Register(bullet);
+	bullet = new Bullet();
+	bulletManager.Register(bullet);
 
 
 	player = new Player();
@@ -225,7 +225,8 @@ void SceneGame::Render()
 		player->DrawDebugGUI();
 		stageMain->DrawDebugGUI();
 		cameracontroller->cameraDebugGUI();
-		//bullet->DrawDebugGUI();
+		bullet->DrawDebugGUI();
+
 	}
 #endif // _DEBUG
 	

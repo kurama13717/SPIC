@@ -172,7 +172,7 @@ void Bullet::Update(float elapsedTime)
 	//モデル行列を更新
 	model->UpdateTransform(transform);
 
-
+	//DrawDebugGUI();
 
 	
 
@@ -310,12 +310,12 @@ void Bullet::DrawDebugGUI()
 		if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
 		{
 			//position
-			ImGui::InputFloat3("Position", &this->position.x);
+			ImGui::InputFloat3("Position", &BulletManager::Instance().GetBullet(0)->position.x);
 			//angle
 			DirectX::XMFLOAT3 a;
-			a.x = DirectX::XMConvertToDegrees(direction.x);
-			a.y = DirectX::XMConvertToDegrees(direction.y);
-			a.z = DirectX::XMConvertToDegrees(direction.z);
+			a.x = DirectX::XMConvertToDegrees(this->direction.x);
+			a.y = DirectX::XMConvertToDegrees(this->direction.y);
+			a.z = DirectX::XMConvertToDegrees(this->direction.z);
 			ImGui::InputFloat3("Angle", &a.x);
 			angle[1].x = DirectX::XMConvertToRadians(a.x);
 			angle[1].y = DirectX::XMConvertToRadians(a.y);
