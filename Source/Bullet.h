@@ -32,6 +32,9 @@ public:
 	//“–‚½‚è”»’è
 	void BulletRays(float elapsedTime);
 
+	//”½Ë
+	void Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLOAT3& Normal);
+
 
 	//•`‰æˆ—
 
@@ -52,6 +55,8 @@ public:
 
 	void DrawDebugGUI();
 
+	//’e‚ª•Ç‚É“–‚½‚Á‚Ä‚¢‚é‚©...˜AË‚Ì§Œä
+	bool bulletFlag = false;
 	////”jŠü
 	//void Destroy();
 
@@ -66,6 +71,8 @@ protected:
 	float radius = 0.5f;
 	float stepOffset = 1.0f;
 	float speed = 10.0f;
+
+
 
 
 	DirectX::XMFLOAT3 velocity = { 0,0,0 };

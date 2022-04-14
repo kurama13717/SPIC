@@ -36,6 +36,9 @@ public:
     // 弾丸入力処理
     void InputBullet();
 
+    //　弾丸の消去
+    void Destroy();
+
     //ジャンプ入力処理
     bool InputJump();
 
@@ -95,16 +98,21 @@ private:
     };
     State state = State::Idle;
     Model* model = nullptr;
+    Bullet* bullet = nullptr;
     float moveSpeed = 5.0f;
     float turnSpeed = DirectX::XMConvertToRadians(720);
 
     float jumpSpeed = 20.0f;
     int jumpCount = 0;
     int jumpLimit = 2;
+    
 
     Effect* hitEffect = nullptr;
     float leftHandRadius = 0.4f;
     bool attackCollisionFlag = false;
+
+    //発射中のフラグ
+    bool Firing = false;
 
     BulletManager bulletManager;
 

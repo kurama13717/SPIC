@@ -39,6 +39,7 @@ private:
 
 	void TargetCamera();
 	void FpsCamera();
+	void TrackingCamera();
 
 private:
 	Graphics& graphics = Graphics::Instance();
@@ -49,7 +50,7 @@ private:
 	RenderContext rc;
 	Player* player = nullptr;
 	Cube* stageMain = nullptr;
-	Bullet* bullet = nullptr;
+	//Bullet* bullet = nullptr;
 
 	CameraController* cameracontroller = nullptr;
 

@@ -19,8 +19,8 @@ void SceneGame::Initialize()
 	stageManager.Register(stageMain);
 	
 	BulletManager& bulletManager = BulletManager::Instance();
-	bullet = new Bullet();
-	bulletManager.Register(bullet);
+	//bullet = new Bullet();
+	//bulletManager.Register(bullet);
 
 
 	player = new Player();
@@ -99,7 +99,16 @@ void SceneGame::Update(float elapsedTime)
 		FpsCamera();
 		cameracontroller->FpsUpdate(elapsedTime);
 	}
+
+	//’e‚ª”­ŽË’†‚Ìê‡ƒJƒƒ‰‚ð’e‚ÉÝ’è‚·‚é
+	if (Player::Instance().GetFiring())
+	{
+		TrackingCamera();
+		cameracontroller->FpsUpdate(elapsedTime);
+	}
 	
+
+
 
 	StageManager::Instance().Update(elapsedTime);
 	//stageMain->Update(elapsedTime);
@@ -216,7 +225,7 @@ void SceneGame::Render()
 		player->DrawDebugGUI();
 		stageMain->DrawDebugGUI();
 		cameracontroller->cameraDebugGUI();
-		bullet->DrawDebugGUI();
+		//bullet->DrawDebugGUI();
 	}
 #endif // _DEBUG
 	
@@ -326,6 +335,14 @@ void SceneGame::FpsCamera()
 	cameracontroller->SetEye(player->GetPosition());
 
 }
+
+//’e‚Ì’Ç”öƒJƒƒ‰
+void SceneGame::TrackingCamera()
+{
+	//cameracontroller->SetEye(BulletManager);
+}
+
+
 
 void SceneGame::TargetCamera()
 {

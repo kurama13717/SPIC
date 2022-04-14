@@ -14,6 +14,12 @@ public:
     void SetAngle(const DirectX::XMFLOAT3& angle) { this->angle = angle; }
     const DirectX::XMFLOAT3& GetScale() const { return scale; }
     void SetScale(const DirectX::XMFLOAT3& scale) { this->scale = scale; }
+    
+
+    //壁に当たった時に発射中のフラグをセットする
+    const bool GetFiring()const { return Firing; }
+    void SetFiring(const bool Firing) { this->Firing = Firing; }
+    
     //衝撃を与える
     void AddImpulse(const DirectX::XMFLOAT3& impulse);
     //半径取得
@@ -28,6 +34,7 @@ public:
     int GetHealth()const { return health; }
     //最大健康状態
     int GetMaxHealth()const { return maxHealth; }
+
 private:
     //垂直速度更新
     void UpdateVerticalVelocity(float elapsedTime);
@@ -73,9 +80,10 @@ protected:
     float moveVecZ = 0.0f;
 
     float airControl = 3.0f;
-    
     float stepOffset = 1.0f;
-
     float slopeRate = 1.0f;
+
+    //発射中のフラグ
+    bool Firing = false;
     
 };

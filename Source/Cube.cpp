@@ -1,5 +1,7 @@
 #include <imgui.h>
 #include "Cube.h"
+#include "Bullet.h"
+#include "Player.h"
 #include "Graphics/LambertShader.h"
 #include <functional>
 
@@ -177,7 +179,9 @@ bool Cube::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 	bool fb_flag = Collision::IntersectRayVsModel(start, end, flat_Back, hit);	// 6
 
 	if (fd_flag == true || fu_flag == true || fl_flag == true || fr_flag == true || ff_flag == true || fb_flag == true)
+	{
 		return true;
+	}
 	return false;
 
 	//return Collision::IntersectRayVsModel(start, end, flat_Left, hit);

@@ -1,38 +1,38 @@
-//“àÏ@
-//Inner Product   Product(Ï)Inner(“à‘¤‚Ì)
+ï»¿//å†…ç©ã€€
+//Inner Product   Product(ç©)Inner(å†…å´ã®)
 //Dot Product 
-//Scalar   Scalar(ƒXƒJƒ‰[)
+//Scalar   Scalar(ã‚¹ã‚«ãƒ©ãƒ¼)
 
-//ŠOÏ
+//å¤–ç©
 //Outer Product
 //Cross Product
 //Vector Product
 
 #include"Bullet.h"
 #include"BulletManager.h"
+#include "Player.h"
 #include "StageManager.h"
 #include"Graphics/Graphics.h"
 #include <functional>
 
 
-//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Bullet::Bullet()
 {
     model = new Model("Data/model/Sword/Sword.mdl");
 
-    //•\¦ƒTƒCƒY‚ğ’²®
+    //è¡¨ç¤ºã‚µã‚¤ã‚ºã‚’èª¿æ•´
     scale.x = scale.y = scale.z = 3.0f;
 
-	//manager->Register(this);
-    
+	
 }
 
-//ƒfƒoƒbƒOƒvƒŠƒ~ƒeƒBƒu•`‰æ
+//ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–æç”»
 void Bullet::DrawDebugPrimitive()
 {
 	DebugRenderer* debugRenderer = Graphics::Instance().GetDebugRenderer();
 
-	//Õ“Ë”»’è—p‚ÌƒfƒoƒbƒO‹…‚ğ•`‰æ
+	//è¡çªåˆ¤å®šç”¨ã®ãƒ‡ãƒãƒƒã‚°çƒã‚’æç”»
 	debugRenderer->DrawSphere(position, radius, DirectX::XMFLOAT4(0, 0, 0, 1));
 }
 
@@ -40,7 +40,7 @@ void Bullet::DrawDebugPrimitive()
 
 ////void Bullet::UpdateVelocity(float elapsedTime)
 //{
-//	//…•½ˆÚ“®XVˆ—
+//	//æ°´å¹³ç§»å‹•æ›´æ–°å‡¦ç†
 //	UpdateHorizontalMove(elapsedTime);
 //}
 
@@ -49,7 +49,7 @@ void Bullet::DrawDebugPrimitive()
     //position.x += velocity.x * elapsedTime;
     //position.z += velocity.z * elapsedTime
 
-    //…•½‘¬—Í—ÊŒvZ
+    //æ°´å¹³é€ŸåŠ›é‡è¨ˆç®—
     float velocityLengthXZ = sqrtf(position.x * position.x + position.z * position.z);
     if (velocityLengthXZ > 0.0f)
     {
@@ -67,19 +67,19 @@ void Bullet::DrawDebugPrimitive()
             DirectX::XMVECTOR Vec = DirectX::XMVectorSubtract(End, Start);
 
             DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
-            //‹tƒxƒNƒgƒ‹‚Æ–@üƒxƒNƒgƒ‹‚Ì“àÏ
+            //é€†ãƒ™ã‚¯ãƒˆãƒ«ã¨æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«ã®å†…ç©
             DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
 
-            // •â³ˆÊ’u‚ÌŒvZ
-            //–@üƒxƒNƒgƒ‹*“àÏ+ƒŒƒC‚ÌI’[//RƒxƒNƒgƒ‹‹‚ß‚é
+            // è£œæ­£ä½ç½®ã®è¨ˆç®—
+            //æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«*å†…ç©+ãƒ¬ã‚¤ã®çµ‚ç«¯//Rãƒ™ã‚¯ãƒˆãƒ«æ±‚ã‚ã‚‹
             DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
             DirectX::XMFLOAT3 collectPosition;
             DirectX::XMStoreFloat3(&collectPosition, CollectPosition);
-            // •Ç‚¸‚è•ûŒü‚ÖƒŒƒCƒLƒƒƒXƒg
+            // å£ãšã‚Šæ–¹å‘ã¸ãƒ¬ã‚¤ã‚­ãƒ£ã‚¹ãƒˆ
             HitResult hit2;
             if (!StageManager::Instance().RayCast(hit.position, collectPosition, hit2))
             {
-                // •Ç‚¸‚è•ûŒü‚Å•Ç‚É“–‚½‚ç‚È‚©‚Á‚½‚ç•â³ˆÊ’u‚ÉˆÚ“®
+                // å£ãšã‚Šæ–¹å‘ã§å£ã«å½“ãŸã‚‰ãªã‹ã£ãŸã‚‰è£œæ­£ä½ç½®ã«ç§»å‹•
                 position.x = collectPosition.x;
                 position.z = collectPosition.z;
             }
@@ -105,20 +105,20 @@ void Bullet::UpdateTransform()
 {
 	DirectX::XMVECTOR Front, Up, Right;
 
-	//‘OƒxƒNƒgƒ‹‚ğZo z
+	//å‰ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º z
 	Front = DirectX::XMLoadFloat3(&direction);
 	Front = DirectX::XMVector3Normalize(Front);
 
-	//‰¼‚ÌãƒxƒNƒgƒ‹‚ğZo  y
+	//ä»®ã®ä¸Šãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º  y
 	Up = DirectX::XMVectorSet(0.001f, 1, 0, 0);
-	//u“¯‚¶ƒxƒNƒgƒ‹‚ÅŠOÏ‚·‚é‚Æƒ[ƒƒxƒNƒgƒ‹‚É‚È‚év Œ»Û‚ğ–h‚®‚½‚ß0.001f
+	//ã€ŒåŒã˜ãƒ™ã‚¯ãƒˆãƒ«ã§å¤–ç©ã™ã‚‹ã¨ã‚¼ãƒ­ãƒ™ã‚¯ãƒˆãƒ«ã«ãªã‚‹ã€ ç¾è±¡ã‚’é˜²ããŸã‚0.001f
 	Up = DirectX::XMVector3Normalize(Up);
 
-	//‰EƒxƒNƒgƒ‹‚ğZo x
+	//å³ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º x
 	Right = DirectX::XMVector3Cross(Up, Front);
 	Right = DirectX::XMVector3Normalize(Right);
 
-	//ãƒxƒNƒgƒ‹‚ğZo y
+	//ä¸Šãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º y
 	Up = DirectX::XMVector3Cross(Front, Right);
 
 
@@ -127,7 +127,7 @@ void Bullet::UpdateTransform()
 	DirectX::XMStoreFloat3(&up, Up);
 	DirectX::XMStoreFloat3(&front, Front);
 
-	//‚Æ‚è‚ ‚¦‚¸A‰¼‚Å‰ñ“]‚Í–³‹‚µ‚½s—ñ‚ğì¬‚·‚é
+	//ã¨ã‚Šã‚ãˆãšã€ä»®ã§å›è»¢ã¯ç„¡è¦–ã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 	transform._11 = right.x * scale.x;
 	transform._12 = right.y * scale.x;
 	transform._13 = right.z * scale.x;
@@ -145,14 +145,14 @@ void Bullet::UpdateTransform()
 	transform._43 = position.z;
 	transform._44 = 1.0f;
 
-	//”­Ë•ûŒü
+	//ç™ºå°„æ–¹å‘
 	this->direction = front;
 }
 
 
 
 
-//”jŠü
+//ç ´æ£„
 void Bullet::Destroy()
 {
 	manager->Remove(this);
@@ -160,16 +160,16 @@ void Bullet::Destroy()
 
 void Bullet::Update(float elapsedTime)
 {
-	//ˆÚ“®
+	//ç§»å‹•
 	//float speed = this->speed * elapsedTime;
 	//position.x += direction.x * speed;
 	//position.y += direction.y * speed;
 	//position.z += direction.z * speed;
 	BulletRays(elapsedTime);
 
-	//ƒIƒuƒWƒFƒNƒgs—ñ‚ğXV
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡Œåˆ—ã‚’æ›´æ–°
 	UpdateTransform();
-	//ƒ‚ƒfƒ‹s—ñ‚ğXV
+	//ãƒ¢ãƒ‡ãƒ«è¡Œåˆ—ã‚’æ›´æ–°
 	model->UpdateTransform(transform);
 
 
@@ -181,22 +181,22 @@ void Bullet::Update(float elapsedTime)
 
 void Bullet::UpdateTransform()
 {
-		// ƒXƒP[ƒ‹s—ñ‚ğì¬
+		// ã‚¹ã‚±ãƒ¼ãƒ«è¡Œåˆ—ã‚’ä½œæˆ
 		DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
-		// ‘S•”ƒTƒCƒY‚ªŒÅ’è‚¾‚Æ‚¾‚ß‚¾‚©‚ç•Ï”“ü‚ê‚é
+		// å…¨éƒ¨ã‚µã‚¤ã‚ºãŒå›ºå®šã ã¨ã ã‚ã ã‹ã‚‰å¤‰æ•°å…¥ã‚Œã‚‹
 
-		// ‰ñ“]s—ñ‚ğì¬
+		// å›è»¢è¡Œåˆ—ã‚’ä½œæˆ
 		DirectX::XMMATRIX R = DirectX::XMMatrixRotationRollPitchYaw(direction.x, direction.y, direction.z);
-		// ƒIƒCƒ‰[Šp
+		// ã‚ªã‚¤ãƒ©ãƒ¼è§’
 
-		// ˆÊ’us—ñ‚ğì¬
+		// ä½ç½®è¡Œåˆ—ã‚’ä½œæˆ
 		DirectX::CXMMATRIX T = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
 
-		// 3‚Â‚Ìs—ñ‚ğ‘g‚İ‡‚í‚¹Aƒ[ƒ‹ƒhs—ñ‚ğì¬
+		// 3ã¤ã®è¡Œåˆ—ã‚’çµ„ã¿åˆã‚ã›ã€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’ä½œæˆ
 		DirectX::XMMATRIX W = S * R * T;
-		// ™@s—ñ‚Ì‡”Ô‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢
+		// â˜†ã€€è¡Œåˆ—ã®é †ç•ªã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„
 
-		// ŒvZ‚µ‚½ƒ[ƒ‹ƒhs—ñ‚ğæ‚èo‚· //Ä•ÏŠ·
+		// è¨ˆç®—ã—ãŸãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’å–ã‚Šå‡ºã™ //å†å¤‰æ›
 		DirectX::XMStoreFloat4x4(&transform, W);
 }
 
@@ -207,7 +207,7 @@ void Bullet::Render(ID3D11DeviceContext* dc, Shader* shader)
 	shader->Draw(dc, model,c);
 }
 
-//”­Ë
+//ç™ºå°„
 void Bullet::Launch(const DirectX::XMFLOAT3& direction, const DirectX::XMFLOAT3& position)
 {
 	this->direction = direction;
@@ -221,16 +221,16 @@ bool Bullet::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& en
 }
 
 
-//“–‚½‚è”»’è
+//å½“ãŸã‚Šåˆ¤å®š
 void Bullet::BulletRays(float elapsedTime)
 {
-	//…•½‘¬—Í—ÊŒvZ
+	//æ°´å¹³é€ŸåŠ›é‡è¨ˆç®—
 	float velocityLengthXZ = sqrtf(direction.x * direction.x + direction.z * direction.z);
 	if (velocityLengthXZ > 0.0f)
 	{
-		float mx = direction.x * elapsedTime * 3.0f;
-		float my = direction.y * elapsedTime * 3.0f;
-		float mz = direction.z * elapsedTime * 3.0f;
+		float mx = direction.x * elapsedTime * 10.0f;
+		float my = direction.y * elapsedTime * 10.0f;
+		float mz = direction.z * elapsedTime * 10.0f;
 
 		DirectX::XMFLOAT3 start = { position.x, position.y, position.z };
 		DirectX::XMFLOAT3 end = { position.x + mx , position.y + my, position.z + mz };
@@ -238,36 +238,40 @@ void Bullet::BulletRays(float elapsedTime)
 		HitResult hit;
 		if (StageManager::Instance().RayCast(start, end, hit))
 		{
-			DirectX::XMVECTOR Start = DirectX::XMLoadFloat3(&start);
-			DirectX::XMVECTOR End = DirectX::XMLoadFloat3(&end);
-			DirectX::XMVECTOR Vec = DirectX::XMVectorSubtract(End, Start);
+			Player::Instance().SetFiring(false);
+			Player::Instance().Destroy();
 
-			DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
-			//‹tƒxƒNƒgƒ‹‚Æ–@üƒxƒNƒgƒ‹‚Ì“àÏ
-			DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
+			Reflection(direction, hit.normal);
 
-			// •â³ˆÊ’u‚ÌŒvZ
-			//–@üƒxƒNƒgƒ‹*“àÏ+ƒŒƒC‚ÌI’[//RƒxƒNƒgƒ‹‹‚ß‚é
-			DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
-			DirectX::XMFLOAT3 collectPosition;
-			DirectX::XMStoreFloat3(&collectPosition, CollectPosition);
-			// •Ç‚¸‚è•ûŒü‚ÖƒŒƒCƒLƒƒƒXƒg
-			HitResult hit2;
-			if (!StageManager::Instance().RayCast(hit.position, collectPosition, hit2))
-			{
-				// •Ç‚¸‚è•ûŒü‚Å•Ç‚É“–‚½‚ç‚È‚©‚Á‚½‚ç•â³ˆÊ’u‚ÉˆÚ“®
-				position.x = collectPosition.x;
-				position.z = collectPosition.z;
-			}
+			//	DirectX::XMVECTOR Start = DirectX::XMLoadFloat3(&start);
+			//	DirectX::XMVECTOR End = DirectX::XMLoadFloat3(&end);
+			//	DirectX::XMVECTOR Vec = DirectX::XMVectorSubtract(End, Start);
 
+			//	DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
+			//	//é€†ãƒ™ã‚¯ãƒˆãƒ«ã¨æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«ã®å†…ç©
+			//	DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
 
+			//	// è£œæ­£ä½ç½®ã®è¨ˆç®—
+			//	//æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«*å†…ç©+ãƒ¬ã‚¤ã®çµ‚ç«¯//Rãƒ™ã‚¯ãƒˆãƒ«æ±‚ã‚ã‚‹
+			//	DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
+			//	DirectX::XMFLOAT3 collectPosition;
+			//	DirectX::XMStoreFloat3(&collectPosition, CollectPosition);
+			//	// å£ãšã‚Šæ–¹å‘ã¸ãƒ¬ã‚¤ã‚­ãƒ£ã‚¹ãƒˆ
+			//	HitResult hit2;
+			//	if (!StageManager::Instance().RayCast(hit.position, collectPosition, hit2))
+			//	{
+			//		// å£ãšã‚Šæ–¹å‘ã§å£ã«å½“ãŸã‚‰ãªã‹ã£ãŸã‚‰è£œæ­£ä½ç½®ã«ç§»å‹•
+			//		position.x = collectPosition.x;
+			//		position.z = collectPosition.z;
+			//	}
 
-			else
-			{
-				position.x = hit2.position.x;
-				position.y = hit2.position.y;
-				position.z = hit2.position.z;
-			}
+			//	else
+			//	{
+			//		position.x = hit2.position.x;
+			//		position.y = hit2.position.y;
+			//		position.z = hit2.position.z;
+			//	}
+			//}
 		}
 		else
 		{
@@ -277,6 +281,22 @@ void Bullet::BulletRays(float elapsedTime)
 		}
 	}
 
+}
+
+//åå°„
+void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLOAT3& Normal)
+{
+	DirectX::XMFLOAT3 Dir, Reflect, Vec;
+	float FN;
+	// R=F+2(-Fâ‹…N)N
+	// F=é€²è¡Œãƒ™ã‚¯ãƒˆãƒ«
+	// N=æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«
+	// R=åå°„ãƒ™ã‚¯ãƒˆãƒ«
+	Dir = { direction.x * -1.0f,direction.y * -1.0f,direction.z * -1.0f };        // -Dir
+	FN = { Dir.x * Normal.x + Dir.y * Normal.y + Dir.z * Normal.z };            // -DirNormal
+	Vec = { 2.0f * FN * Normal.x,2.0f * FN * Normal.y,2.0f * FN * Normal.z };    // 2(-FN)Normal
+	Reflect = { Vec.x - Dir.x,Vec.y - Dir.y,Vec.z - Dir.z };                    // Vec-(-Dir)
+	this->direction = Reflect;
 }
 
 

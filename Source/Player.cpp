@@ -51,10 +51,10 @@ void Player::Update(float elapsedTime)
     //弾丸入力処理
     InputBullet();
 
-
     // 弾丸更新処理
     bulletManager.Update(elapsedTime);
 
+ 
     //ステート毎の処理
     switch (state)
     {
@@ -107,12 +107,13 @@ void Player::InputBullet()
     GamePad& gamePad = Input::Instance().GetGamePad();
 
     //直進弾丸発射
-    if (gamePad.GetButtonDown() & GamePad::BTN_B)
+    if (gamePad.GetButtonDown() & GamePad::BTN_B && !Player::Instance().GetFiring())
     {
+        Player::Instance().SetFiring(true);
+
+
         //前方向
         DirectX::XMFLOAT3 dir;
-
-
         dir.x = ct.x;
         dir.y = ct.y;
         dir.z = ct.z;
@@ -124,13 +125,20 @@ void Player::InputBullet()
         pos.y = position.y + height * 0.5f;
         pos.z = position.z;
         //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
-        Bullet* bullet = new Bullet();
+        bullet = new Bullet();
         bullet->Launch(dir, pos);
         bulletManager.Register(bullet);
+
 
         //projectileManager.Register(projectile);
     }
 }
+
+void Player::Destroy()
+{
+    bulletManager.Remove(bullet);
+}
+
 
 bool Player::InputMove(float elapsedTime)
 {
