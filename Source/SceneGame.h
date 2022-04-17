@@ -12,6 +12,7 @@
 #include "Cube.h"
 #include "BulletStraite.h"
 #include "Bullet.h"
+#include "Mark.h"
 
 
 // ÉQÅ[ÉÄÉVÅ[Éì
@@ -51,6 +52,7 @@ private:
 	Player* player = nullptr;
 	Cube* stageMain = nullptr;
 	Bullet* bullet = nullptr;
+	Mark* mark = nullptr;
 
 	CameraController* cameracontroller = nullptr;
 

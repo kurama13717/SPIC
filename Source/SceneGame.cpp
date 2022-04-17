@@ -17,6 +17,9 @@ void SceneGame::Initialize()
 	StageManager& stageManager = StageManager::Instance();
 	stageMain = new Cube();
 	stageManager.Register(stageMain);
+
+	mark = new Mark();
+	stageManager.Register(mark);
 	
 	BulletManager& bulletManager = BulletManager::Instance();
 	bullet = new Bullet();
@@ -193,6 +196,7 @@ void SceneGame::Render()
 		shader->Begin(dc, rc);
 		//StageManager::Instance().Render(dc, shader);
 		stageMain->Render(dc, shader,ViewMode);
+		mark->Render(dc, shader,true);
 		BulletManager::Instance().Render(dc, shader);
 
 		//player->Render(dc, shader);
@@ -224,6 +228,7 @@ void SceneGame::Render()
 	{
 		player->DrawDebugGUI();
 		stageMain->DrawDebugGUI();
+		mark->DrawDebugGUI();
 		cameracontroller->cameraDebugGUI();
 		bullet->DrawDebugGUI();
 

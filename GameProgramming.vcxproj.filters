@@ -201,6 +201,9 @@
     <ClInclude Include="Source\BulletManager.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Mark.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -351,6 +354,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\BulletManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mark.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -44,3 +44,9 @@ bool StageManager::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOA
     }
     return result;
 }
+
+void StageManager::Remove(Stage* stage)
+{
+    //”jŠüƒŠƒXƒg‚É’Ç‰Á
+    removes.emplace_back(stage);
+}

@@ -239,7 +239,7 @@ void Bullet::BulletRays(float elapsedTime)
 		if (StageManager::Instance().RayCast(start, end, hit))
 		{
 			Player::Instance().SetFiring(false);
-			Player::Instance().Destroy();
+			//Player::Instance().Destroy();
 
 			Reflection(direction, hit.normal);
 

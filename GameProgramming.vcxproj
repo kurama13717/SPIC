@@ -240,6 +240,7 @@
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Input\Mouse.h" />
     <ClInclude Include="Source\Logger.h" />
+    <ClInclude Include="Source\Mark.h" />
     <ClInclude Include="Source\Mathf.h" />
     <ClInclude Include="Source\Misc.h" />
     <ClInclude Include="Source\PerlinNoise.h" />
@@ -295,6 +296,7 @@
     <ClCompile Include="Source\Input\Mouse.cpp" />
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Mark.cpp" />
     <ClCompile Include="Source\Mathf.cpp" />
     <ClCompile Include="Source\PerlinNoise.cpp" />
     <ClCompile Include="Source\Player.cpp" />
