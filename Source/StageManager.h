@@ -20,6 +20,9 @@ public:
     void Clear();
     bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
     void Remove(Stage* stage);
+
+    int a = 0;
+
 private:
     std::vector<Stage*> stages;
     std::vector<Stage*> removes;

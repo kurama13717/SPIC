@@ -2,6 +2,7 @@
 #include "Cube.h"
 #include "Bullet.h"
 #include "Player.h"
+#include "StageManager.h"
 #include "Graphics/LambertShader.h"
 #include <functional>
 
@@ -191,6 +192,8 @@ bool Cube::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 
 	if (fd_flag == true || fu_flag == true || fl_flag == true || fr_flag == true || ff_flag == true || fb_flag == true)
 	{
+
+		StageManager::Instance().a = 1;
 		return true;
 	}
 	return false;

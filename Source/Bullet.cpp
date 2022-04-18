@@ -165,8 +165,10 @@ void Bullet::Update(float elapsedTime)
 	//position.x += direction.x * speed;
 	//position.y += direction.y * speed;
 	//position.z += direction.z * speed;
-	BulletRays(elapsedTime);
 
+	if (Player::Instance().GetFiring()) {
+		BulletRays(elapsedTime);
+	}
 	//オブジェクト行列を更新
 	UpdateTransform();
 	//モデル行列を更新
@@ -238,10 +240,18 @@ void Bullet::BulletRays(float elapsedTime)
 		HitResult hit;
 		if (StageManager::Instance().RayCast(start, end, hit))
 		{
-			Player::Instance().SetFiring(false);
-			//Player::Instance().Destroy();
+			if (StageManager::Instance().a == 1) {
+				Player::Instance().Destroy();
+				Player::Instance().SetFiring(false);
 
-			Reflection(direction, hit.normal);
+			}
+
+			if (StageManager::Instance().a == 2) {
+				Reflection(direction, hit.normal);
+			}
+
+
+			
 
 			//	DirectX::XMVECTOR Start = DirectX::XMLoadFloat3(&start);
 			//	DirectX::XMVECTOR End = DirectX::XMLoadFloat3(&end);

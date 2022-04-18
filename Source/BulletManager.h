@@ -28,6 +28,7 @@ public:
 	// ’eŠÛ“o˜^
 	void Register(Bullet* bullet);
 
+
 	//’eŠÛ‘Síœ
 	void Clear();
 
@@ -37,11 +38,13 @@ public:
 	//’eŠÛæ“¾
 	Bullet* GetBullet(int index) { return bullets.at(index); }
 
+
+
 	//’eŠÛíœ
 	void Remove(Bullet* bullet);
 
 	//ƒŒƒCƒLƒƒƒXƒg
-	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
+	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit, int index);
 
 
 

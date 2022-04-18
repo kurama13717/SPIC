@@ -146,6 +146,8 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 
 	if (flag0 == true || flag1 == true || flag2 == true)
 	{
+		StageManager::Instance().a = 2;
+
 		return true;
 	}
 	return false;

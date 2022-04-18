@@ -44,6 +44,7 @@ public:
 	//ˆÊ’uŽæ“¾
 	const DirectX::XMFLOAT3& GetPosition()const { return position; }
 
+
 	//•ûŒüŽæ“¾
 	const DirectX::XMFLOAT3& GetDirection() const { return direction; }
 
@@ -78,6 +79,9 @@ protected:
 	DirectX::XMFLOAT3 velocity = { 0,0,0 };
 	DirectX::XMFLOAT4 color{ 1.0f, 1.0f, 1.0f, 1.0f };
 	DirectX::XMFLOAT4* c = &color;
+
+	DirectX::XMFLOAT3 start ={0,0,0};
+	DirectX::XMFLOAT3 end	={0,0,0};
 
 
 	Model* model = nullptr;

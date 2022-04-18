@@ -72,14 +72,14 @@ void BulletManager::Remove(Bullet* bullet)
 }
 
 
-bool BulletManager::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
+bool BulletManager::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit,int index)
 {
 	bool result = false;
 	hit.distance = FLT_MAX;
 	for (Bullet* bullet : bullets)
 	{
 		HitResult tmp;
-		if (bullet->RayCast(start, end, tmp))
+		if (bullet->RayCast(start, end, tmp) && index == 0)
 		{
 			if (hit.distance > tmp.distance)
 			{
@@ -87,6 +87,15 @@ bool BulletManager::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLO
 				result = true;
 			}
 		}
+		if (bullet->RayCast(start, end, tmp) && index == 1)
+		{
+			if (hit.distance > tmp.distance)
+			{
+				hit = tmp;
+				result = true;
+			}
+		}
+
 	}
 	return result;
 }

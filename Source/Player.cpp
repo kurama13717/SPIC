@@ -52,7 +52,7 @@ void Player::Update(float elapsedTime)
     InputBullet();
 
     // 弾丸更新処理
-    bulletManager.Update(elapsedTime);
+    BulletManager::Instance().Update(elapsedTime);
 
  
     //ステート毎の処理
@@ -122,12 +122,15 @@ void Player::InputBullet()
         //発射位置
         DirectX::XMFLOAT3 pos;
         pos.x = position.x;
-        pos.y = position.y + height * 0.5f;
+        pos.y = position.y + height;
         pos.z = position.z;
         //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
         bullet = new Bullet();
         bullet->Launch(dir, pos);
-        bulletManager.Register(bullet);
+        BulletManager::Instance().Register(bullet);
+
+       
+        
 
 
         //projectileManager.Register(projectile);
@@ -136,7 +139,7 @@ void Player::InputBullet()
 
 void Player::Destroy()
 {
-    bulletManager.Remove(bullet);
+    BulletManager::Instance().Remove(bullet);
 }
 
 
@@ -195,7 +198,7 @@ void Player::Render(ID3D11DeviceContext* dc, Shader* shader)
     callback(&color);
 
     // 弾丸描画処理
-    bulletManager.Render(dc,shader);
+    //BulletManager::Instance().Render(dc,shader);
 }
 
 void Player::DrawDebugGUI()
@@ -289,7 +292,7 @@ void Player::DrawDebugPrimitive()
     //}
 
     //弾丸デバッグプリミティブ描画
-    bulletManager.DrawDebugPrimitive();
+    BulletManager::Instance().DrawDebugPrimitive();
 
 }
 

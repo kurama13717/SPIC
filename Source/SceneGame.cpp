@@ -22,8 +22,7 @@ void SceneGame::Initialize()
 	stageManager.Register(mark);
 	
 	BulletManager& bulletManager = BulletManager::Instance();
-	bullet = new Bullet();
-	bulletManager.Register(bullet);
+	
 
 
 	player = new Player();
@@ -233,8 +232,13 @@ void SceneGame::Render()
 		stageMain->DrawDebugGUI();
 		mark->DrawDebugGUI();
 		cameracontroller->cameraDebugGUI();
-		bullet->DrawDebugGUI();
+		// ’e‚Ìî•ñ•\¦
+		int count = BulletManager::Instance().GetBulletCount() - 1;
+		if (count < 0)
+			return;
 
+		auto bullet = BulletManager::Instance().GetBullet(count);
+		bullet->DrawDebugGUI();
 	}
 #endif // _DEBUG
 	

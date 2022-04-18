@@ -114,7 +114,7 @@ private:
     //”­ŽË’†‚Ìƒtƒ‰ƒO
     bool Firing = false;
 
-    BulletManager bulletManager;
+    //BulletManager bulletManager;
 
     CameraController* camera;
 
