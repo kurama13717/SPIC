@@ -203,7 +203,7 @@ void Bullet::UpdateTransform()
 }
 
 
-void Bullet::Render(ID3D11DeviceContext* dc, Shader* shader)
+void Bullet::Render(ID3D11DeviceContext* dc, Shader* shader,int flag)
 {
 
 	shader->Draw(dc, model,c);
@@ -243,11 +243,26 @@ void Bullet::BulletRays(float elapsedTime)
 			if (StageManager::Instance().a == 1) {
 				Player::Instance().Destroy();
 				Player::Instance().SetFiring(false);
+				if (StageManager::Instance().flag0_r) {
+					if (StageManager::Instance().flag1_r) {
+						if (StageManager::Instance().flag2_r) {
+
+						}
+						StageManager::Instance().flag2_r = false;
+
+					}
+					StageManager::Instance().flag1_r = false;
+
+
+				}
+				StageManager::Instance().flag0_r = false;
+
 
 			}
 
 			if (StageManager::Instance().a == 2) {
 				Reflection(direction, hit.normal);
+
 			}
 
 

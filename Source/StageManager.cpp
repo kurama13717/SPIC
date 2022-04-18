@@ -24,11 +24,11 @@ void StageManager::Update(float elapsedTime)
     //破棄リストをクリア
     removes.clear();
 }
-void StageManager::Render(ID3D11DeviceContext* context, Shader* shader)
+void StageManager::Render(ID3D11DeviceContext* context, Shader* shader, int flag)
 {
     for (Stage* stage : stages)
     {
-        stage->Render(context, shader);
+        stage->Render(context, shader,flag);
     }
 }
 void StageManager::Register(Stage* stage)

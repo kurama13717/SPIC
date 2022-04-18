@@ -10,8 +10,8 @@ public:
 	Cube();
 	~Cube()override;
 	void Update(float elapsedTime)override;
-	void Render(ID3D11DeviceContext* dc, Shader* shader) {};
-	void Render(ID3D11DeviceContext* dc, Shader* shader, int flag );
+	//void Render(ID3D11DeviceContext* dc, Shader* shader) {};
+	void Render(ID3D11DeviceContext* dc, Shader* shader, int flag)override;
 	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)override;
 	void UpdateTransform();
 

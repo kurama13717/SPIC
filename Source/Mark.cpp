@@ -12,42 +12,49 @@ Mark::Mark()
 
 	{  
 		mark0 = new Model("Data/Model/Mark/mark.mdl");
-		position[0].x = -10;
-		position[0].y = 10;
-		position[0].z = 0;
+		position[0].x = 6.0f;
+		position[0].y = 15.0f;
+		position[0].z = -3.0f;
 		scale[0].x = 0.01f;
-		scale[0].y = 0.01f;
-		scale[0].z = 0.01f;
-		angle[0].x = DirectX::XMConvertToRadians(45.0f);
+		scale[0].y = 0.05f;
+		scale[0].z = 0.05f;
+		angle[0].x = DirectX::XMConvertToRadians(60.0f);
 		angle[0].y = DirectX::XMConvertToRadians(180.0f);
-		angle[0].z = DirectX::XMConvertToRadians(90.0f);
+		angle[0].z = DirectX::XMConvertToRadians(53.0f);
+
+		Do = Audio::Instance().LoadAudioSource(".\\Data\\Sound\\1ド.wav");
+		Re = Audio::Instance().LoadAudioSource(".\\Data\\Sound\\2レ.wav");
+		Mi = Audio::Instance().LoadAudioSource(".\\Data\\Sound\\3ミ.wav");
+
 	}
 
 	{
 		mark1 = new Model("Data/Model/Mark/mark.mdl");
-		position[1].x = 10;
-		position[1].y = 5;
-		position[1].z = 20;
+		position[1].x = -5.5f;
+		position[1].y = 21.4f;
+		position[1].z = -10.5f;
 		scale[1].x = 0.01f;
-		scale[1].y = 0.01f;
-		scale[1].z = 0.01f;
-		angle[1].x = DirectX::XMConvertToRadians(45.0f);
+		scale[1].y = 0.05f;
+		scale[1].z = 0.05f;
+		angle[1].x = DirectX::XMConvertToRadians(70.0f);
 		angle[1].y = DirectX::XMConvertToRadians(180.0f);
-		angle[1].z = DirectX::XMConvertToRadians(90.0f);
+		angle[1].z = DirectX::XMConvertToRadians(70.0f);
 	}
 
 	{
 		mark2 = new Model("Data/Model/Mark/mark.mdl");
-		position[2].x = -20;
-		position[2].y = 10;
-		position[2].z = -5;
+		position[2].x = 0.0f;
+		position[2].y = 20.0f;
+		position[2].z = 5.0f;
 		scale[2].x = 0.01f;
-		scale[2].y = 0.01f;
-		scale[2].z = 0.01f;
-		angle[2].x = DirectX::XMConvertToRadians(45.0f);
+		scale[2].y = 0.05f;
+		scale[2].z = 0.05f;
+		angle[2].x = DirectX::XMConvertToRadians(90.0f);
 		angle[2].y = DirectX::XMConvertToRadians(180.0f);
 		angle[2].z = DirectX::XMConvertToRadians(90.0f);
 	}
+	StageManager::Instance().Register(this);
+
 }
 
 Mark::~Mark()
@@ -90,11 +97,12 @@ void Mark::Update(float elapsedTime)
 	mark2->UpdateTransform(transform[2]);
 }
 
-void Mark::Render(ID3D11DeviceContext* dc, Shader* shader, bool flag)
+void Mark::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 {
 
-	DirectX::XMFLOAT4 color{ 1.0f, 1.0f, 1.0f, 1.0f };
-
+	DirectX::XMFLOAT4 color0{ 1.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 color1{ 1.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 color2{ 1.0f, 1.0f, 1.0f, 1.0f };
 	//// タッチしている壁の番号
 	//int selectNo = 1;
 
@@ -113,51 +121,76 @@ void Mark::Render(ID3D11DeviceContext* dc, Shader* shader, bool flag)
 	};
 
 
-	//for (int i = 0; i < 6; ++i) {
-	//	if (selectNo == i + 1 && sg->ViewMode) {
-	//		// 選択された時の色
-	//		color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
-	//	}
-	//	else {
-	//		// 選択されていない時の色
-	//		color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
+	
+	if (StageManager::Instance().flag0_r)
+	{
+		scale[0].x = 0.0f;
+		scale[0].y = 0.0f;
+		scale[0].z = 0.0f;
+	}
+	if (StageManager::Instance().flag1_r)
+	{
+		scale[1].x = 0.0f;
+		scale[1].y = 0.0f;
+		scale[1].z = 0.0f;
+	}
+	if (StageManager::Instance().flag2_r)
+	{
+		scale[2].x = 0.0f;
+		scale[2].y = 0.0f;
+		scale[2].z = 0.0f;
+	}
 
-	//	}
-	//
-
-	if (flag)
-		color = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
-	else 	
-		color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	else
+	color0 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
+	color1 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
+	color2 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
 
 	//auto test = mark;
 
 
-	callback[0](&color);
-	callback[1](&color);
-	callback[2](&color);
+	callback[0](&color0);
+	callback[1](&color1);
+	callback[2](&color2);
 }
 
 bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
 {
-	bool flag0 = Collision::IntersectRayVsModel(start, end, mark0, hit); // 0
-	bool flag1 = Collision::IntersectRayVsModel(start, end, mark1, hit); // 1
-	bool flag2 = Collision::IntersectRayVsModel(start, end, mark2, hit); // 2
+	flag0 = Collision::IntersectRayVsModel(start, end, mark0, hit); // 0
+	flag1 = Collision::IntersectRayVsModel(start, end, mark1, hit); // 1
+	flag2 = Collision::IntersectRayVsModel(start, end, mark2, hit); // 2
 
-	if (flag0 == true || flag1 == true || flag2 == true)
+	if (flag0 == true)
 	{
+		if (StageManager::Instance().flag0_r)return false;
+		StageManager::Instance().flag0_r = flag0;
 		StageManager::Instance().a = 2;
+		Do->Play(false);
+		//StageManager::Instance().Remove();
 
 		return true;
 	}
-	return false;
 
-	if (flag0 == true)
-		Destroy();
 	if (flag1 == true)
-		Destroy();
+	{
+		if (StageManager::Instance().flag1_r)return false;
+		StageManager::Instance().flag1_r = flag1;
+		StageManager::Instance().a = 2;
+		Re->Play(false);
+
+		return true;
+	}
+
 	if (flag2 == true)
-		Destroy();
+	{
+		if (StageManager::Instance().flag2_r)return false;
+
+		StageManager::Instance().flag2_r = flag2;
+		StageManager::Instance().a = 2;
+		Mi->Play(false);
+
+		return true;
+	}
 	//return Collision::IntersectRayVsModel(start, end, flat_Left, hit);
 }
 

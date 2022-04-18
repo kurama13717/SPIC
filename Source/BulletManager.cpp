@@ -46,7 +46,7 @@ void BulletManager::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
 	for (Bullet* bullet : bullets)
 	{
-		bullet->Render(dc, shader);
+		bullet->Render(dc, shader,false);
 	}
 }
 

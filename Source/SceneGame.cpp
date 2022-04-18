@@ -14,13 +14,14 @@
 // ‰Šú‰»
 void SceneGame::Initialize()
 {
-	StageManager& stageManager = StageManager::Instance();
 	stageMain = new Cube();
-	stageManager.Register(stageMain);
+	//stageManager.Register(stageMain);
+
 
 	mark = new Mark();
-	stageManager.Register(mark);
+	//stageManager.Register(mark);
 	
+	StageManager& stageManager = StageManager::Instance();
 	BulletManager& bulletManager = BulletManager::Instance();
 	
 
@@ -37,7 +38,7 @@ void SceneGame::Initialize()
 		1000.0f
 	);
 	cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(15), 0.0f, 0.0f));
-	cameracontroller->SetFov(120.0f);
+	cameracontroller->SetFov(90.0f);
 
 	CamMode = Mode::FPSMode;
 	
@@ -196,9 +197,9 @@ void SceneGame::Render()
 	{
 		Shader* shader = graphics.GetShader(0);
 		shader->Begin(dc, rc);
-		//StageManager::Instance().Render(dc, shader);
-		mark->Render(dc, shader,true);
-		stageMain->Render(dc, shader,ViewMode);
+		StageManager::Instance().Render(dc, shader,false);
+		//mark->Render(dc, shader,true);
+		//stageMain->Render(dc, shader,ViewMode);
 		BulletManager::Instance().Render(dc, shader);
 
 		//player->Render(dc, shader);

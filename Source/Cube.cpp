@@ -73,6 +73,7 @@ Cube::Cube()
 		scale[5].z = 0.2f;
 		angle[5].x = DirectX::XMConvertToRadians(90.0f);
 	}
+	StageManager::Instance().Register(this);
 
 
 

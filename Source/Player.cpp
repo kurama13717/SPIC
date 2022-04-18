@@ -24,7 +24,9 @@ Player::Player()
     //model->PlayAnimation(0);
     scale.x = scale.y = scale.z = 0.01f;
 
-    position.y = 5;
+    position.x = 0.0f;
+    position.y = 20.0f;
+    position.x = -18.0f;
 
 
     hitEffect = new Effect("Data/Effect/Hit.efk");

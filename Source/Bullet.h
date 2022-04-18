@@ -15,7 +15,8 @@ public:
 	//更新処理
 	void Update(float elapsedTime)override;
 
-	void Render(ID3D11DeviceContext* dc, Shader* shader);
+	void Render(ID3D11DeviceContext* dc, Shader* shader,int flag);
+	//void Render_c(ID3D11DeviceContext* dc, Shader* shader, bool flag) {};
 
 	//速度更新処理
 	//void UpdateVelocity(float elapsedTime);
