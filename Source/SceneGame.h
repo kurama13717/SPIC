@@ -39,7 +39,13 @@ private:
 		const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection);
 
 	void TargetCamera();
+
+	// 一人称カメラ
 	void FpsCamera();
+	// 面選択時カメラ
+	void ViewCamera();
+	// 飛び回りカメラ
+	void SpectatorCamera();
 	void TrackingCamera();
 
 private:
@@ -65,9 +71,12 @@ private:
 	int state = -1;
 
 public:
-	bool ViewMode = false;
-	bool SpectatorMode = false;
-	bool FpsMode = false;
+	enum  Mode
+	{
+		ViewMode,
+		FPSMode,
+		SpectatorMode,
+	};
 
-
+	int CamMode = 0;
 };

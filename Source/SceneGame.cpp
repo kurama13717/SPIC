@@ -40,7 +40,7 @@ void SceneGame::Initialize()
 	cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(15), 0.0f, 0.0f));
 	cameracontroller->SetFov(120.0f);
 
-	FpsMode = true;
+	CamMode = Mode::FPSMode;
 	
 	//エネミー初期化
 	//EnemyManager& enemyManager = EnemyManager::Instance();
@@ -95,12 +95,32 @@ void SceneGame::Update(float elapsedTime)
 
 
 	//カメラコントローラー更新処理
-	if (ViewMode) {
+	switch (CamMode)
+	{
+	case Mode::ViewMode:
+		// 専用カメラコントローラーアクティブ
+		ViewCamera();
 		cameracontroller->Update(elapsedTime);
-	}
-	if (FpsMode) {
+
+		if (gamePad.GetButtonDown() & GamePad::BTN_A) //スペース
+		{
+			CamMode = Mode::FPSMode;
+		}
+		break;
+
+	case Mode::FPSMode:
+		// 専用カメラコントローラーアクティブ
 		FpsCamera();
 		cameracontroller->FpsUpdate(elapsedTime);
+		if (gamePad.GetButtonDown() & GamePad::BTN_ENTER)
+		{
+			CamMode = Mode::ViewMode;
+			cameracontroller->SetFov(120.0f);
+			cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(0), 0.0f, 0.0f));
+			cameracontroller->SetTarget(DirectX::XMFLOAT3(0, 0, -30));
+		}
+
+		break;
 	}
 
 	//弾が発射中の場合カメラを弾に設定する
@@ -121,23 +141,6 @@ void SceneGame::Update(float elapsedTime)
 	EffectManager::Instance().Update(elapsedTime);
 
 	shake.ShakeUpdate(elapsedTime);
-
-	if (gamePad.GetButtonDown() & GamePad::BTN_ENTER)
-	{
-		ViewMode = true;
-		FpsMode = false;
-		cameracontroller->SetFov(120.0f);
-		cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(0), 0.0f, 0.0f));
-		cameracontroller->SetTarget(DirectX::XMFLOAT3(0, 0, -30));
-	}
-	if (gamePad.GetButtonDown() & GamePad::BTN_A) //スペース
-	{
-		FpsMode = true;
-		ViewMode = false;
-
-
-	}
-
 
 	player->ct = cameracontroller->GetForward();
 
@@ -340,6 +343,11 @@ void SceneGame::FpsCamera()
 {
 	cameracontroller->SetEye(player->GetPosition());
 
+}
+
+void SceneGame::ViewCamera()
+{
+	cameracontroller->SetTarget({ 0,15,0 });
 }
 
 //弾の追尾カメラ

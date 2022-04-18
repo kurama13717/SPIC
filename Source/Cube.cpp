@@ -9,7 +9,7 @@
 Cube::Cube()
 {
 	{  //下面...ステージの床
-		flat_Down = new Model("Data/Model/Stage/flat.mdl");
+		flat_Down = new Model("Data/Model/Stage/flatpanel.mdl");
 		position[0].x = 0;
 		position[0].y = 0;
 		position[0].z = 0;
@@ -19,9 +19,9 @@ Cube::Cube()
 	}
 
 	{	//上面...ステージの天井
-		flat_Up = new Model("Data/Model/Stage/flat.mdl");
+		flat_Up = new Model("Data/Model/Stage/flatpanel.mdl");
 		position[1].x = 0.0f;
-		position[1].y = 15.0f;
+		position[1].y = 40.0f;
 		position[1].z = 0.0f;
 		scale[1].x = 0.2f;
 		scale[1].y = 0.1f;
@@ -30,9 +30,9 @@ Cube::Cube()
 	}
 
 	{	//左面...ステージの左壁
-		flat_Left = new Model("Data/Model/Stage/flat.mdl");
-		position[2].x = -19.5f;
-		position[2].y = 0.0f;
+		flat_Left = new Model("Data/Model/Stage/flatpanel.mdl");
+		position[2].x = -20.0f;
+		position[2].y = 20.0f;
 		position[2].z = 0.0f;
 		scale[2].x = 0.2f;
 		scale[2].y = 0.1f;
@@ -41,9 +41,9 @@ Cube::Cube()
 	}
 
 	{	//右面...ステージの右壁
-		flat_Right = new Model("Data/Model/Stage/flat.mdl");
-		position[3].x = 19.5f;
-		position[3].y = 0.0f;
+		flat_Right = new Model("Data/Model/Stage/flatpanel.mdl");
+		position[3].x = 20.0f;
+		position[3].y = 20.0f;
 		position[3].z = 0.0f;
 		scale[3].x = 0.2f;
 		scale[3].y = 0.1f;
@@ -52,9 +52,9 @@ Cube::Cube()
 	}
 
 	{	//前面...ステージの右壁
-		flat_Forward = new Model("Data/Model/Stage/flat.mdl");
+		flat_Forward = new Model("Data/Model/Stage/flatpanel.mdl");
 		position[4].x = 0.0f;
-		position[4].y = 0.0f;
+		position[4].y = 20.0f;
 		position[4].z = 20.0f;
 		scale[4].x = 0.2f;
 		scale[4].y = 0.1f;
@@ -63,9 +63,9 @@ Cube::Cube()
 	}
 
 	{	//後面...ステージの後壁
-		flat_Back = new Model("Data/Model/Stage/flat.mdl");
+		flat_Back = new Model("Data/Model/Stage/flatpanel.mdl");
 		position[5].x = 0.0f;
-		position[5].y = 0.0f;
+		position[5].y = 20.0f;
 		position[5].z = -20.0f;
 		scale[5].x = 0.2f;
 		scale[5].y = 0.1f;
@@ -73,7 +73,7 @@ Cube::Cube()
 		angle[5].x = DirectX::XMConvertToRadians(90.0f);
 	}
 
-	
+
 
 }
 
@@ -125,10 +125,15 @@ void Cube::Update(float elapsedTime)
 	flat_Back->UpdateTransform(transform[5]);
 }
 
-void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, bool flag)
+void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 {
 
-	DirectX::XMFLOAT4 color{1.0f, 1.0f, 1.0f, 1.0f};
+	DirectX::XMFLOAT4 normal{ 1.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 skelton{ 1.0f, 1.0f, 1.0f, 0.5f };
+	DirectX::XMFLOAT4 red{ 1.0f, 0.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 Cyan{ 0.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 green{ 0.0f, 1.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 purple{ 1.0f, 0.0f, 1.0f, 1.0f };
 
 	//// タッチしている壁の番号
 	//int selectNo = 1;
@@ -155,18 +160,24 @@ void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, bool flag)
 	//	}
 	//
 
-		if(flag)color =  DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
+		//if(flag)color =  DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
 
 
-		else 	color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+		//else 	color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		callback[0](&color);
-		callback[1](&color);
-		callback[2](&color);
-		callback[3](&color);
-		callback[4](&color);
-		callback[5](&color);
-	//}
+		//callback[0](&color);
+		//callback[1](&color);
+		//callback[2](&color);
+		//callback[3](&color);
+		//callback[4](&color);
+		//callback[5](&color);
+		
+	callback[0](&normal);
+	callback[1](&normal);
+	callback[2](&red);
+	callback[3](&Cyan);
+	callback[4](&green);
+	callback[5](&purple);
 }
 
 bool Cube::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)

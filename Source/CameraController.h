@@ -9,7 +9,13 @@ public:
     ~CameraController() {}
     //更新処理
     void Update(float elapsedTime);
+
+    // FPS モード時更新処理
     void FpsUpdate(float elapsedTime);
+
+    // View モード時処理
+    void ViewUpdate(float elapsedTime);
+
     void SetTarget(const DirectX::XMFLOAT3& target) { this->target = target; }
     void cameraDebugGUI();
     float GetFov() { return fov; }
@@ -35,8 +41,15 @@ private:
     bool Inversion = false;
     int reverse = 1;
     float rollSpeed = DirectX::XMConvertToRadians(90);
-    float range = 10.0f;
+    float range = 40.0f;
     float maxAngleX = DirectX::XMConvertToRadians(45);
     float minAngleX = DirectX::XMConvertToRadians(-45);
     float fov = 40;
+
+    DirectX::XMVECTOR Front;
+    DirectX::XMFLOAT3 front;
+
+    bool CameraTurn_R = false;
+    bool CameraTurn_L = false;
+    DirectX::XMFLOAT3 NowAngle = {0,0,0};
 };

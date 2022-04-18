@@ -8,6 +8,7 @@ void CameraController::Update(float elapsedTime)
     GamePad& gamePad = Input::Instance().GetGamePad();
     float ax = gamePad.GetAxisRX();
     float ay = gamePad.GetAxisRY();
+
     //カメラの回転速度
     float speed = rollSpeed * elapsedTime;
     //スティックの入力値に合わせてX軸とY軸を回転
@@ -15,36 +16,81 @@ void CameraController::Update(float elapsedTime)
     else { reverse = 1; }
     angle.x += speed * ay * sensitivity.y * reverse;
     angle.y += speed * ax * sensitivity.x * reverse;
-    //限界値
 
-    if (angle.x >= maxAngleX)
+    // カメラ旋回処理(右回り)
+    if (CameraTurn_R == false)
     {
-        angle.x = maxAngleX;
+        if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT)
+        {
+            NowAngle.y = angle.y;
+            CameraTurn_R = true;
+        }
     }
-    if (angle.x <= minAngleX)
+    if (CameraTurn_R == true)
     {
-        angle.x = minAngleX;
+        angle.y -= DirectX::XM_2PI * 0.25f / 30;
+        if (angle.y < NowAngle.y - 1.57f)
+        {
+            CameraTurn_R = false;
+            angle.y = NowAngle.y - DirectX::XM_2PI * 0.25f;
+        }
     }
-    if (angle.y < -DirectX::XM_PI)
+
+    // カメラ旋回処理(左回り)
+    if (CameraTurn_L == false)
     {
-        angle.y += DirectX::XM_2PI;
+        if (gamePad.GetButtonDown() & GamePad::BTN_LEFT )
+        {
+            NowAngle.y = angle.y;
+            CameraTurn_L = true;
+        }
     }
-    if (angle.y > DirectX::XM_2PI)
+    if (CameraTurn_L == true)
     {
-        angle.y -= DirectX::XM_2PI;
+        angle.y += DirectX::XM_2PI * 0.25f / 30;
+        if (angle.y > NowAngle.y + 1.57f)
+        {
+            CameraTurn_L = false;
+            angle.y = NowAngle.y + DirectX::XM_2PI * 0.25f;
+        }
     }
+
+    //限界値
+    //if (angle.x >= maxAngleX)
+    //{
+    //    angle.x = maxAngleX;
+    //}
+    //if (angle.x <= minAngleX)
+    //{
+    //    angle.x = minAngleX;
+    //}
+    //if (angle.y < -DirectX::XM_PI)
+    //{
+    //    angle.y += DirectX::XM_2PI;
+    //}
+    //if (angle.y > DirectX::XM_2PI)
+    //{
+    //    angle.y -= DirectX::XM_2PI;
+    //}
     //カメラ回転値を回転行列に変換
     DirectX::XMMATRIX Transform = DirectX::XMMatrixRotationRollPitchYaw(angle.x, angle.y, angle.z);
     //回転行列から前方向ベクトルに取り出す
-    DirectX::XMVECTOR Front = Transform.r[2];
-    DirectX::XMFLOAT3 front;
+    Front = Transform.r[2];
     DirectX::XMStoreFloat3(&front, Front);
     //注視点から後ろベクトル方向に一定距離離れたカメラ視点を求める
-    DirectX::XMFLOAT3 eye;
+    //DirectX::XMFLOAT3 eye;
     eye.x = target.x + range * -front.x;
     eye.y = target.y + range * -front.y;
     eye.z = target.z + range * -front.z;
 
+    Camera::Instance().SetLookAt(eye, target, DirectX::XMFLOAT3(0, 1, 0));
+}
+
+void CameraController::ViewUpdate(float elapsedTime)
+{
+    //eye.x = target.x + range * -front.x;
+    //eye.y = target.y + range * -front.y;
+    //eye.z = target.z + range * -front.z;
     Camera::Instance().SetLookAt(eye, target, DirectX::XMFLOAT3(0, 1, 0));
 }
 
@@ -99,7 +145,15 @@ void CameraController::cameraDebugGUI()
         {
             //カメラ感度
             ImGui::SliderFloat("Fov", &fov,2.0f,100.0f);
-            ImGui::SliderFloat3("Angle", &angle.x, 0, 360.0f);
+            ImGui::SliderFloat("Angle.x", &angle.x, 0, 360.0f);
+            ImGui::SliderFloat("Angle.y", &angle.y, 0, 360.0f);
+            ImGui::SliderFloat("Angle.z", &angle.z, 0, 360.0f);             
+            ImGui::SliderFloat("Eye.x", &eye.x, 0, 360.0f);
+            ImGui::SliderFloat("Eye.y", &eye.y, 0, 360.0f);
+            ImGui::SliderFloat("Eye.z", &eye.z, 0, 360.0f);             
+            ImGui::SliderFloat("front.x", &front.x, 0, 360.0f);
+            ImGui::SliderFloat("front.y", &front.y, 0, 360.0f);
+            ImGui::SliderFloat("front.z", &front.z, 0, 360.0f);            
             ImGui::SliderFloat2("Sensitivity", &sensitivity.x,1.0f,10.0f);
             if (ImGui::Button("reverse:true"))
             {
