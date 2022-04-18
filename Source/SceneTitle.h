@@ -34,6 +34,10 @@ private:
 
     Microsoft::WRL::ComPtr<ID3D11DeviceContext>		immediateContext;
     Sprite* sprite = nullptr;
+    Sprite* X = nullptr;
+    bool flagX = false;
+    Sprite* arrow = nullptr;
+    float arrowPosX = 500;
     //Camera
     Camera& camera = Camera::Instance();
     CameraController* cameracontroller = nullptr;

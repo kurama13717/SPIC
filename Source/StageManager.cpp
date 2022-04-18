@@ -6,6 +6,23 @@ void StageManager::Update(float elapsedTime)
     {
         stage->Update(elapsedTime);
     }
+
+    //破棄処理
+    for (Stage* stage : removes)
+    {
+        //std::vectorから要素を削除する場合はイテレーターで削除しなければならない
+        std::vector<Stage*>::iterator it = std::find(stages.begin(), stages.end(), stage);
+
+        if (it != stages.end())
+        {
+            stages.erase(it);
+        }
+
+        //弾丸の破棄処理
+        delete stage;
+    }
+    //破棄リストをクリア
+    removes.clear();
 }
 void StageManager::Render(ID3D11DeviceContext* context, Shader* shader)
 {

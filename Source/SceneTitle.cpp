@@ -7,7 +7,9 @@
 
 void SceneTitle::Initialize()
 {
-    sprite = new Sprite("Data/Sprite/Title.png");
+    sprite = new Sprite("Data/Sprite/Title().png");
+    X = new Sprite("Data/Sprite/X.png");
+    arrow = new Sprite("Data/Sprite/arrow.png");
     cameracontroller = new CameraController();
     //カメラ初期設定
     camera.SetLookAt(DirectX::XMFLOAT3(0, 10, -10), DirectX::XMFLOAT3(0, 0, 0), DirectX::XMFLOAT3(0, 1, 0));
@@ -29,6 +31,11 @@ void SceneTitle::Finalize()
     {
         delete sprite;
         sprite = nullptr;
+    }
+    if (arrow != nullptr)
+    {
+        delete arrow;
+        arrow = nullptr;
     }
     if (cameracontroller != nullptr)
     {
@@ -63,7 +70,18 @@ void SceneTitle::TitleInput()
         GamePad::BTN_A | GamePad::BTN_B | GamePad::BTN_X | GamePad::BTN_Y;
     if (gamePad.GetButtonDown() & anyButton)
     {
-        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
+        if (arrowPosX == 500)
+            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
+        if (arrowPosX == 1250)
+            flagX = true;
+    }
+    if (gamePad.GetButtonDown() & GamePad::BTN_LEFT)
+    {
+        arrowPosX = 500;
+    }
+    if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT)
+    {
+        arrowPosX = 1250;
     }
 }
 void SceneTitle::DrawDebugGUI()
@@ -117,6 +135,10 @@ void SceneTitle::Render()
         float screenHeight = static_cast<float>(graphics.GetScreenHeight());
         float textureWidth = static_cast<float>(sprite->GetTextureWidth());
         float textureHeight = static_cast<float>(sprite->GetTextureHeight());
+        float XWidth = static_cast<float>(X->GetTextureWidth());
+        float XHeight = static_cast<float>(X->GetTextureHeight());
+        float arrowWidth = static_cast<float>(arrow->GetTextureWidth());
+        float arrowHeight = static_cast<float>(arrow->GetTextureHeight());
  
         //タイトル描画
         sprite->Render(dc,
@@ -124,14 +146,29 @@ void SceneTitle::Render()
             0, 0, textureWidth, textureHeight,
             0,
             1, 1, 1, 1);
+
+        arrow->Render(dc,
+            arrowPosX, 480, 100, 100,
+            0, 0, arrowWidth, arrowHeight,
+            0,
+            1, 1, 1, 1);
+
+        if (flagX == true)
+        {
+            X->Render(dc,
+                1050, 430, 200, 200,
+                0, 0, XWidth, XHeight,
+                0,
+                1, 1, 1, 1);
+        }
     }
     // フォントの描画
     {
         float screenWidth = static_cast<float>(graphics.GetScreenWidth());
         float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-        font->Begin(dc);
-        font->Draw(screenWidth *0.25f, screenHeight * 0.25f  + 150, L"めんどくさい~\nX O X", 1.5f, 1.5f, 1.0f, 1.0f, 1.0f, 1.0f);
-        font->End(dc);
+        //font->Begin(dc);
+        //font->Draw(screenWidth *0.25f, screenHeight * 0.25f  + 150, L"めんどくさい~\nX O X", 1.5f, 1.5f, 1.0f, 1.0f, 1.0f, 1.0f);
+        //font->End(dc);
     }
 #ifdef _DEBUG
     DrawDebugGUI();

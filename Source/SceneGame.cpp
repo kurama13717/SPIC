@@ -197,8 +197,8 @@ void SceneGame::Render()
 		Shader* shader = graphics.GetShader(0);
 		shader->Begin(dc, rc);
 		//StageManager::Instance().Render(dc, shader);
-		stageMain->Render(dc, shader,ViewMode);
 		mark->Render(dc, shader,true);
+		stageMain->Render(dc, shader,ViewMode);
 		BulletManager::Instance().Render(dc, shader);
 
 		//player->Render(dc, shader);

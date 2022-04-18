@@ -21,4 +21,5 @@ private:
 	Model* mark1 = nullptr;
 	Model* mark2 = nullptr;
 
+	Stage* stage = nullptr;
 };

@@ -152,12 +152,18 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 	}
 	return false;
 
+	if (flag0 == true)
+		Destroy();
+	if (flag1 == true)
+		Destroy();
+	if (flag2 == true)
+		Destroy();
 	//return Collision::IntersectRayVsModel(start, end, flat_Left, hit);
 }
 
 void Mark::Destroy()
 {
-	//Mark.Remove(bullet);
+	StageManager::Instance().Remove(stage);
 	
 }
 
@@ -170,50 +176,50 @@ void Mark::DrawDebugGUI()
 		if (ImGui::CollapsingHeader("Mark0", ImGuiTreeNodeFlags_DefaultOpen))
 		{
 			//position
-			ImGui::InputFloat3("Position", &position[0].x);
+			ImGui::InputFloat3("Position0", &position[0].x);
 			//angle
 			DirectX::XMFLOAT3 a;
 			a.x = DirectX::XMConvertToDegrees(angle[0].x);
 			a.y = DirectX::XMConvertToDegrees(angle[0].y);
 			a.z = DirectX::XMConvertToDegrees(angle[0].z);
-			ImGui::InputFloat3("Angle", &a.x);
+			ImGui::InputFloat3("Angle0", &a.x);
 			angle[0].x = DirectX::XMConvertToRadians(a.x);
 			angle[0].y = DirectX::XMConvertToRadians(a.y);
 			angle[0].z = DirectX::XMConvertToRadians(a.z);
 			//scale
-			ImGui::InputFloat3("Scale", &scale[0].x);
+			ImGui::InputFloat3("Scale0", &scale[0].x);
 		}
 		if (ImGui::CollapsingHeader("Mark1", ImGuiTreeNodeFlags_DefaultOpen))
 		{
 			//position
-			ImGui::InputFloat3("Position", &position[1].x);
+			ImGui::InputFloat3("Position1", &position[1].x);
 			//angle
 			DirectX::XMFLOAT3 b;
 			b.x = DirectX::XMConvertToDegrees(angle[1].x);
 			b.y = DirectX::XMConvertToDegrees(angle[1].y);
 			b.z = DirectX::XMConvertToDegrees(angle[1].z);
-			ImGui::InputFloat3("Angle", &b.x);
+			ImGui::InputFloat3("Angle1", &b.x);
 			angle[1].x = DirectX::XMConvertToRadians(b.x);
 			angle[1].y = DirectX::XMConvertToRadians(b.y);
 			angle[1].z = DirectX::XMConvertToRadians(b.z);
 			//scale
-			ImGui::InputFloat3("Scale", &scale[1].x);
+			ImGui::InputFloat3("Scale1", &scale[1].x);
 		}
 		if (ImGui::CollapsingHeader("Mark2", ImGuiTreeNodeFlags_DefaultOpen))
 		{
 			//position
-			ImGui::InputFloat3("Position", &position[2].x);
+			ImGui::InputFloat3("Position2", &position[2].x);
 			//angle
 			DirectX::XMFLOAT3 c;
 			c.x = DirectX::XMConvertToDegrees(angle[2].x);
 			c.y = DirectX::XMConvertToDegrees(angle[2].y);
 			c.z = DirectX::XMConvertToDegrees(angle[2].z);
-			ImGui::InputFloat3("Angle", &c.x);
+			ImGui::InputFloat3("Angle2", &c.x);
 			angle[2].x = DirectX::XMConvertToRadians(c.x);
 			angle[2].y = DirectX::XMConvertToRadians(c.y);
 			angle[2].z = DirectX::XMConvertToRadians(c.z);
 			//scale
-			ImGui::InputFloat3("Scale", &scale[2].x);
+			ImGui::InputFloat3("Scale2", &scale[2].x);
 		}
 	}
 	ImGui::End();

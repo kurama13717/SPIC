@@ -131,10 +131,10 @@ void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 
 	DirectX::XMFLOAT4 normal{ 1.0f, 1.0f, 1.0f, 1.0f };
 	DirectX::XMFLOAT4 skelton{ 1.0f, 1.0f, 1.0f, 0.5f };
-	DirectX::XMFLOAT4 red{ 1.0f, 0.0f, 0.0f, 1.0f };
-	DirectX::XMFLOAT4 Cyan{ 0.0f, 1.0f, 1.0f, 1.0f };
-	DirectX::XMFLOAT4 green{ 0.0f, 1.0f, 0.0f, 1.0f };
-	DirectX::XMFLOAT4 purple{ 1.0f, 0.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 red	{ 1.0f, 0.0f, 0.0f, 0.5f };
+	DirectX::XMFLOAT4 Cyan	{ 0.0f, 1.0f, 1.0f, 0.5f };
+	DirectX::XMFLOAT4 green	{ 0.0f, 1.0f, 0.0f, 0.5f };
+	DirectX::XMFLOAT4 purple{ 1.0f, 0.0f, 1.0f, 0.5f };
 
 	//// É^ÉbÉ`ÇµÇƒÇ¢ÇÈï«ÇÃî‘çÜ
 	//int selectNo = 1;
