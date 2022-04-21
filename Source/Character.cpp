@@ -15,12 +15,13 @@ void Character::UpdateTransform()
     DirectX::XMStoreFloat4x4(&transform, W);
 
 }
-void Character::Move(float vx, float vz, float speed)
+void Character::Move(float vx, float vy, float vz, float speed)
 {
     //speed *= elapsedTime;
     //position.x += vx * speed;
     //position.z += vz * speed;
     moveVecX = vx;
+    moveVecY = vy;
     moveVecZ = vz;
     maxMoveSpeed = speed;
 }
@@ -88,41 +89,41 @@ void Character::UpdateVerticalMove(float elapsedTime)
     //キャラクターのY軸方向のベクトル
     DirectX::XMFLOAT3 normal = { 0,1,0 };
     //自分の高さが地面(0.0f)より下の時
-    if (my < 0.0f)
-    {
-        DirectX::XMFLOAT3 start = { position.x ,position.y + stepOffset,position.z };
-        DirectX::XMFLOAT3 end = { position.x,position.y + my,position.z };
-        
-        HitResult hit;
-        if (StageManager::Instance().RayCast(start, end, hit))
-        {
-            //法線ベクトル
-            normal = hit.normal;
-            position = hit.position;
-            //傾斜率の計算
-            float normalLengthXZ = sqrtf(hit.normal.x * hit.normal.x + hit.normal.z * hit.normal.z);
-            slopeRate = 1.0f - (hit.normal.y / (normalLengthXZ + hit.normal.y));
-            if (!isGround)
-            {
-                OnLanding();
-            }
-            isGround = true;
-            velocity.y = 0.0f;
-            // 回転
-            angle.y += hit.rotation.y;
-        }
-        else
-        {
-            position.y += my;
-            isGround = false;
-        }
-
-    }
-    else if (my > 0.0f)
-    {
         position.y += my;
-        isGround = false;
-    }
+    //if (my < 0.0f)
+    //{
+    //    DirectX::XMFLOAT3 start = { position.x ,position.y + stepOffset,position.z };
+    //    DirectX::XMFLOAT3 end = { position.x,position.y + my,position.z };
+    //    
+    //    HitResult hit;
+    //    if (StageManager::Instance().RayCast(start, end, hit))
+    //    {
+    //        //法線ベクトル
+    //        normal = hit.normal;
+    //        position = hit.position;
+    //        //傾斜率の計算
+    //        float normalLengthXZ = sqrtf(hit.normal.x * hit.normal.x + hit.normal.z * hit.normal.z);
+    //        slopeRate = 1.0f - (hit.normal.y / (normalLengthXZ + hit.normal.y));
+    //        if (!isGround)
+    //        {
+    //            OnLanding();
+    //        }
+    //        isGround = true;
+    //        velocity.y = 0.0f;
+    //        // 回転
+    //        angle.y += hit.rotation.y;
+    //    }
+    //    else
+    //    {
+    //        position.y += my;
+    //        isGround = false;
+    //    }
+
+    //}
+    //else if (my > 0.0f)
+    //{
+    //    isGround = false;
+    //}
      //地面の向きに沿うようにXZ軸回転
 
     {
@@ -156,27 +157,31 @@ void Character::UpdateHorizontalVelocity(float elapasedFrame)
         else
         {
             velocity.x = 0;
+            velocity.y = 0;
             velocity.z = 0;
         }
     }
 
     if (length <= maxMoveSpeed)
     {
-        float moveVecLength = sqrtf(moveVecX * moveVecX + moveVecZ * moveVecZ);
+        float moveVecLength = sqrtf(moveVecX * moveVecX + moveVecY * moveVecY + moveVecZ * moveVecZ);
         if (moveVecLength > 0.0f)
         {
             //加速力
             float acceleration = this->acceleration * elapasedFrame;
             if (!IsGround())acceleration *= airControl;
             velocity.x += moveVecX * acceleration;
+            velocity.y += moveVecY * acceleration;
             velocity.z += moveVecZ * acceleration;
             //最大速度制限
-            float length = sqrtf(velocity.x * velocity.x + velocity.z * velocity.z);
+            float length = sqrtf(velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z);
             if (length > maxMoveSpeed)
             {
                 float vx = velocity.x / length;
+                float vy = velocity.y / length;
                 float vz = velocity.z / length;
                 velocity.x = vx * maxMoveSpeed;
+                velocity.y = vy * maxMoveSpeed;
                 velocity.z = vz * maxMoveSpeed;
             }
             //下り坂を補正
@@ -187,6 +192,7 @@ void Character::UpdateHorizontalVelocity(float elapasedFrame)
         }
     }
     moveVecX = 0.0f;
+    moveVecY = 0.0f;
     moveVecZ = 0.0f;
 
 }

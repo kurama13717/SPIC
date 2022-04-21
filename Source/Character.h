@@ -46,7 +46,7 @@ private:
     void UpdateHorizontalMove(float elapsedTime);
 protected:
     //void Move(float elapsedTime, float vx, float vz, float speed);
-    void Move(float vx, float vy, float speed);
+    void Move(float vx, float vy, float vz, float speed);
     void Turn(float elapsedTime, float vx, float vz, float speed);
     void Jump(float speed);
     void UpdateVelocity(float elapsedTime);
@@ -77,6 +77,7 @@ protected:
     float acceleration = 1.0f;
     float maxMoveSpeed = 5.0f;
     float moveVecX = 0.0f;
+    float moveVecY = 0.0f;
     float moveVecZ = 0.0f;
 
     float airControl = 3.0f;

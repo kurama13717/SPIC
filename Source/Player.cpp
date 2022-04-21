@@ -170,7 +170,7 @@ bool Player::InputMove(float elapsedTime)
 {
     moveVec = GetMoveVec();
   //  Move(elapsedTime, moveVec.x, moveVec.z, moveSpeed);
-    Move(moveVec.x, moveVec.z, moveSpeed);
+    Move(moveVec.x, moveVec.y,moveVec.z, moveSpeed);
     Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
     //進行ベクトルがゼロベクトルでない場合は入力された
     return moveVec.x != 0.0f || moveVec.y != 0.0f || moveVec.z != 0.0f;
@@ -264,28 +264,32 @@ DirectX::XMFLOAT3 Player::GetMoveVec() const
     //移動ベクトルはXZ平面に水平なベクトルになるようにする
     //カメラ右方向ベクトルをXZ単位ベクトルに変換
     float cameraRightX = cameraRight.x;
+    float cameraRightY = cameraRight.y;
     float cameraRightZ = cameraRight.z;
     //ベクトルの長さ
-    float cameraRightLength = sqrtf(cameraRightX * cameraRightX + cameraRightZ * cameraRightZ);
+    float cameraRightLength = sqrtf(cameraRightX * cameraRightX + cameraRightY * cameraRightY + cameraRightZ * cameraRightZ);
     if (cameraRightLength > 0.0f)
     {
         cameraRightX /= cameraRightLength;
+        cameraRightY /= cameraRightLength;
         cameraRightZ /= cameraRightLength;
     }
     //カメラ前方向
     float cameraFrontX = cameraFront.x;
+    float cameraFrontY = cameraFront.y;
     float cameraFrontZ = cameraFront.z;
-    float cameraFrontLength = sqrtf(cameraFrontX * cameraFrontX + cameraFrontZ * cameraFrontZ);
+    float cameraFrontLength = sqrtf(cameraFrontX * cameraFrontX + cameraFrontY * cameraFrontY + cameraFrontZ * cameraFrontZ);
     if (cameraFrontLength > 0.0f)
     {
         cameraFrontX /= cameraFrontLength;
+        cameraFrontY /= cameraFrontLength;
         cameraFrontZ /= cameraFrontLength;
     }
     DirectX::XMFLOAT3 vec;
 
     vec.x = cameraFrontX * ay + cameraRightX * ax;
     vec.z = cameraFrontZ * ay + cameraRightZ * ax;
-    vec.y = 0.0f;
+    vec.y = cameraFrontY * ay + cameraRightY * ax;
     return vec;
 }
 

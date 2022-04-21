@@ -233,9 +233,9 @@ void CameraController::cameraDebugGUI()
             ImGui::SliderFloat("Eye.x", &eye.x, 0, 360.0f);
             ImGui::SliderFloat("Eye.y", &eye.y, 0, 360.0f);
             ImGui::SliderFloat("Eye.z", &eye.z, 0, 360.0f);             
-            ImGui::SliderFloat("front.x", &front.x, 0, 360.0f);
-            ImGui::SliderFloat("front.y", &front.y, 0, 360.0f);
-            ImGui::SliderFloat("front.z", &front.z, 0, 360.0f);            
+            ImGui::SliderFloat("front.x", &cameraForward.x, 0, 360.0f);
+            ImGui::SliderFloat("front.y", &cameraForward.y, 0, 360.0f);
+            ImGui::SliderFloat("front.z", &cameraForward.z, 0, 360.0f);
             ImGui::SliderFloat2("Sensitivity", &sensitivity.x,1.0f,10.0f);
             if (ImGui::Button("reverse:true"))
             {
