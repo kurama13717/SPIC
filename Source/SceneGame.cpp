@@ -14,7 +14,7 @@
 // 初期化
 void SceneGame::Initialize()
 {
-	stageMain = new Cube();
+	cube = new Cube();
 	//stageManager.Register(stageMain);
 
 
@@ -40,22 +40,13 @@ void SceneGame::Initialize()
 	cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(15), 0.0f, 0.0f));
 	cameracontroller->SetFov(90.0f);
 
-	CamMode = Mode::FPSMode;
-	
-	//エネミー初期化
-	//EnemyManager& enemyManager = EnemyManager::Instance();
-#if 0
-	EnemySlime* slime = new EnemySlime();
-	slime->SetPosition(DirectX::XMFLOAT3(0, 0, 5));
-	enemyManager.Register(slime);
-#else
-	/*for (int i = 0; i < 4; ++i)
-	{
-		EnemySlime* slime = new EnemySlime();
-		slime->SetPosition(DirectX::XMFLOAT3(i * 2.0f, 0, 5));
-		enemyManager.Register(slime);
-	}*/
-#endif 
+	cameramode = Mode::viewMode;
+	ViewCameraInitialize();
+
+	fixedpositions[0] = { 0.0f,20.0f,-18.0f };
+	fixedpositions[1] = { 18.0f,20.0f,0.0f };
+	fixedpositions[2] = { 0.0f,20.0f,18.0f };
+	fixedpositions[3] = { -18.0f,20.0f,0.0f };
 
 	//ゲージスプライト
 	gauge = new Sprite();
@@ -93,32 +84,42 @@ void SceneGame::Update(float elapsedTime)
 {
 	GamePad& gamePad = Input::Instance().GetGamePad();
 
-
-	//カメラコントローラー更新処理
-	switch (CamMode)
+	// カメラモードで分岐
+	switch (cameramode)
 	{
-	case Mode::ViewMode:
-		// 専用カメラコントローラーアクティブ
-		ViewCamera();
-		cameracontroller->Update(elapsedTime);
+	case Mode::viewMode:
+		// 面選択処理
+		ChooseSurface();
 
-		if (gamePad.GetButtonDown() & GamePad::BTN_A) //スペース
-		{
-			CamMode = Mode::FPSMode;
-		}
+		// カメラの専用アップデート呼び出し
+		cameracontroller->SetTarget({ 0,15,0 });
+		cameracontroller->ViewUpdate(elapsedTime);
+
+		// FPSモードへ移行
+		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize();
+
+		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize();
 		break;
 
-	case Mode::FPSMode:
-		// 専用カメラコントローラーアクティブ
-		FpsCamera();
+	case Mode::fpsMode:
+		// プレイヤーアップデート呼び出し
+		player->Update(elapsedTime);
+
+		// カメラ専用アップデート呼び出し
+		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->FpsUpdate(elapsedTime);
-		if (gamePad.GetButtonDown() & GamePad::BTN_ENTER)
-		{
-			CamMode = Mode::ViewMode;
-			cameracontroller->SetFov(120.0f);
-			cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(0), 0.0f, 0.0f));
-			cameracontroller->SetTarget(DirectX::XMFLOAT3(0, 0, -30));
-		}
+
+		// Viewモードへ移行
+		if (gamePad.GetButtonDown() & GamePad::BTN_B) ViewCameraInitialize();
+		break;
+
+	case Mode::spectatorMode:
+		// プレイヤーアップデート呼び出し
+		player->SpectatorUpdate(elapsedTime);
+
+		// カメラ専用アップデート呼び出し
+		cameracontroller->SetEye(player->GetPosition());
+		cameracontroller->SpectatorUpdate(elapsedTime);
 
 		break;
 	}
@@ -127,15 +128,15 @@ void SceneGame::Update(float elapsedTime)
 	if (Player::Instance().GetFiring())
 	{
 		TrackingCamera();
-		cameracontroller->FpsUpdate(elapsedTime);
+		//cameracontroller->FpsUpdate(elapsedTime);
 	}
-	
+
 
 
 
 	StageManager::Instance().Update(elapsedTime);
 	//stageMain->Update(elapsedTime);
-	player->Update(elapsedTime);
+	//player->Update(elapsedTime);
 	//EnemyManager::Instance().Update(elapsedTime);
 	//エフェクト更新処理
 	EffectManager::Instance().Update(elapsedTime);
@@ -198,13 +199,14 @@ void SceneGame::Render()
 		Shader* shader = graphics.GetShader(0);
 		shader->Begin(dc, rc);
 		StageManager::Instance().Render(dc, shader,false);
-		//mark->Render(dc, shader,true);
-		//stageMain->Render(dc, shader,ViewMode);
+		cube->Render(dc, shader, cameramode, selectedsurface);
 		BulletManager::Instance().Render(dc, shader);
 
+		//mark->Render(dc, shader,true);
+		//stageMain->Render(dc, shader,viewMode);
 		//player->Render(dc, shader);
-
 		//EnemyManager::Instance().Render(dc, shader);
+
 		shader->End(dc);
 	}
 	//3Dエフェクト描画
@@ -218,7 +220,6 @@ void SceneGame::Render()
 		//EnemyManager::Instance().DrawDebugPrimitive();
 		// ラインレンダラ描画実行
 		graphics.GetLineRenderer()->Render(dc, rc.view, rc.projection);
-
 		// デバッグレンダラ描画実行
 		graphics.GetDebugRenderer()->Render(dc, rc.view, rc.projection);
 	}
@@ -230,9 +231,10 @@ void SceneGame::Render()
 	// 2DデバッグGUI描画
 	{
 		player->DrawDebugGUI();
-		stageMain->DrawDebugGUI();
+		cube->DrawDebugGUI();
 		mark->DrawDebugGUI();
 		cameracontroller->cameraDebugGUI();
+
 		// 弾の情報表示
 		int count = BulletManager::Instance().GetBulletCount() - 1;
 		if (count < 0)
@@ -246,113 +248,184 @@ void SceneGame::Render()
 }
 
 
-void SceneGame::RenderEnemyGauge(ID3D11DeviceContext* dc,
-	const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection)
+//void SceneGame::RenderEnemyGauge(ID3D11DeviceContext* dc,
+//	const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection)
+//{
+//	//ビューポート左上X位置//ビューポート左上Y位置// ビューポート幅// ビューポート高さ
+//	// 深度値の範囲を表す最小値// 深度値の範囲を表す最大値
+//	D3D11_VIEWPORT viewport;
+//	UINT numViewports = 1;
+//	dc->RSGetViewports(&numViewports, &viewport);
+//	//変換行列
+//	DirectX::XMMATRIX View = DirectX::XMLoadFloat4x4(&view);
+//	DirectX::XMMATRIX Projection = DirectX::XMLoadFloat4x4(&projection);
+//	DirectX::XMMATRIX World = DirectX::XMMatrixIdentity();
+//
+//	//全ての敵の頭上にHPゲージを表示
+//	EnemyManager& enemyManager = EnemyManager::Instance();
+//	int enemyCount = enemyManager.GetEnemyCount();
+//
+//	for (int i = 0; i < enemyCount; ++i)
+//	{
+//		//表示させる場所をとってくる//WorldPosition
+//		Enemy* enemy = enemyManager.GetEnemy(i);
+//		DirectX::XMFLOAT3 worldPosition = enemy->GetPosition();
+//		worldPosition.y += enemy->GetHeight();
+//
+//		DirectX::XMFLOAT2 gaugePositon =
+//			coordinateTransformation->Get2DPosition(View, Projection, World, viewport, worldPosition);
+//		//ゲージの長さ
+//		const float gaugeWidth = 60.0f;
+//		const float gaugeHeight = 8.0f;
+//		float healthGauge = enemy->GetHealth() / static_cast<float>(enemy->GetMaxHealth());
+//		//頑張ってみたてでけた
+//		Camera& camera = Camera::Instance();
+//		DirectX::XMVECTOR cameraEye = DirectX::XMLoadFloat3(&camera.GetEye());
+//		DirectX::XMVECTOR cameraFront = DirectX::XMLoadFloat3(&camera.GetFront());
+//		DirectX::XMVECTOR enemyPosition = DirectX::XMLoadFloat3(&enemy->GetPosition());
+//		/*DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(cameraEye, enemyPosition);
+//		float dot;
+//		DirectX::XMStoreFloat(&dot, Dot);*/
+//
+//		DirectX::XMVECTOR CE = DirectX::XMVectorSubtract(cameraEye, enemyPosition);
+//		DirectX::XMVECTOR Dot2 = DirectX::XMVector3Dot(CE ,cameraFront);
+//		float dot2;
+//		DirectX::XMStoreFloat(&dot2, Dot2);
+//
+//		{
+//			if (dot2 > -0.9f)continue;
+//			gauge->Render(
+//				dc,
+//				gaugePositon.x - gaugeWidth * 0.5f,
+//				gaugePositon.y - gaugeHeight,
+//				gaugeWidth * healthGauge,
+//				gaugeHeight,
+//				0, 0,
+//				static_cast<float>(gauge->GetTextureWidth()),
+//				static_cast<float>(gauge->GetTextureHeight()),
+//				0.0f,
+//				1.0f, 0.0f, 0.0f, 0.0f
+//			);
+//		}
+//		
+//	}
+//
+//	//エネミー配置処理
+//	Mouse& mouse = Input::Instance().GetMouse();
+//	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
+//	{
+//		DirectX::XMFLOAT3 screenPosition;
+//		screenPosition.x = static_cast<float>(mouse.GetPositionX());
+//		screenPosition.y = static_cast<float>(mouse.GetPositionY());
+//		screenPosition.z = 0.0f;
+//		DirectX::XMVECTOR ScreenPosition, WorldPosition;
+//		// レイの始点を算出
+//		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
+//		WorldPosition = 
+//			coordinateTransformation->Get3DPosition(View, Projection, World, viewport, ScreenPosition);
+//
+//		DirectX::XMFLOAT3 rayStart;
+//		DirectX::XMStoreFloat3(&rayStart, WorldPosition);
+//		// レイの終点を算出
+//		screenPosition.z = 1.0f;
+//		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
+//		WorldPosition = 
+//			coordinateTransformation->Get3DPosition(View, Projection, World, viewport, ScreenPosition);
+//		DirectX::XMFLOAT3 rayEnd;
+//		DirectX::XMStoreFloat3(&rayEnd, WorldPosition);
+//		// レイキャスト
+//		HitResult hit;
+//		if (StageManager::Instance().RayCast(rayStart, rayEnd, hit))
+//		{
+//			// 敵を配置
+//			EnemySlime* slime = new EnemySlime();
+//			slime->SetPosition(hit.position);
+//			EnemyManager::Instance().Register(slime);
+//		}
+//	}
+//		
+//}
+
+// FPSカメライニシャライズ
+void SceneGame::FpsCameraInitialize()
 {
-	//ビューポート左上X位置//ビューポート左上Y位置// ビューポート幅// ビューポート高さ
-	// 深度値の範囲を表す最小値// 深度値の範囲を表す最大値
-	D3D11_VIEWPORT viewport;
-	UINT numViewports = 1;
-	dc->RSGetViewports(&numViewports, &viewport);
-	//変換行列
-	DirectX::XMMATRIX View = DirectX::XMLoadFloat4x4(&view);
-	DirectX::XMMATRIX Projection = DirectX::XMLoadFloat4x4(&projection);
-	DirectX::XMMATRIX World = DirectX::XMMatrixIdentity();
-
-	//全ての敵の頭上にHPゲージを表示
-	EnemyManager& enemyManager = EnemyManager::Instance();
-	int enemyCount = enemyManager.GetEnemyCount();
-
-	for (int i = 0; i < enemyCount; ++i)
-	{
-		//表示させる場所をとってくる//WorldPosition
-		Enemy* enemy = enemyManager.GetEnemy(i);
-		DirectX::XMFLOAT3 worldPosition = enemy->GetPosition();
-		worldPosition.y += enemy->GetHeight();
-
-		DirectX::XMFLOAT2 gaugePositon =
-			coordinateTransformation->Get2DPosition(View, Projection, World, viewport, worldPosition);
-		//ゲージの長さ
-		const float gaugeWidth = 60.0f;
-		const float gaugeHeight = 8.0f;
-		float healthGauge = enemy->GetHealth() / static_cast<float>(enemy->GetMaxHealth());
-		//頑張ってみたてでけた
-		Camera& camera = Camera::Instance();
-		DirectX::XMVECTOR cameraEye = DirectX::XMLoadFloat3(&camera.GetEye());
-		DirectX::XMVECTOR cameraFront = DirectX::XMLoadFloat3(&camera.GetFront());
-		DirectX::XMVECTOR enemyPosition = DirectX::XMLoadFloat3(&enemy->GetPosition());
-		/*DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(cameraEye, enemyPosition);
-		float dot;
-		DirectX::XMStoreFloat(&dot, Dot);*/
-
-		DirectX::XMVECTOR CE = DirectX::XMVectorSubtract(cameraEye, enemyPosition);
-		DirectX::XMVECTOR Dot2 = DirectX::XMVector3Dot(CE ,cameraFront);
-		float dot2;
-		DirectX::XMStoreFloat(&dot2, Dot2);
-
-		{
-			if (dot2 > -0.9f)continue;
-			gauge->Render(
-				dc,
-				gaugePositon.x - gaugeWidth * 0.5f,
-				gaugePositon.y - gaugeHeight,
-				gaugeWidth * healthGauge,
-				gaugeHeight,
-				0, 0,
-				static_cast<float>(gauge->GetTextureWidth()),
-				static_cast<float>(gauge->GetTextureHeight()),
-				0.0f,
-				1.0f, 0.0f, 0.0f, 0.0f
-			);
-		}
-		
-	}
-
-	//エネミー配置処理
-	Mouse& mouse = Input::Instance().GetMouse();
-	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
-	{
-		DirectX::XMFLOAT3 screenPosition;
-		screenPosition.x = static_cast<float>(mouse.GetPositionX());
-		screenPosition.y = static_cast<float>(mouse.GetPositionY());
-		screenPosition.z = 0.0f;
-		DirectX::XMVECTOR ScreenPosition, WorldPosition;
-		// レイの始点を算出
-		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
-		WorldPosition = 
-			coordinateTransformation->Get3DPosition(View, Projection, World, viewport, ScreenPosition);
-
-		DirectX::XMFLOAT3 rayStart;
-		DirectX::XMStoreFloat3(&rayStart, WorldPosition);
-		// レイの終点を算出
-		screenPosition.z = 1.0f;
-		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
-		WorldPosition = 
-			coordinateTransformation->Get3DPosition(View, Projection, World, viewport, ScreenPosition);
-		DirectX::XMFLOAT3 rayEnd;
-		DirectX::XMStoreFloat3(&rayEnd, WorldPosition);
-		// レイキャスト
-		HitResult hit;
-		if (StageManager::Instance().RayCast(rayStart, rayEnd, hit))
-		{
-			// 敵を配置
-			EnemySlime* slime = new EnemySlime();
-			slime->SetPosition(hit.position);
-			EnemyManager::Instance().Register(slime);
-		}
-	}
-		
-}
-
-void SceneGame::FpsCamera()
-{
-	cameracontroller->SetEye(player->GetPosition());
-
-}
-
-void SceneGame::ViewCamera()
-{
+	cameracontroller->SetAngle({cameracontroller->GetAngle().x,cameracontroller->GetAngle().y + DirectX::XM_PI,cameracontroller->GetAngle().z });
 	cameracontroller->SetTarget({ 0,15,0 });
+	cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
+	player->SetPosition(fixedpositions[selectedsurface]);
+
+	// モード切り替え
+	cameramode = Mode::fpsMode;
+
+}
+
+// Viewカメライニシャライズ
+void SceneGame::ViewCameraInitialize()
+{
+	cameracontroller->SetAngle({ 0,cameracontroller->GetAngle().y + DirectX::XM_PI,0 });
+
+	switch (selectedsurface)
+	{
+	case 0:
+		cameracontroller->SetAngle({ 0,0,0 });
+		break;
+	case 1:
+		cameracontroller->SetAngle({ 0,-DirectX::XM_PI * 0.5f,0 });
+		break;
+	case 2:
+		cameracontroller->SetAngle({ 0,-DirectX::XM_PI,0 });
+		break;
+	case 3:
+		cameracontroller->SetAngle({ 0,-DirectX::XM_PI * 1.5,0 });
+		break;
+	}
+
+	// モード切り替え
+	cameramode = Mode::viewMode;
+}
+
+// スペクテイターカメライニシャライズ
+void SceneGame::SpectatorCameraInitialize()
+{
+	cameracontroller->SetAngle({ cameracontroller->GetAngle().x,cameracontroller->GetAngle().y + DirectX::XM_PI,cameracontroller->GetAngle().z });
+	cameracontroller->SetTarget({ 0,15,0 });
+	cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
+	player->SetPosition(cameracontroller->GetEye());
+
+	// モード切り替え
+	cameramode = Mode::spectatorMode;
+}
+
+// 面選択
+void SceneGame::ChooseSurface()
+{
+	GamePad& gamePad = Input::Instance().GetGamePad();
+	axisX = gamePad.GetAxisLX();
+	if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT || axisX > 0.8f)
+	{
+		if (delaytimer == 0 && delaytimer2 == 0)
+			delayflag = true;
+	}
+	if (delayflag == true)delaytimer++;
+	if (delaytimer > 45)
+	{
+		selectedsurface++;
+		delaytimer = 0;
+		delayflag = false;
+	}
+	if (gamePad.GetButtonDown() & GamePad::BTN_LEFT || axisX < -0.8f)
+	{
+		if (delaytimer == 0 && delaytimer2 == 0)delayflag2 = true;
+	}
+	if (delayflag2 == true)delaytimer2++;
+	if (delaytimer2 > 45)
+	{
+		selectedsurface--;
+		delaytimer2 = 0;
+		delayflag2 = false;
+	}
+	if (selectedsurface < 0)selectedsurface = 3;
+	if (selectedsurface > 3)selectedsurface = 0;
 }
 
 //弾の追尾カメラ
@@ -360,39 +433,4 @@ void SceneGame::TrackingCamera()
 {
 	//cameracontroller->SetEye(BulletManager);
 }
-
-
-
-void SceneGame::TargetCamera()
-{
-	EnemyManager& enemyManager = EnemyManager::Instance();
-	int enemyCount = enemyManager.GetEnemyCount();
-	
-	GamePad& gamePad = Input::Instance().GetGamePad();
-	if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT_THUMB && state < enemyCount - 1)
-	{
-		state++;
-	}
-	if (gamePad.GetButtonDown() & GamePad::BTN_LEFT_THUMB && state > -1)
-	{
-		state--;
-	}
-
-
-	DirectX::XMFLOAT3 target;
-	if (state == -1) {
-		target = player->GetPosition();
-	}
-	for (int i = 0; i < enemyCount; ++i)
-	{
-		Enemy* enemy = enemyManager.GetEnemy(i);
-		if (state == i)
-		{
-			target = enemy->GetPosition();
-		}
-	}
-	//target.z -= 10.0f;
-	target.y += 1.0f;
-	cameracontroller->SetTarget(target);
-};
 

@@ -46,9 +46,10 @@ Player::~Player()
 void Player::Update(float elapsedTime)
 {
     CollisionPlayerVsEnemies();
-    /*InputMove(elapsedTime);
-    InputJump();
-    InputProjectile();*/
+    InputMove(elapsedTime);
+
+    //InputJump();
+    //InputProjectile();
 
     //弾丸入力処理
     InputBullet();
@@ -84,11 +85,31 @@ void Player::Update(float elapsedTime)
     }
     UpdateVelocity(elapsedTime);
     UpdateTransform();
+
     UpdateInvincibleTimer(elapsedTime);
     model->UpdateAnimation(elapsedTime);
     model->UpdateTransform(transform);
     
 }
+
+void Player::SpectatorUpdate(float elapsedTime)
+{
+    InputMove(elapsedTime);
+
+    //ステート毎の処理
+    switch (state)
+    {
+    case State::Idle:
+        UpdateIdleState(elapsedTime);
+        break;
+    case State::Move:
+        UpdateMoveState(elapsedTime);
+        break;
+    }
+    UpdateVelocity(elapsedTime);
+    UpdateTransform();
+}
+
 void Player::OnLanding() 
 {
     jumpCount = 0;
@@ -109,7 +130,7 @@ void Player::InputBullet()
     GamePad& gamePad = Input::Instance().GetGamePad();
 
     //直進弾丸発射
-    if (gamePad.GetButtonDown() & GamePad::BTN_B && !Player::Instance().GetFiring())
+    if (gamePad.GetButtonDown() & GamePad::BTN_A && !Player::Instance().GetFiring())
     {
         Player::Instance().SetFiring(true);
 

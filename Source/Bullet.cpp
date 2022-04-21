@@ -24,7 +24,8 @@ Bullet::Bullet()
     //表示サイズを調整
     scale.x = scale.y = scale.z = 3.0f;
 
-	
+	//trajectEffect = new Effect("Data/Effect/Trajectory.efkefc");
+	trajectEffect = new Effect("Data/Effect/Hit.efkefc");
 }
 
 //デバッグプリミティブ描画
@@ -34,6 +35,8 @@ void Bullet::DrawDebugPrimitive()
 
 	//衝突判定用のデバッグ球を描画
 	debugRenderer->DrawSphere(position, radius, DirectX::XMFLOAT4(0, 0, 0, 1));
+
+
 }
 
 
@@ -173,11 +176,6 @@ void Bullet::Update(float elapsedTime)
 	UpdateTransform();
 	//モデル行列を更新
 	model->UpdateTransform(transform);
-
-	//DrawDebugGUI();
-
-	
-
 }
 
 

@@ -8,27 +8,28 @@ public:
     CameraController() {}
     ~CameraController() {}
     //更新処理
-    void Update(float elapsedTime);
+    void Update(float elapsedTime);             // 通常
+    void FpsUpdate(float elapsedTime);          // FPS
+    void ViewUpdate(float elapsedTime);         // View
+    void SpectatorUpdate(float elapsedTime);    // Spectator
 
-    // FPS モード時更新処理
-    void FpsUpdate(float elapsedTime);
+    // セッター
+    void SetEye(DirectX::XMFLOAT3 eye_) { eye = eye_; }                         // ポジション
+    void SetTarget(const DirectX::XMFLOAT3& target) { this->target = target; }  // 注視点
+    void SetAngle(DirectX::XMFLOAT3 angle_) { angle = angle_; }                 // アングル
+    void SetCurrentAngle(DirectX::XMFLOAT3 angle_) { currentangle = angle_; }   // アングル（瞬間）
+    void SetFov(float fov_) { fov = fov_; }                                     // 視野角
 
-    // View モード時処理
-    void ViewUpdate(float elapsedTime);
+    // ゲッター
+    const DirectX::XMFLOAT3& GetEye() const { return eye; }             // ポジション
+    const DirectX::XMFLOAT3& GetAngle() const { return angle; }             // アングル
+    const DirectX::XMFLOAT3& GetTarget() const { return cameraTarget; }     // 注視点
+    float GetFov() { return fov; }                                          // 視野角
+    const DirectX::XMFLOAT3& GetForward() const { return cameraForward; }   // 姿勢（前方）
+    const DirectX::XMFLOAT3& GetUp() const { return cameraUp; }             // 姿勢（上方）
 
-    void SetTarget(const DirectX::XMFLOAT3& target) { this->target = target; }
+    //デバッグ用GUI
     void cameraDebugGUI();
-    float GetFov() { return fov; }
-    void SetFov(float fov_) { fov = fov_; }
-    void SetAngle(DirectX::XMFLOAT3 angle_) { angle = angle_; }
-    const DirectX::XMFLOAT3& GetAngle() const { return angle; }
-
-
-    void SetEye(DirectX::XMFLOAT3 eye_) { eye = eye_; }
-
-    const DirectX::XMFLOAT3& GetTarget() const { return cameraTarget; }
-    const DirectX::XMFLOAT3& GetForward() const { return cameraForward; }
-    const DirectX::XMFLOAT3& GetUp() const { return cameraUp; }
 
 private:
     DirectX::XMFLOAT3 target = { 0,0,0 };
@@ -41,7 +42,7 @@ private:
     bool Inversion = false;
     int reverse = 1;
     float rollSpeed = DirectX::XMConvertToRadians(90);
-    float range = 40.0f;
+    float range = 45.0f;
     float maxAngleX = DirectX::XMConvertToRadians(45);
     float minAngleX = DirectX::XMConvertToRadians(-45);
     float fov = 40;
@@ -49,7 +50,9 @@ private:
     DirectX::XMVECTOR Front;
     DirectX::XMFLOAT3 front;
 
-    bool CameraTurn_R = false;
-    bool CameraTurn_L = false;
-    DirectX::XMFLOAT3 NowAngle = {0,0,0};
+    bool cameraturn_r = false;
+    bool cameraturn_l = false;
+    DirectX::XMFLOAT3 currentangle = {0,0,0};
+    float axisX = 0;
+
 };

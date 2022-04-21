@@ -130,15 +130,72 @@ void Cube::Update(float elapsedTime)
 void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 {
 
-	DirectX::XMFLOAT4 normal{ 1.0f, 1.0f, 1.0f, 1.0f };
-	DirectX::XMFLOAT4 skelton{ 1.0f, 1.0f, 1.0f, 0.5f };
-	DirectX::XMFLOAT4 red	{ 1.0f, 0.0f, 0.0f, 0.5f };
-	DirectX::XMFLOAT4 Cyan	{ 0.0f, 1.0f, 1.0f, 0.5f };
-	DirectX::XMFLOAT4 green	{ 0.0f, 1.0f, 0.0f, 0.5f };
-	DirectX::XMFLOAT4 purple{ 1.0f, 0.0f, 1.0f, 0.5f };
+	//DirectX::XMFLOAT4 normal{ 1.0f, 1.0f, 1.0f, 1.0f };
+	//DirectX::XMFLOAT4 skelton{ 1.0f, 1.0f, 1.0f, 0.5f };
+	//DirectX::XMFLOAT4 red	{ 1.0f, 0.0f, 0.0f, 0.5f };
+	//DirectX::XMFLOAT4 Cyan	{ 0.0f, 1.0f, 1.0f, 0.5f };
+	//DirectX::XMFLOAT4 green	{ 0.0f, 1.0f, 0.0f, 0.5f };
+	//DirectX::XMFLOAT4 purple{ 1.0f, 0.0f, 1.0f, 0.5f };
 
-	//// タッチしている壁の番号
-	//int selectNo = 1;
+	////// タッチしている壁の番号
+	////int selectNo = 1;
+
+	//std::function<void(DirectX::XMFLOAT4* c)> callback[] = {
+	//	[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Down, c); } ,
+	//	[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Up, c); } ,
+	//	[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Left, c); } ,
+	//	[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Right, c); } ,
+	//	[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Forward, c); } ,
+	//	[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Back, c); }
+	//};
+	//
+
+	////for (int i = 0; i < 6; ++i) {
+	////	if (selectNo == i + 1 && sg->ViewMode) {
+	////		// 選択された時の色
+	////		color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
+	////	}
+	////	else {
+	////		// 選択されていない時の色
+	////		color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
+
+	////	}
+	////
+
+	//	//if(flag)color =  DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
+
+
+	//	//else 	color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+
+	//	//callback[0](&color);
+	//	//callback[1](&color);
+	//	//callback[2](&color);
+	//	//callback[3](&color);
+	//	//callback[4](&color);
+	//	//callback[5](&color);
+	//	
+	//callback[0](&normal);
+	//callback[1](&normal);
+	//callback[2](&red);
+	//callback[3](&Cyan);
+	//callback[4](&green);
+	//callback[5](&purple);
+}
+
+void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, int mode, int surface)
+{
+
+	DirectX::XMFLOAT4 normal	{ 1.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 skelton	{ 1.0f, 1.0f, 1.0f, 0.4f };
+	DirectX::XMFLOAT4 red		{ 1.0f, 0.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 cyan		{ 0.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 green		{ 0.0f, 1.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 purple	{ 1.0f, 0.0f, 1.0f, 1.0f };
+
+	DirectX::XMFLOAT4 red_s		{ 1.0f, 0.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 cyan_s	{ 0.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 green_s	{ 0.0f, 1.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 purple_s	{ 1.0f, 0.0f, 1.0f, 1.0f };
 
 	std::function<void(DirectX::XMFLOAT4* c)> callback[] = {
 		[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Down, c); } ,
@@ -148,7 +205,50 @@ void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 		[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Forward, c); } ,
 		[&](DirectX::XMFLOAT4* c) {shader->Draw(dc, flat_Back, c); }
 	};
-	
+
+	switch (mode)// カメラモードによって分岐
+	{
+	case 0:	// Viewモード
+		switch (surface)	// 選択面によって分岐
+		{
+		case 0:	// 紫
+			callback[2](&red);
+			callback[3](&cyan);
+			callback[4](&green);
+			break;
+		case 1:	// シアン
+			callback[2](&red);
+			callback[4](&green);
+			callback[5](&purple);
+			break;
+		case 2:	// 緑
+			callback[2](&red);
+			callback[3](&cyan);
+			callback[5](&purple);
+			break;
+		case 3:	// 赤
+			callback[3](&cyan);
+			callback[4](&green);
+			callback[5](&purple);
+			break;
+		}
+		break;
+	case 1:	// FPSモード
+		callback[2](&red);
+		callback[3](&cyan);
+		callback[4](&green);
+		callback[5](&purple);
+		break;
+	case 2:	// Spectatorモード
+		callback[2](&red_s);
+		callback[3](&cyan_s);
+		callback[4](&green_s);
+		callback[5](&purple_s);
+		break;
+	}
+
+	callback[0](&normal);
+	callback[1](&normal);
 
 	//for (int i = 0; i < 6; ++i) {
 	//	if (selectNo == i + 1 && sg->ViewMode) {
@@ -173,14 +273,14 @@ void Cube::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 		//callback[3](&color);
 		//callback[4](&color);
 		//callback[5](&color);
-		
-	callback[0](&normal);
-	callback[1](&normal);
-	callback[2](&red);
-	callback[3](&Cyan);
-	callback[4](&green);
-	callback[5](&purple);
+
+
+	//callback[2](&skelton);
+	//callback[3](&skelton);
+	//callback[4](&skelton);
+	//callback[5](&skelton);
 }
+
 
 bool Cube::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
 {

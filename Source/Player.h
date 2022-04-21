@@ -28,6 +28,9 @@ public:
     Player();
     ~Player() override;
     void  Update(float elapsedTime);
+
+    void SpectatorUpdate(float elapsedTime);
+
     void Render(ID3D11DeviceContext* dc, Shader* shader);
     //デバッグ
     void DrawDebugGUI();

@@ -39,10 +39,10 @@ void Character::UpdateVelocity(float elapsedTime)
 {
     //経過フレーム
     float elapsedFrame = 60.0f * elapsedTime;
-    ////垂直速力更新処理
-    //UpdateVerticalVelocity(elapsedFrame);
-    ////垂直移動更新
-    //UpdateVerticalMove(elapsedTime);
+    //垂直速力更新処理
+    UpdateVerticalVelocity(elapsedFrame);
+    //垂直移動更新
+    UpdateVerticalMove(elapsedTime);
     //水平速力更新処理
     UpdateHorizontalVelocity(elapsedFrame);
     //水平移動更新処理
@@ -59,7 +59,7 @@ void Character::AddImpulse(const DirectX::XMFLOAT3& impulse)
 void Character::UpdateVerticalVelocity(float elapsedTime)
 {
     //重力処理
-    velocity.y += gravity * elapsedTime;
+    //velocity.y += gravity * elapsedTime;
 }
 //垂直移動更新
 void Character::UpdateVerticalMove(float elapsedTime)
@@ -192,8 +192,8 @@ void Character::UpdateHorizontalVelocity(float elapasedFrame)
 }
 void Character::UpdateHorizontalMove(float elapsedTime)
 {
-    //position.x += velocity.x * elapsedTime;
-    //position.z += velocity.z * elapsedTime
+    position.x += velocity.x * elapsedTime;
+    position.z += velocity.z * elapsedTime;
 
     //水平速力量計算
     float velocityLengthXZ = sqrtf(velocity.x * velocity.x + velocity.z * velocity.z);

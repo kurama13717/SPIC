@@ -20,7 +20,7 @@ class SceneGame : public Scene
 {
 public:
 	SceneGame() {}
-	~SceneGame() override{}
+	~SceneGame() override {}
 
 	// 初期化
 	void Initialize()override;
@@ -35,17 +35,19 @@ public:
 	void Render()override;
 private:
 	//エネミーHP削除
-	void RenderEnemyGauge(ID3D11DeviceContext* dc, 
+	void RenderEnemyGauge(ID3D11DeviceContext* dc,
 		const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection);
 
-	void TargetCamera();
+	// 一人称カメライニシャライズ
+	void FpsCameraInitialize();
+	// 面選択カメライニシャライズ
+	void ViewCameraInitialize();
+	// 飛び回りカメライニシャライズ
+	void SpectatorCameraInitialize();
 
-	// 一人称カメラ
-	void FpsCamera();
-	// 面選択時カメラ
-	void ViewCamera();
-	// 飛び回りカメラ
-	void SpectatorCamera();
+	// 面選択
+	void ChooseSurface();
+
 	void TrackingCamera();
 
 private:
@@ -56,7 +58,7 @@ private:
 	ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
 	RenderContext rc;
 	Player* player = nullptr;
-	Cube* stageMain = nullptr;
+	Cube* cube = nullptr;
 	Bullet* bullet = nullptr;
 	Mark* mark = nullptr;
 
@@ -66,17 +68,23 @@ private:
 	Sprite* gauge = nullptr;
 	CoordinateTransformation* coordinateTransformation = nullptr;
 	Shake& shake = Shake::Instance();
-private:
-	//カメラ選択
-	int state = -1;
 
-public:
+private:
+	// カメラモード
+	int cameramode = 0;
 	enum  Mode
 	{
-		ViewMode,
-		FPSMode,
-		SpectatorMode,
+		viewMode,
+		fpsMode,
+		spectatorMode,
 	};
 
-	int CamMode = 0;
+	// 打ち出し位置
+	DirectX::XMFLOAT3 fixedpositions[4];
+
+	// 面選択用
+	bool delayflag, delayflag2 = false;
+	float delaytimer, delaytimer2 = 0.0f;
+	int selectedsurface = 0;
+	float axisX = 0;
 };

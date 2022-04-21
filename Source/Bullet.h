@@ -2,6 +2,7 @@
 #include"Graphics/Shader.h"
 #include "Collision.h"
 #include "Stage.h"
+#include "Effect.h"
 
 class BulletManager;
 
@@ -87,7 +88,8 @@ protected:
 
 	Model* model = nullptr;
 
+	DirectX::XMFLOAT3 CurrentPosition = {};
 
-
+	Effect* trajectEffect = nullptr;
 };
 
