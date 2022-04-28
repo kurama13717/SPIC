@@ -65,3 +65,11 @@ public:
 
 	void Begin(ID3D11DeviceContext* dc, const RenderContext& rc)override;
 };
+
+class LambertSpliteShader : public LambertShader {
+public:
+	LambertSpliteShader(ID3D11Device* device) : LambertShader(device) {}
+	~LambertSpliteShader()override {}
+
+	void Begin(ID3D11DeviceContext* dc, const RenderContext& rc)override;
+};

@@ -266,6 +266,38 @@ void LambertInsideShader::Begin(ID3D11DeviceContext* dc, const RenderContext& rc
 	dc->UpdateSubresource(sceneConstantBuffer.Get(), 0, 0, &cbScene, 0, 0);
 }
 
+void LambertSpliteShader::Begin(ID3D11DeviceContext* dc, const RenderContext& rc)
+{
+	dc->VSSetShader(vertexShader.Get(), nullptr, 0);
+	dc->PSSetShader(pixelShader.Get(), nullptr, 0);
+	dc->IASetInputLayout(inputLayout.Get());
+
+	ID3D11Buffer* constantBuffers[] =
+	{
+		sceneConstantBuffer.Get(),
+		meshConstantBuffer.Get(),
+		subsetConstantBuffer.Get()
+	};
+	dc->VSSetConstantBuffers(0, ARRAYSIZE(constantBuffers), constantBuffers);
+	dc->PSSetConstantBuffers(0, ARRAYSIZE(constantBuffers), constantBuffers);
+
+	const float blend_factor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	dc->OMSetBlendState(blendState.Get(), blend_factor, 0xFFFFFFFF);
+	dc->OMSetDepthStencilState(depthStencilStates[3].Get(), 0);
+	dc->RSSetState(rasterizerStates[0].Get());
+	dc->PSSetSamplers(0, 1, samplerState.GetAddressOf());
+
+	// シーン用定数バッファ更新
+	CbScene cbScene;
+
+	DirectX::XMMATRIX V = DirectX::XMLoadFloat4x4(&rc.view);
+	DirectX::XMMATRIX P = DirectX::XMLoadFloat4x4(&rc.projection);
+	DirectX::XMStoreFloat4x4(&cbScene.viewProjection, V * P);
+
+	cbScene.lightDirection = rc.lightDirection;
+	dc->UpdateSubresource(sceneConstantBuffer.Get(), 0, 0, &cbScene, 0, 0);
+}
+
 // 描画
 void LambertShader::Draw(ID3D11DeviceContext* dc, const Model* model, DirectX::XMFLOAT4* color)
 {

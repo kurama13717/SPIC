@@ -49,7 +49,11 @@ void SceneGame::Initialize()
 	fixedpositions[3] = { -18.0f,20.0f,0.0f };
 
 	//ゲージスプライト
-	gauge = new Sprite();
+	gauge = new Sprite("Data/Sprite/yagirusigauge.png");
+	frame = new Sprite("Data/Sprite/wakusen.png");
+	cross = new Sprite("Data/Sprite/CrossHair.png");
+
+	ID3D11Device* device = graphics.GetDevice();
 }
 
 // 終了化
@@ -60,6 +64,16 @@ void SceneGame::Finalize()
 	{
 		delete gauge;
 		gauge = nullptr;
+	}
+	if (frame != nullptr)
+	{
+		delete frame;
+		frame = nullptr;
+	}
+	if (cross != nullptr)
+	{
+		delete cross;
+		cross = nullptr;
 	}
 	/*EnemyManager& enemyManager = EnemyManager::Instance();
 	enemyManager.Clear();*/
@@ -95,10 +109,18 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->SetTarget({ 0,15,0 });
 		cameracontroller->ViewUpdate(elapsedTime);
 
-		// FPSモードへ移行
-		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize();
+		viewFlag = false;
 
-		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize();
+		// FPSモードへ移行
+		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)
+		{
+			FpsCameraInitialize();
+		}
+
+		if (gamePad.GetButtonDown() & GamePad::BTN_X)
+		{
+			SpectatorCameraInitialize();
+		}
 		break;
 
 	case Mode::fpsMode:
@@ -109,13 +131,26 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->FpsUpdate(elapsedTime);
 
+		viewFlag = true;
+		if (delayViewTimer > 0)
+			delayViewTimer -= 6.0f;
 		// Viewモードへ移行
-		if (gamePad.GetButtonDown() & GamePad::BTN_B) ViewCameraInitialize();
+		if (gamePad.GetButton() & GamePad::BTN_B)
+		{
+			delayViewTimer += 8.0f;
+			if (delayViewTimer > 360.0f)
+			{
+				delayViewTimer = 0;
+				ViewCameraInitialize();
+			}
+		}
 		break;
 
 	case Mode::spectatorMode:
 		// プレイヤーアップデート呼び出し
 		player->SpectatorUpdate(elapsedTime);
+
+		viewFlag = false;
 
 		// カメラ専用アップデート呼び出し
 		cameracontroller->SetEye(player->GetPosition());
@@ -194,9 +229,11 @@ void SceneGame::Render()
 	//	DirectX::XMStoreFloat4x4(&rc.projection, Projection);
 	//}
 
+#if true
+
 	// 3Dモデル描画
 	{
-		Shader* shader = graphics.GetShader(0);
+		shader = graphics.GetShader(0);
 		shader->Begin(dc, rc);
 		StageManager::Instance().Render(dc, shader,false);
 		cube->Render(dc, shader, cameramode, selectedsurface);
@@ -224,8 +261,49 @@ void SceneGame::Render()
 		graphics.GetDebugRenderer()->Render(dc, rc.view, rc.projection);
 	}
 
+#endif
+
 	// 2Dスプライト描画
 	{
+		float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+		float screenHeight = static_cast<float>(graphics.GetScreenHeight());
+		float frameWidth = static_cast<float>(frame->GetTextureWidth());
+		float frameHeight = static_cast<float>(frame->GetTextureHeight());
+		float gaugeWidth = static_cast<float>(gauge->GetTextureWidth());
+		float gaugeHeight = static_cast<float>(gauge->GetTextureHeight());
+		float crossWidth = static_cast<float>(cross->GetTextureWidth());
+		float crossHeight = static_cast<float>(cross->GetTextureHeight());
+
+		D3D11_VIEWPORT viewport;
+		UINT numViewports = 1;
+		dc->RSGetViewports(&numViewports, &viewport);
+
+		if (viewFlag)
+		{
+			shader = graphics.GetShader(2);
+			shader->Begin(dc, rc);
+
+			cross->Render(dc,
+				screenWidth/2 - crossWidth /4, screenHeight/2 - crossHeight /4, crossWidth/2, crossHeight/2,
+				0, 0, crossWidth, crossHeight,
+				0,
+				1, 1, 1, 1);
+
+			frame->Render(dc,
+				screenWidth - frameWidth, screenHeight - frameHeight, frameWidth, frameHeight,
+				0, 0, frameWidth, frameHeight,
+				0,
+				1, 1, 1, 1);
+
+			gauge->Render(dc,
+				screenWidth - gaugeWidth, screenHeight - gaugeHeight, gaugeWidth, gaugeHeight,
+				0, 0, gaugeWidth, gaugeHeight,
+				delayViewTimer,
+				1, 1, 1, 1);
+
+			shader->End(dc);
+
+		}
 	}
 #ifdef _DEBUG
 	// 2DデバッグGUI描画

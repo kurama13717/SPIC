@@ -65,9 +65,13 @@ private:
 	CameraController* cameracontroller = nullptr;
 
 	EnemySlime* enemyslime = nullptr;
-	Sprite* gauge = nullptr;
 	CoordinateTransformation* coordinateTransformation = nullptr;
 	Shake& shake = Shake::Instance();
+
+	Shader* shader = nullptr;
+	Sprite* gauge = nullptr;
+	Sprite* frame = nullptr;	
+	Sprite* cross = nullptr;	
 
 private:
 	// ÉJÉÅÉâÉÇÅ[Éh
@@ -87,4 +91,8 @@ private:
 	float delaytimer, delaytimer2 = 0.0f;
 	int selectedsurface = 0;
 	float axisX = 0;
+
+	bool viewFlag = false;
+	bool delayViewFlag = false;
+	float delayViewTimer = 0.0f;
 };

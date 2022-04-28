@@ -9,7 +9,7 @@ void SceneTitle::Initialize()
 {
     sprite = new Sprite("Data/Sprite/Title().png");
     X = new Sprite("Data/Sprite/X.png");
-    arrow = new Sprite("Data/Sprite/arrow.png");
+    arrow = new Sprite("Data/Sprite/yagirusigauge.png");
     cameracontroller = new CameraController();
     //ƒJƒƒ‰‰Šúİ’è
     camera.SetLookAt(DirectX::XMFLOAT3(0, 10, -10), DirectX::XMFLOAT3(0, 0, 0), DirectX::XMFLOAT3(0, 1, 0));

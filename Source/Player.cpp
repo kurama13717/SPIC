@@ -145,7 +145,7 @@ void Player::InputBullet()
         //発射位置
         DirectX::XMFLOAT3 pos;
         pos.x = position.x;
-        pos.y = position.y + height;
+        pos.y = position.y;
         pos.z = position.z;
         //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
         bullet = new Bullet();

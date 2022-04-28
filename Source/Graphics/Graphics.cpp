@@ -131,6 +131,7 @@ Graphics::Graphics(HWND hWnd)
 	{
 		shader[0] = std::make_unique<LambertShader>(device.Get());
 		shader[1] = std::make_unique<LambertInsideShader>(device.Get());
+		shader[2] = std::make_unique<LambertSpliteShader>(device.Get());
 	}
 
 	// ƒŒƒ“ƒ_ƒ‰
