@@ -40,7 +40,7 @@ public:
     void InputBullet();
 
     //　弾丸の消去
-    void Destroy();
+    void DestroyBullet();
 
     //ジャンプ入力処理
     bool InputJump();
@@ -48,6 +48,8 @@ public:
     //プレイヤーとエネミー衝突
     void CollisionPlayerVsEnemies();
 
+    bool GetisFire()const { return isFire; }
+    void SetisFire(const bool isfire) { this->isFire = isfire; }
     
     DirectX::XMFLOAT3 ct = {};
 
@@ -121,7 +123,5 @@ private:
 
     CameraController* camera;
 
-
-
-
+    bool isFire = false;
 };

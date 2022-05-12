@@ -48,10 +48,10 @@ void SceneGame::Initialize()
 	fixedpositions[2] = { 0.0f,20.0f,18.0f };
 	fixedpositions[3] = { -18.0f,20.0f,0.0f };
 
-	//ゲージスプライト
-	gauge = new Sprite("Data/Sprite/yagirusigauge.png");
-	frame = new Sprite("Data/Sprite/wakusen.png");
-	cross = new Sprite("Data/Sprite/CrossHair.png");
+	fixedangles[0] = { 0.0f,3.142f,0.0f };
+	fixedangles[1] = { 0.0f,1.71f,0.0f };
+	fixedangles[2] = { 0.0f,0.0f,0.0f };
+	fixedangles[3] = { 0.0f,-1.71f,0.0f };
 
 	ID3D11Device* device = graphics.GetDevice();
 }
@@ -65,16 +65,7 @@ void SceneGame::Finalize()
 		delete gauge;
 		gauge = nullptr;
 	}
-	if (frame != nullptr)
-	{
-		delete frame;
-		frame = nullptr;
-	}
-	if (cross != nullptr)
-	{
-		delete cross;
-		cross = nullptr;
-	}
+
 	/*EnemyManager& enemyManager = EnemyManager::Instance();
 	enemyManager.Clear();*/
 	//EnemyManager::Instance().Clear();
@@ -109,18 +100,11 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->SetTarget({ 0,15,0 });
 		cameracontroller->ViewUpdate(elapsedTime);
 
-		viewFlag = false;
-
 		// FPSモードへ移行
-		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)
-		{
-			FpsCameraInitialize();
-		}
+		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameramode);
 
-		if (gamePad.GetButtonDown() & GamePad::BTN_X)
-		{
-			SpectatorCameraInitialize();
-		}
+
+		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(cameramode);
 		break;
 
 	case Mode::fpsMode:
@@ -131,30 +115,36 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->FpsUpdate(elapsedTime);
 
-		viewFlag = true;
-		if (delayViewTimer > 0)
-			delayViewTimer -= 6.0f;
 		// Viewモードへ移行
-		if (gamePad.GetButton() & GamePad::BTN_B)
-		{
-			delayViewTimer += 8.0f;
-			if (delayViewTimer > 360.0f)
-			{
-				delayViewTimer = 0;
-				ViewCameraInitialize();
-			}
-		}
+		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
+		if (PushPower > 120)ViewCameraInitialize();
+
+		// スペクテイターモードへ移行
+		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(cameramode);
+
 		break;
 
 	case Mode::spectatorMode:
 		// プレイヤーアップデート呼び出し
 		player->SpectatorUpdate(elapsedTime);
 
-		viewFlag = false;
-
 		// カメラ専用アップデート呼び出し
 		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->SpectatorUpdate(elapsedTime);
+
+		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
+		if (PushPower > 120)
+		{
+			switch (BeforeCM)	// スペクテイターモードに入った際のモードで分岐
+			{
+			case Mode::viewMode:
+				ViewCameraInitialize();
+				break;
+			case Mode::fpsMode:
+				FpsCameraInitialize(cameramode);
+				break;
+			}
+		}
 
 		break;
 	}
@@ -233,7 +223,7 @@ void SceneGame::Render()
 
 	// 3Dモデル描画
 	{
-		shader = graphics.GetShader(0);
+		Shader* shader = graphics.GetShader(0);
 		shader->Begin(dc, rc);
 		StageManager::Instance().Render(dc, shader,false);
 		cube->Render(dc, shader, cameramode, selectedsurface);
@@ -265,45 +255,6 @@ void SceneGame::Render()
 
 	// 2Dスプライト描画
 	{
-		float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-		float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-		float frameWidth = static_cast<float>(frame->GetTextureWidth());
-		float frameHeight = static_cast<float>(frame->GetTextureHeight());
-		float gaugeWidth = static_cast<float>(gauge->GetTextureWidth());
-		float gaugeHeight = static_cast<float>(gauge->GetTextureHeight());
-		float crossWidth = static_cast<float>(cross->GetTextureWidth());
-		float crossHeight = static_cast<float>(cross->GetTextureHeight());
-
-		D3D11_VIEWPORT viewport;
-		UINT numViewports = 1;
-		dc->RSGetViewports(&numViewports, &viewport);
-
-		if (viewFlag)
-		{
-			shader = graphics.GetShader(2);
-			shader->Begin(dc, rc);
-
-			cross->Render(dc,
-				screenWidth/2 - crossWidth /4, screenHeight/2 - crossHeight /4, crossWidth/2, crossHeight/2,
-				0, 0, crossWidth, crossHeight,
-				0,
-				1, 1, 1, 1);
-
-			frame->Render(dc,
-				screenWidth - frameWidth, screenHeight - frameHeight, frameWidth, frameHeight,
-				0, 0, frameWidth, frameHeight,
-				0,
-				1, 1, 1, 1);
-
-			gauge->Render(dc,
-				screenWidth - gaugeWidth, screenHeight - gaugeHeight, gaugeWidth, gaugeHeight,
-				0, 0, gaugeWidth, gaugeHeight,
-				delayViewTimer,
-				1, 1, 1, 1);
-
-			shader->End(dc);
-
-		}
 	}
 #ifdef _DEBUG
 	// 2DデバッグGUI描画
@@ -425,13 +376,25 @@ void SceneGame::Render()
 //}
 
 // FPSカメライニシャライズ
-void SceneGame::FpsCameraInitialize()
+void SceneGame::FpsCameraInitialize(int BeforeMode)
 {
-	cameracontroller->SetAngle({cameracontroller->GetAngle().x,cameracontroller->GetAngle().y + DirectX::XM_PI,cameracontroller->GetAngle().z });
-	cameracontroller->SetTarget({ 0,15,0 });
-	cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
-	player->SetPosition(fixedpositions[selectedsurface]);
+	PushPower = 0;
 
+	switch (BeforeMode)
+	{
+	case Mode::viewMode:
+		cameracontroller->SetAngle({ cameracontroller->GetAngle().x,cameracontroller->GetAngle().y + DirectX::XM_PI,cameracontroller->GetAngle().z });
+		cameracontroller->SetTarget({ 0,15,0 });
+		cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
+		player->SetPosition(fixedpositions[selectedsurface]);
+		break;
+	case Mode::spectatorMode:
+		cameracontroller->SetAngle(fixedangles[selectedsurface]);
+		cameracontroller->SetTarget({ 0,15,0 });
+		cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
+		player->SetPosition(fixedpositions[selectedsurface]);
+		break;
+	}
 	// モード切り替え
 	cameramode = Mode::fpsMode;
 
@@ -440,7 +403,8 @@ void SceneGame::FpsCameraInitialize()
 // Viewカメライニシャライズ
 void SceneGame::ViewCameraInitialize()
 {
-	cameracontroller->SetAngle({ 0,cameracontroller->GetAngle().y + DirectX::XM_PI,0 });
+	PushPower = 0;
+	//cameracontroller->SetAngle({ 0,cameracontroller->GetAngle().y + DirectX::XM_PI,0 });
 
 	switch (selectedsurface)
 	{
@@ -463,12 +427,22 @@ void SceneGame::ViewCameraInitialize()
 }
 
 // スペクテイターカメライニシャライズ
-void SceneGame::SpectatorCameraInitialize()
+void SceneGame::SpectatorCameraInitialize(int BeforeMode)
 {
-	cameracontroller->SetAngle({ cameracontroller->GetAngle().x,cameracontroller->GetAngle().y + DirectX::XM_PI,cameracontroller->GetAngle().z });
-	cameracontroller->SetTarget({ 0,15,0 });
-	cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
-	player->SetPosition(cameracontroller->GetEye());
+	BeforeCM = BeforeMode;
+	PushPower = 0;
+
+	switch (BeforeMode)
+	{
+	case Mode::viewMode:
+		cameracontroller->SetAngle({ cameracontroller->GetAngle().x,cameracontroller->GetAngle().y + DirectX::XM_PI,cameracontroller->GetAngle().z });
+		cameracontroller->SetTarget({ 0,15,0 });
+		cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
+		player->SetPosition(cameracontroller->GetEye());
+		break;
+	case Mode::fpsMode:
+		break;
+	}
 
 	// モード切り替え
 	cameramode = Mode::spectatorMode;

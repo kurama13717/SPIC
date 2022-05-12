@@ -25,12 +25,11 @@ public:
   
 
 
-    int a = 0;
+    int hitObject = 0;
 
     bool flag0_r = false;
     bool flag1_r = false;
     bool flag2_r = false;
-
 
 private:
     std::vector<Stage*> stages;

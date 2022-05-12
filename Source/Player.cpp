@@ -83,7 +83,7 @@ void Player::Update(float elapsedTime)
         UpdateReviveState(elapsedTime);
         break;
     }
-    UpdateVelocity(elapsedTime);
+    //UpdateVelocity(elapsedTime);
     UpdateTransform();
 
     UpdateInvincibleTimer(elapsedTime);
@@ -134,14 +134,12 @@ void Player::InputBullet()
     {
         Player::Instance().SetFiring(true);
 
-
         //前方向
         DirectX::XMFLOAT3 dir;
         dir.x = ct.x;
         dir.y = ct.y;
         dir.z = ct.z;
-        
-
+       
         //発射位置
         DirectX::XMFLOAT3 pos;
         pos.x = position.x;
@@ -149,19 +147,41 @@ void Player::InputBullet()
         pos.z = position.z;
         //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
         bullet = new Bullet();
+        bullet->SetisMateril(true);
         bullet->Launch(dir, pos);
         BulletManager::Instance().Register(bullet);
-
-       
-        
-
-
-        //projectileManager.Register(projectile);
     }
+
+    // 軌道描画用弾発射
+    if (gamePad.GetButtonDown() & GamePad::BTN_Y/*LEFT_SHOULDER*//* && !Player::Instance().GetFiring()*/)
+    {
+        //Player::Instance().SetFiring(true);
+
+        //前方向
+        DirectX::XMFLOAT3 dir;
+        dir.x = ct.x;
+        dir.y = ct.y;
+        dir.z = ct.z;
+
+        //発射位置
+        DirectX::XMFLOAT3 pos;
+        pos.x = position.x;
+        pos.y = position.y;
+        pos.z = position.z;
+        //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
+        //BulletManager::Instance().Remove(bullet);
+        bullet = new Bullet();
+        bullet->SetSpeed(80.0f);
+        bullet->SetisMateril(false);
+        bullet->Launch(dir, pos);
+        BulletManager::Instance().Register(bullet);
+    }
+
 }
 
-void Player::Destroy()
+void Player::DestroyBullet()
 {
+    Player::Instance().SetFiring(false);
     BulletManager::Instance().Remove(bullet);
 }
 

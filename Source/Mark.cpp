@@ -120,8 +120,11 @@ void Mark::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 		}
 	};
 
-
+	color0 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
+	color1 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
+	color2 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
 	
+
 	if (StageManager::Instance().flag0_r)
 	{
 		scale[0].x = 0.0f;
@@ -141,11 +144,6 @@ void Mark::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 		scale[2].z = 0.0f;
 	}
 
-	else
-	color0 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
-	color1 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
-	color2 = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 0.7f);
-
 	//auto test = mark;
 
 
@@ -164,10 +162,8 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 	{
 		if (StageManager::Instance().flag0_r)return false;
 		StageManager::Instance().flag0_r = flag0;
-		StageManager::Instance().a = 2;
+		StageManager::Instance().hitObject = 2;
 		Do->Play(false);
-		//StageManager::Instance().Remove();
-
 		return true;
 	}
 
@@ -175,7 +171,7 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 	{
 		if (StageManager::Instance().flag1_r)return false;
 		StageManager::Instance().flag1_r = flag1;
-		StageManager::Instance().a = 2;
+		StageManager::Instance().hitObject = 2;
 		Re->Play(false);
 
 		return true;
@@ -184,20 +180,19 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 	if (flag2 == true)
 	{
 		if (StageManager::Instance().flag2_r)return false;
-
 		StageManager::Instance().flag2_r = flag2;
-		StageManager::Instance().a = 2;
+		StageManager::Instance().hitObject = 2;
 		Mi->Play(false);
 
 		return true;
 	}
-	//return Collision::IntersectRayVsModel(start, end, flat_Left, hit);
+
+	return false;
 }
 
 void Mark::Destroy()
 {
 	StageManager::Instance().Remove(stage);
-	
 }
 
 void Mark::DrawDebugGUI()

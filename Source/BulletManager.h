@@ -38,13 +38,11 @@ public:
 	//弾丸取得
 	Bullet* GetBullet(int index) { return bullets.at(index); }
 
-
-
 	//弾丸削除
 	void Remove(Bullet* bullet);
 
 	//レイキャスト
-	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit, int index);
+	//bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit, int index);
 
 
 

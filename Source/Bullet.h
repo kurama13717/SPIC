@@ -7,14 +7,14 @@
 class BulletManager;
 
 //弾丸
-class Bullet : public Stage
+class Bullet
 {
 public:
 	Bullet();
-	virtual ~Bullet() {}
+	~Bullet() {}
 
 	//更新処理
-	void Update(float elapsedTime)override;
+	void Update(float elapsedTime);
 
 	void Render(ID3D11DeviceContext* dc, Shader* shader,int flag);
 	//void Render_c(ID3D11DeviceContext* dc, Shader* shader, bool flag) {};
@@ -26,7 +26,7 @@ public:
 	//void UpdateHorizontalMove(float elapsedTime);
 
 	//bool RayCast(DirectX::XMFLOAT3& start, DirectX::XMFLOAT3& end, HitResult& hit);
-	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)override;
+	//bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)override;
 
 	//発射の角度と位置の入力処理
 	void Launch(const DirectX::XMFLOAT3& direction, const DirectX::XMFLOAT3& position);
@@ -56,6 +56,13 @@ public:
 	//半径取得
 	float GetRadius()const { return radius; }
 
+	bool GetisMaterial() { return isMaterial; }
+	void SetisMateril(bool ismaterial) { this->isMaterial = ismaterial; }
+
+	void SetSpeed(float speed) { this->speed = speed; }
+
+	void RenderReflectingRay();
+
 	void DrawDebugGUI();
 
 	//弾が壁に当たっているか...連射の制御
@@ -70,13 +77,12 @@ protected:
 	DirectX::XMFLOAT3   direction = { 0,0,1 };
 	DirectX::XMFLOAT3   scale = { 1,1,1 };
 	DirectX::XMFLOAT4X4 transform = { 1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1 };
+
+private:
 	BulletManager* manager = nullptr;
 	float radius = 0.5f;
 	float stepOffset = 1.0f;
 	float speed = 10.0f;
-
-
-
 
 	DirectX::XMFLOAT3 velocity = { 0,0,0 };
 	DirectX::XMFLOAT4 color{ 1.0f, 1.0f, 1.0f, 1.0f };
@@ -88,8 +94,14 @@ protected:
 
 	Model* model = nullptr;
 
-	DirectX::XMFLOAT3 CurrentPosition = {};
+	// レイ描画バレット用
+	bool isMaterial = true;
+	DirectX::XMFLOAT3 reflectedPosition[10] = {};
+	int reflectCount = 0;
 
-	Effect* trajectEffect = nullptr;
+	DirectX::XMFLOAT3 currentPosition[999] = {};
+	int timer, num = 0;
+
+	float mx, my, mz = 0.0f;
 };
 

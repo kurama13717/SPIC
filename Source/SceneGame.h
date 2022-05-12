@@ -39,16 +39,18 @@ private:
 		const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection);
 
 	// 一人称カメライニシャライズ
-	void FpsCameraInitialize();
+	void FpsCameraInitialize(int BeforeMode);
 	// 面選択カメライニシャライズ
 	void ViewCameraInitialize();
 	// 飛び回りカメライニシャライズ
-	void SpectatorCameraInitialize();
+	void SpectatorCameraInitialize(int BeforeMode);
 
 	// 面選択
 	void ChooseSurface();
 
 	void TrackingCamera();
+
+	void SetObjects();
 
 private:
 	Graphics& graphics = Graphics::Instance();
@@ -65,13 +67,9 @@ private:
 	CameraController* cameracontroller = nullptr;
 
 	EnemySlime* enemyslime = nullptr;
+	Sprite* gauge = nullptr;
 	CoordinateTransformation* coordinateTransformation = nullptr;
 	Shake& shake = Shake::Instance();
-
-	Shader* shader = nullptr;
-	Sprite* gauge = nullptr;
-	Sprite* frame = nullptr;	
-	Sprite* cross = nullptr;	
 
 private:
 	// カメラモード
@@ -83,8 +81,11 @@ private:
 		spectatorMode,
 	};
 
+	int BeforeCM = 0;
+
 	// 打ち出し位置
 	DirectX::XMFLOAT3 fixedpositions[4];
+	DirectX::XMFLOAT3 fixedangles[4];
 
 	// 面選択用
 	bool delayflag, delayflag2 = false;
@@ -92,7 +93,5 @@ private:
 	int selectedsurface = 0;
 	float axisX = 0;
 
-	bool viewFlag = false;
-	bool delayViewFlag = false;
-	float delayViewTimer = 0.0f;
+	float PushPower = 0;
 };

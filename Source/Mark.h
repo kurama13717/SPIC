@@ -3,6 +3,7 @@
 #include "Stage.h"
 #include "StageManager.h"
 #include "Audio/Audio.h"
+#include"BulletManager.h"
 
 
 class Mark : public Stage

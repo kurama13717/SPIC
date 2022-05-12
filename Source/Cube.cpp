@@ -74,9 +74,6 @@ Cube::Cube()
 		angle[5].x = DirectX::XMConvertToRadians(90.0f);
 	}
 	StageManager::Instance().Register(this);
-
-
-
 }
 
 Cube::~Cube()
@@ -293,8 +290,7 @@ bool Cube::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 
 	if (fd_flag == true || fu_flag == true || fl_flag == true || fr_flag == true || ff_flag == true || fb_flag == true)
 	{
-
-		StageManager::Instance().a = 1;
+		StageManager::Instance().hitObject = 1;
 		return true;
 	}
 	return false;
