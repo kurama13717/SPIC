@@ -50,8 +50,15 @@ private:
 		float				height;
 	};
 
+	struct Rectangle
+	{
+		DirectX::XMFLOAT4 color;
+
+	};
+
 	Microsoft::WRL::ComPtr<ID3D11Buffer>			sphereVertexBuffer;
 	Microsoft::WRL::ComPtr<ID3D11Buffer>			cylinderVertexBuffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer>			rectangleVertexBuffer;
 	Microsoft::WRL::ComPtr<ID3D11Buffer>			constantBuffer;
 
 	Microsoft::WRL::ComPtr<ID3D11VertexShader>		vertexShader;
@@ -64,7 +71,9 @@ private:
 
 	std::vector<Sphere>		spheres;
 	std::vector<Cylinder>	cylinders;
+	std::vector<Cylinder>	rectangles;
 
 	UINT	sphereVertexCount = 0;
 	UINT	cylinderVertexCount = 0;
+	UINT	rectangleVertexCount = 0;
 };

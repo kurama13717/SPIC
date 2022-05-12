@@ -161,30 +161,36 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 	if (flag0 == true)
 	{
 		if (StageManager::Instance().flag0_r)return false;
-		StageManager::Instance().flag0_r = flag0;
-		StageManager::Instance().hitObject = 2;
-		Do->Play(false);
-		return true;
+			StageManager::Instance().hitObject = 2;
+		if (BulletManager::Instance().GetisMaterial()) {
+			StageManager::Instance().flag0_r = flag0;
+			Do->Play(false);
+		}
+			return true;
 	}
 
 	if (flag1 == true)
 	{
 		if (StageManager::Instance().flag1_r)return false;
-		StageManager::Instance().flag1_r = flag1;
-		StageManager::Instance().hitObject = 2;
-		Re->Play(false);
-
-		return true;
+			StageManager::Instance().hitObject = 2;
+		if (BulletManager::Instance().GetisMaterial()) {
+			StageManager::Instance().flag1_r = flag1;
+			Re->Play(false);
+		}
+			return true;
 	}
 
 	if (flag2 == true)
 	{
 		if (StageManager::Instance().flag2_r)return false;
-		StageManager::Instance().flag2_r = flag2;
-		StageManager::Instance().hitObject = 2;
-		Mi->Play(false);
+			StageManager::Instance().hitObject = 2;
+		if (BulletManager::Instance().GetisMaterial()) {
 
-		return true;
+			StageManager::Instance().flag2_r = flag2;
+			Mi->Play(false);
+
+		}
+			return true;
 	}
 
 	return false;

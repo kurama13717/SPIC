@@ -147,7 +147,8 @@ void Player::InputBullet()
         pos.z = position.z;
         //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
         bullet = new Bullet();
-        bullet->SetisMateril(true);
+        //bullet->SetisMateril(true);
+        BulletManager::Instance().SetisMateril(true);
         bullet->Launch(dir, pos);
         BulletManager::Instance().Register(bullet);
     }
@@ -171,10 +172,11 @@ void Player::InputBullet()
         //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
         //BulletManager::Instance().Remove(bullet);
         bullet = new Bullet();
-        bullet->SetSpeed(80.0f);
-        bullet->SetisMateril(false);
-        bullet->Launch(dir, pos);
         BulletManager::Instance().Register(bullet);
+        bullet->SetSpeed(80.0f);
+        //bullet->SetisMateril(false);
+        BulletManager::Instance().SetisMateril(false);
+        bullet->Launch(dir, pos);
     }
 
 }

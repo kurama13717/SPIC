@@ -38,6 +38,10 @@ public:
 	//’eŠÛæ“¾
 	Bullet* GetBullet(int index) { return bullets.at(index); }
 
+	bool GetisMaterial() { return isMaterial; }
+	void SetisMateril(bool ismaterial) { this->isMaterial = ismaterial; }
+
+
 	//’eŠÛíœ
 	void Remove(Bullet* bullet);
 
@@ -49,4 +53,8 @@ public:
 private:
 	std::vector<Bullet*> bullets;
 	std::vector<Bullet*> removes;
+
+	bool isMaterial = true;
+
+
 };

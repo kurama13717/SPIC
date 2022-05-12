@@ -177,7 +177,7 @@ void Bullet::Update(float elapsedTime)
 	//モデル行列を更新
 	model->UpdateTransform(transform);
 
-	if (!isMaterial)
+	if (!BulletManager::Instance().GetisMaterial())
 	{
 		currentPosition[num] = position;
 		num++;
@@ -210,7 +210,7 @@ void Bullet::UpdateTransform()
 
 void Bullet::Render(ID3D11DeviceContext* dc, Shader* shader,int flag)
 {
-	if (isMaterial)shader->Draw(dc, model, c);
+	if (BulletManager::Instance().GetisMaterial())shader->Draw(dc, model, c);
 }
 
 void Bullet::RenderReflectingRay()
@@ -221,7 +221,7 @@ void Bullet::RenderReflectingRay()
 		debugRenderer->DrawSphere(reflectedPosition[i], radius, DirectX::XMFLOAT4(0, 0, 0, 1));
 	}
 
-	if (!isMaterial)
+	if (!BulletManager::Instance().GetisMaterial())
 	{
 		for (int j = 0; j < 999; j++)
 		{
@@ -256,12 +256,12 @@ void Bullet::BulletRays(float elapsedTime)
 	{
 		if (StageManager::Instance().hitObject == 1) 
 		{
-			if (isMaterial)
+			if (BulletManager::Instance().GetisMaterial())
 			{
 				Player::Instance().DestroyBullet();			
 				Player::Instance().SetisFire(false);
 			}
-			if (!isMaterial)
+			if (!BulletManager::Instance().GetisMaterial())
 			{
 				speed = 0;
 			}

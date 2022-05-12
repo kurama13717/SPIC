@@ -197,6 +197,11 @@ void DebugRenderer::Render(ID3D11DeviceContext* context, const DirectX::XMFLOAT4
 		context->Draw(cylinderVertexCount, 0);
 	}
 	cylinders.clear();
+
+
+	//’·•ûŒ`
+
+
 }
 
 // ‹…•`‰æ

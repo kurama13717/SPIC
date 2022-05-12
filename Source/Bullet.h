@@ -56,8 +56,8 @@ public:
 	//半径取得
 	float GetRadius()const { return radius; }
 
-	bool GetisMaterial() { return isMaterial; }
-	void SetisMateril(bool ismaterial) { this->isMaterial = ismaterial; }
+	//bool GetisMaterial() { return isMaterial; }
+	//void SetisMateril(bool ismaterial) { this->isMaterial = ismaterial; }
 
 	void SetSpeed(float speed) { this->speed = speed; }
 
@@ -95,7 +95,7 @@ private:
 	Model* model = nullptr;
 
 	// レイ描画バレット用
-	bool isMaterial = true;
+	//bool isMaterial = true;
 	DirectX::XMFLOAT3 reflectedPosition[10] = {};
 	int reflectCount = 0;
 
