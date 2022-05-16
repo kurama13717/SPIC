@@ -10,6 +10,7 @@
 
 #include"Bullet.h"
 #include"BulletManager.h"
+#include "Mark.h"
 #include "Player.h"
 #include "StageManager.h"
 #include"Graphics/Graphics.h"
@@ -19,10 +20,10 @@
 //コンストラクタ
 Bullet::Bullet()
 {
-    model = new Model("Data/model/Sword/Sword.mdl");
+	model = new Model("Data/model/Sword/Sword.mdl");
 
-    //表示サイズを調整
-    scale.x = scale.y = scale.z = 3.0f;
+	//表示サイズを調整
+	scale.x = scale.y = scale.z = 3.0f;
 }
 
 //デバッグプリミティブ描画
@@ -44,55 +45,55 @@ void Bullet::DrawDebugPrimitive()
 
 /*void Bullet::UpdateHorizontalMove(float elapsedTime)
 {
-    //position.x += velocity.x * elapsedTime;
-    //position.z += velocity.z * elapsedTime
+	//position.x += velocity.x * elapsedTime;
+	//position.z += velocity.z * elapsedTime
 
-    //水平速力量計算
-    float velocityLengthXZ = sqrtf(position.x * position.x + position.z * position.z);
-    if (velocityLengthXZ > 0.0f)
-    {
-        float mx = position.x * elapsedTime;
-        float mz = position.z * elapsedTime;
+	//水平速力量計算
+	float velocityLengthXZ = sqrtf(position.x * position.x + position.z * position.z);
+	if (velocityLengthXZ > 0.0f)
+	{
+		float mx = position.x * elapsedTime;
+		float mz = position.z * elapsedTime;
 
-        DirectX::XMFLOAT3 start = { position.x,position.y + stepOffset,position.z };
-        DirectX::XMFLOAT3 end = { position.x + mx, position.y + stepOffset, position.z + mz };
+		DirectX::XMFLOAT3 start = { position.x,position.y + stepOffset,position.z };
+		DirectX::XMFLOAT3 end = { position.x + mx, position.y + stepOffset, position.z + mz };
 
-        HitResult hit;
-        if (StageManager::Instance().RayCast(start, end, hit))
-        {
-            DirectX::XMVECTOR Start = DirectX::XMLoadFloat3(&start);
-            DirectX::XMVECTOR End = DirectX::XMLoadFloat3(&end);
-            DirectX::XMVECTOR Vec = DirectX::XMVectorSubtract(End, Start);
+		HitResult hit;
+		if (StageManager::Instance().RayCast(start, end, hit))
+		{
+			DirectX::XMVECTOR Start = DirectX::XMLoadFloat3(&start);
+			DirectX::XMVECTOR End = DirectX::XMLoadFloat3(&end);
+			DirectX::XMVECTOR Vec = DirectX::XMVectorSubtract(End, Start);
 
-            DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
-            //逆ベクトルと法線ベクトルの内積
-            DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
+			DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
+			//逆ベクトルと法線ベクトルの内積
+			DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
 
-            // 補正位置の計算
-            //法線ベクトル*内積+レイの終端//Rベクトル求める
-            DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
-            DirectX::XMFLOAT3 collectPosition;
-            DirectX::XMStoreFloat3(&collectPosition, CollectPosition);
-            // 壁ずり方向へレイキャスト
-            HitResult hit2;
-            if (!StageManager::Instance().RayCast(hit.position, collectPosition, hit2))
-            {
-                // 壁ずり方向で壁に当たらなかったら補正位置に移動
-                position.x = collectPosition.x;
-                position.z = collectPosition.z;
-            }
-            else
-            {
-                position.x = hit2.position.x;
-                position.z = hit2.position.z;
-            }
-        }
-        else
-        {
-            position.x += mx;
-            position.z += mz;
-        }
-    }
+			// 補正位置の計算
+			//法線ベクトル*内積+レイの終端//Rベクトル求める
+			DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
+			DirectX::XMFLOAT3 collectPosition;
+			DirectX::XMStoreFloat3(&collectPosition, CollectPosition);
+			// 壁ずり方向へレイキャスト
+			HitResult hit2;
+			if (!StageManager::Instance().RayCast(hit.position, collectPosition, hit2))
+			{
+				// 壁ずり方向で壁に当たらなかったら補正位置に移動
+				position.x = collectPosition.x;
+				position.z = collectPosition.z;
+			}
+			else
+			{
+				position.x = hit2.position.x;
+				position.z = hit2.position.z;
+			}
+		}
+		else
+		{
+			position.x += mx;
+			position.z += mz;
+		}
+	}
 }
 
 
@@ -188,27 +189,27 @@ void Bullet::Update(float elapsedTime)
 
 void Bullet::UpdateTransform()
 {
-		// スケール行列を作成
-		DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
-		
-		// 全部サイズが固定だとだめだから変数入れる
-		// 回転行列を作成
-		DirectX::XMMATRIX R = DirectX::XMMatrixRotationRollPitchYaw(direction.x, direction.y, direction.z);
-		// オイラー角
+	// スケール行列を作成
+	DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
 
-		// 位置行列を作成
-		DirectX::CXMMATRIX T = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
+	// 全部サイズが固定だとだめだから変数入れる
+	// 回転行列を作成
+	DirectX::XMMATRIX R = DirectX::XMMatrixRotationRollPitchYaw(direction.x, direction.y, direction.z);
+	// オイラー角
 
-		// 3つの行列を組み合わせ、ワールド行列を作成
-		DirectX::XMMATRIX W = S * R * T;
-		// ☆　行列の順番を変えてはいけない
+	// 位置行列を作成
+	DirectX::CXMMATRIX T = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
 
-		// 計算したワールド行列を取り出す //再変換
-		DirectX::XMStoreFloat4x4(&transform, W);
+	// 3つの行列を組み合わせ、ワールド行列を作成
+	DirectX::XMMATRIX W = S * R * T;
+	// ☆　行列の順番を変えてはいけない
+
+	// 計算したワールド行列を取り出す //再変換
+	DirectX::XMStoreFloat4x4(&transform, W);
 }
 
 
-void Bullet::Render(ID3D11DeviceContext* dc, Shader* shader,int flag)
+void Bullet::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 {
 	if (BulletManager::Instance().GetisMaterial())shader->Draw(dc, model, c);
 }
@@ -223,7 +224,7 @@ void Bullet::RenderReflectingRay()
 
 	if (!BulletManager::Instance().GetisMaterial())
 	{
-		for (int j = 2; j < 999; j++)
+		for (int j = 0; j < 999; j++)
 		{
 			debugRenderer->DrawSphere(currentPosition[j], 0.5f, DirectX::XMFLOAT4(0, 0, 0, 0.2f));
 		}
@@ -254,21 +255,38 @@ void Bullet::BulletRays(float elapsedTime)
 	HitResult hit;
 	if (StageManager::Instance().RayCast(start, end, hit))
 	{
-		if (StageManager::Instance().hitObject == 1) 
+
+
+
+		if (StageManager::Instance().hitObject == 1)
 		{
 			if (BulletManager::Instance().GetisMaterial())
 			{
-				Player::Instance().DestroyBullet();			
-				Player::Instance().SetisFire(false);
+				Player::Instance().DestroyBullet();
+
+				//Cubeに当たった時点で失敗なのでリトライフラグをTrueにしリトライする...Mark::Updateに記載
+				StageManager::Instance().SetRetry(true);
+
+
 			}
 			if (!BulletManager::Instance().GetisMaterial())
 			{
 				speed = 0;
+
 			}
 		}
-		if (StageManager::Instance().hitObject == 2)
+		if (StageManager::Instance().hitObject == 2)//&& !StageManager::Instance().GetStageClear())
 		{
-			Reflection(direction, hit.normal);
+			count++;
+			StageManager::Instance().SetHitCount(count); //反射した回数をHitCountに記憶
+
+			if (StageManager::Instance().ClearFlag(StageManager::Instance().GetMarkCount(), StageManager::Instance().GetHitCount())) //ここでMarkの数と反射した回数を引数に渡す
+			{
+				Player::Instance().DestroyBullet();  // Trueであれば弾を消し、反射しないようにしている
+			}
+			else
+				Reflection(direction, hit.normal);
+
 		}
 	}
 }
@@ -290,8 +308,8 @@ void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLO
 	FN = { Dir.x * Normal.x + Dir.y * Normal.y + Dir.z * Normal.z };            // -DirNormal
 	Vec = { 2.0f * FN * Normal.x,2.0f * FN * Normal.y,2.0f * FN * Normal.z };    // 2(-FN)Normal
 	Reflect = { Vec.x - Dir.x,Vec.y - Dir.y,Vec.z - Dir.z };                    // Vec-(-Dir)
-	if(reflectCount < 4)
-	this->direction = Reflect;
+	if (reflectCount < 4)
+		this->direction = Reflect;
 }
 
 

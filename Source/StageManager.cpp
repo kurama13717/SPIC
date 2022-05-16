@@ -67,3 +67,12 @@ void StageManager::Remove(Stage* stage)
     //”jŠüƒŠƒXƒg‚É’Ç‰Á
     removes.emplace_back(stage);
 }
+
+bool StageManager::ClearFlag(int MarkCount, int HitCount)
+{
+
+    if (MarkCount == HitCount)return true;
+
+    return false;
+
+}

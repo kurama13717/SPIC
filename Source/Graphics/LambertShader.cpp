@@ -345,6 +345,52 @@ void LambertShader::Draw(ID3D11DeviceContext* dc, const Model* model, DirectX::X
 
 }
 
+void LambertShader::Draw2(ID3D11DeviceContext* dc, const Model* model) //仮
+{
+	const ModelResource* resource = model->GetResource();
+	const std::vector<Model::Node>& nodes = model->GetNodes();
+
+	for (const ModelResource::Mesh& mesh : resource->GetMeshes())
+	{
+		// メッシュ用定数バッファ更新
+		CbMesh cbMesh;
+		::memset(&cbMesh, 0, sizeof(cbMesh));
+		if (mesh.nodeIndices.size() > 0)
+		{
+			for (size_t i = 0; i < mesh.nodeIndices.size(); ++i)
+			{
+				DirectX::XMMATRIX worldTransform = DirectX::XMLoadFloat4x4(&nodes.at(mesh.nodeIndices.at(i)).worldTransform);
+				DirectX::XMMATRIX offsetTransform = DirectX::XMLoadFloat4x4(&mesh.offsetTransforms.at(i));
+				DirectX::XMMATRIX boneTransform = offsetTransform * worldTransform;
+				DirectX::XMStoreFloat4x4(&cbMesh.boneTransforms[i], boneTransform);
+			}
+		}
+		else
+		{
+			cbMesh.boneTransforms[0] = nodes.at(mesh.nodeIndex).worldTransform;
+		}
+		dc->UpdateSubresource(meshConstantBuffer.Get(), 0, 0, &cbMesh, 0, 0);
+
+		UINT stride = sizeof(ModelResource::Vertex);
+		UINT offset = 0;
+		dc->IASetVertexBuffers(0, 1, mesh.vertexBuffer.GetAddressOf(), &stride, &offset);
+		dc->IASetIndexBuffer(mesh.indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+		dc->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		for (const ModelResource::Subset& subset : mesh.subsets)
+		{
+			CbSubset cbSubset;
+			cbSubset.materialColor = subset.material->color;
+			dc->UpdateSubresource(subsetConstantBuffer.Get(), 0, 0, &cbSubset, 0, 0);
+			dc->PSSetShaderResources(0, 1, subset.material->shaderResourceView.GetAddressOf());
+			dc->PSSetSamplers(0, 1, samplerState.GetAddressOf());
+			dc->DrawIndexed(subset.indexCount, subset.startIndex, 0);
+		}
+	}
+
+}
+
+
 // 描画終了
 void LambertShader::End(ID3D11DeviceContext* dc)
 {

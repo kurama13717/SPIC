@@ -19,6 +19,7 @@ public:
 
 	void Begin(ID3D11DeviceContext* dc, const RenderContext& rc) override;
 	void Draw(ID3D11DeviceContext* dc, const Model* model, DirectX::XMFLOAT4* color) override;
+	void Draw2(ID3D11DeviceContext* dc, const Model* model) override;
 	void End(ID3D11DeviceContext* dc) override;
 
 protected:

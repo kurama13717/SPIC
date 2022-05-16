@@ -38,6 +38,11 @@ public:
 	bool IsPlayAnimation()const;
 	Node* FindNode(const char* name);
 	float GetCurrentAnimationSeconds() const { return currentAnimationSeconds; }
+
+
+	
+
+
 private:
 	std::shared_ptr<ModelResource>	resource;
 	std::vector<Node>				nodes;
@@ -47,5 +52,13 @@ private:
 	bool animationEndFlag = false;
 	float animationBlendTime = 0.0f;
 	float animationBlendSeconds = 0.0f;
+
+public:
+	DirectX::XMFLOAT3   position = {};
+	DirectX::XMFLOAT3   angle = {};
+	DirectX::XMFLOAT3   scale = {};
+	DirectX::XMFLOAT4X4 transform;
+
+	int count = 0;
 
 };

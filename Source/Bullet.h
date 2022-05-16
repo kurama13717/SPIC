@@ -101,7 +101,7 @@ private:
 
 	DirectX::XMFLOAT3 currentPosition[999] = {};
 	int timer, num = 0;
-
+	int count = 0;
 	float mx, my, mz = 0.0f;
 };
 

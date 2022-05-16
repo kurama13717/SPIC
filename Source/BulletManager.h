@@ -41,6 +41,10 @@ public:
 	bool GetisMaterial() { return isMaterial; }
 	void SetisMateril(bool ismaterial) { this->isMaterial = ismaterial; }
 
+	bool GetisClearFlag() { return ClearFlag; }
+	void SetClearFlag(bool ClearFlag) { this->ClearFlag = ClearFlag; }
+
+	
 
 	//’eŠÛíœ
 	void Remove(Bullet* bullet);
@@ -55,6 +59,6 @@ private:
 	std::vector<Bullet*> removes;
 
 	bool isMaterial = true;
-
+	bool ClearFlag = false;
 
 };
