@@ -223,7 +223,7 @@ void Bullet::RenderReflectingRay()
 
 	if (!BulletManager::Instance().GetisMaterial())
 	{
-		for (int j = 0; j < 999; j++)
+		for (int j = 2; j < 999; j++)
 		{
 			debugRenderer->DrawSphere(currentPosition[j], 0.5f, DirectX::XMFLOAT4(0, 0, 0, 0.2f));
 		}
