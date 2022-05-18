@@ -204,6 +204,9 @@
     <ClInclude Include="Source\Mark.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SceneRule.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -357,6 +360,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mark.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneRule.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

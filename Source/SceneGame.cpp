@@ -58,19 +58,26 @@ void SceneGame::Initialize()
 	fixedangles[2] = { 0.0f,0.0f,0.0f };
 	fixedangles[3] = { 0.0f,-1.71f,0.0f };
 
+	// スプライト
+	cross = new Sprite("Data/Sprite/CrossHair.png");
+
 	ID3D11Device* device = graphics.GetDevice();
 }
 
 // 終了化
 void SceneGame::Finalize()
 {
-	//ゲージスプライト終了化
+	// スプライト終了化
 	if (gauge != nullptr)
 	{
 		delete gauge;
 		gauge = nullptr;
 	}
-
+	if (cross != nullptr)
+	{
+		delete cross;
+		cross = nullptr;
+	}
 	/*EnemyManager& enemyManager = EnemyManager::Instance();
 	enemyManager.Clear();*/
 	//EnemyManager::Instance().Clear();
@@ -105,6 +112,8 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->SetTarget({ 0,15,0 });
 		cameracontroller->ViewUpdate(elapsedTime);
 
+		fpsFlag == false;
+
 		// FPSモードへ移行
 		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameracontroller->GetCameraMode());
 
@@ -119,6 +128,8 @@ void SceneGame::Update(float elapsedTime)
 		// カメラ専用アップデート呼び出し
 		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->FpsUpdate(elapsedTime);
+
+		fpsFlag = true;
 
 		// Viewモードへ移行
 		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
@@ -136,6 +147,8 @@ void SceneGame::Update(float elapsedTime)
 		// カメラ専用アップデート呼び出し
 		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->SpectatorUpdate(elapsedTime);
+
+		fpsFlag = false;
 
 		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
 		if (PushPower > 120)
@@ -263,6 +276,26 @@ void SceneGame::Render()
 
 	// 2Dスプライト描画
 	{
+		Shader* shader = graphics.GetShader(2);
+		shader->Begin(dc, rc);
+
+		float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+		float screenHeight = static_cast<float>(graphics.GetScreenHeight());
+
+		float crossWidth = static_cast<float>(cross->GetTextureWidth());
+		float crossHeight = static_cast<float>(cross->GetTextureHeight());
+
+		if (fpsFlag)
+		{
+			cross->Render(dc,
+				screenWidth / 2 - crossWidth / 4, screenHeight / 2 - crossHeight / 4, crossWidth / 2, crossHeight / 2,
+				0, 0, crossWidth, crossHeight,
+				0,
+				1, 1, 1, 1);
+		}
+
+		shader->End(dc);
+
 	}
 #ifdef _DEBUG
 	// 2DデバッグGUI描画

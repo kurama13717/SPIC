@@ -102,4 +102,9 @@ private:
 
 	//ï€éù
 	DirectX::XMFLOAT3 KeepAngle;
+
+	// ÉNÉçÉXÉwÉA
+	Sprite* cross = nullptr;
+	bool fpsFlag = false;
+
 };

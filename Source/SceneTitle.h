@@ -60,4 +60,8 @@ private:
     0,0,1,0,
     0,0,0,1
     };
+
+    // •ÏX“_
+    int ArrowTimer = 0;
+
 };

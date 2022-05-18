@@ -4,12 +4,14 @@
 #include "SceneLoading.h"
 #include "Input/Input.h"
 
+// 変更点
+#include "SceneRule.h"
 
 void SceneTitle::Initialize()
 {
     sprite = new Sprite("Data/Sprite/Title().png");
     X = new Sprite("Data/Sprite/X.png");
-    arrow = new Sprite("Data/Sprite/yagirusigauge.png");
+    arrow = new Sprite("Data/Sprite/arrow.png");
     cameracontroller = new CameraController();
     //カメラ初期設定
     camera.SetLookAt(DirectX::XMFLOAT3(0, 10, -10), DirectX::XMFLOAT3(0, 0, 0), DirectX::XMFLOAT3(0, 1, 0));
@@ -48,7 +50,8 @@ void SceneTitle::Update(float elapsedTime)
     cameracontroller->Update(elapsedTime);
     UpdateTransform();
     TitleInput();
-
+    // 変更点
+    ArrowTimer++;
 }
 void SceneTitle::UpdateTransform()
 {
@@ -73,7 +76,8 @@ void SceneTitle::TitleInput()
         if (arrowPosX == 500)
             SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
         if (arrowPosX == 1250)
-            flagX = true;
+            // 変更点
+            SceneManager::Instance().ChangeScene(new SceneRule);
     }
     if (gamePad.GetButtonDown() & GamePad::BTN_LEFT)
     {
@@ -147,11 +151,14 @@ void SceneTitle::Render()
             0,
             1, 1, 1, 1);
 
-        arrow->Render(dc,
-            arrowPosX, 480, 100, 100,
-            0, 0, arrowWidth, arrowHeight,
-            0,
-            1, 1, 1, 1);
+        if (ArrowTimer % 60 >= 6)
+        {
+            arrow->Render(dc,
+                arrowPosX, 480, 100, 100,
+                0, 0, arrowWidth, arrowHeight,
+                0,
+                1, 1, 1, 1);
+        }
 
         if (flagX == true)
         {
