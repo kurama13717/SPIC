@@ -33,6 +33,9 @@ public:
 
 	// 描画処理
 	void Render()override;
+
+
+
 private:
 	//エネミーHP削除
 	void RenderEnemyGauge(ID3D11DeviceContext* dc,
@@ -51,6 +54,7 @@ private:
 	void TrackingCamera();
 
 	void SetObjects();
+
 
 private:
 	Graphics& graphics = Graphics::Instance();
@@ -71,9 +75,10 @@ private:
 	CoordinateTransformation* coordinateTransformation = nullptr;
 	Shake& shake = Shake::Instance();
 
+
 private:
 	// カメラモード
-	int cameramode = 0;
+	//int cameramode = 0;
 	enum  Mode
 	{
 		viewMode,
@@ -94,4 +99,7 @@ private:
 	float axisX = 0;
 
 	float PushPower = 0;
+
+	//保持
+	DirectX::XMFLOAT3 KeepAngle;
 };

@@ -28,8 +28,18 @@ public:
     const DirectX::XMFLOAT3& GetForward() const { return cameraForward; }   // 姿勢（前方）
     const DirectX::XMFLOAT3& GetUp() const { return cameraUp; }             // 姿勢（上方）
 
+    int GetCameraMode()  { return cameramode; }
+    void SetCameraMode(int cameramode_) { cameramode = cameramode_; }
+
     //デバッグ用GUI
     void cameraDebugGUI();
+
+public:
+    static CameraController& Instance()
+    {
+        static CameraController instance;
+        return instance;
+    }
 
 private:
     DirectX::XMFLOAT3 target = { 0,0,0 };
@@ -54,5 +64,8 @@ private:
     bool cameraturn_l = false;
     DirectX::XMFLOAT3 currentangle = {0,0,0};
     float axisX = 0;
+
+    int cameramode = 0;
+
 
 };

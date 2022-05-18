@@ -28,12 +28,15 @@ private:
 	Model* mark2 = nullptr;
 
 
+
 	std::vector<std::unique_ptr<Model>> model;
 
 
 	//std::vector<std::tuple<std::unique_ptr<Model>, std::unique_ptr<Stage>>> ms;
 	//
 	//std::get<1>(ms[0]);
+
+
 	
 	int MarkHitCount = 0;
 
@@ -42,6 +45,7 @@ private:
 	bool flag2 = false;
 
 	bool flag[50];
+
 
 	Stage* stage = nullptr;
 	std::unique_ptr<AudioSource> Do;

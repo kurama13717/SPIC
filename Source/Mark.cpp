@@ -3,16 +3,18 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "Graphics/LambertShader.h"
+#include "CameraController.h"
 #include <functional>
 
 
 Mark::Mark()
 {
 	StageManager& stageManager = StageManager::Instance();
+	//CameraController& cameracontroller = CameraController::Instance();
 
 	{  
 		//mark0 = new Model("Data/Model/Mark/mark.mdl");
-		model.push_back(std::make_unique<Model>("Data/Model/Mark/mark.mdl"));
+		model.push_back(std::make_unique<Model>("Data/Model/Mark/MarkTex.mdl"));
 		//model[0].get()->UpdateTransform()
 
 		//model[0].get()->GetNodes().data()->translate.x = 6.0f;
@@ -25,16 +27,18 @@ Mark::Mark()
 		//model[0].get()->GetNodes().data()->rotate.y = DirectX::XMConvertToRadians(180.0f);
 		//model[0].get()->GetNodes().data()->rotate.z = DirectX::XMConvertToRadians(53.0f);
 
-		model[0]->position.x = 6.0f;
+		model[0]->position.x = 6.5f;
 		model[0]->position.y = 15.0f;
 		model[0]->position.z = -3.0f;
-		model[0]->scale.x = 0.01f;
-		model[0]->scale.y = 0.05f;
-		model[0]->scale.z = 0.05f;
+		model[0]->scale.x = 0.02f;
+		model[0]->scale.y = 0.02f;
+		model[0]->scale.z = 0.02f;
 		model[0]->angle.x = DirectX::XMConvertToRadians(60.0f);
 		model[0]->angle.y = DirectX::XMConvertToRadians(180.0f);
 		model[0]->angle.z = DirectX::XMConvertToRadians(53.0f);
 		model[0]->count = 0;
+		model[0]->name = "Mark0";
+
 
 		//UpdateTransform();
 		//model[0].get()->UpdateTransform(model[0].get()->transform);
@@ -48,19 +52,19 @@ Mark::Mark()
 
 	{
 		//mark1 = new Model("Data/Model/Mark/mark.mdl");
-		model.push_back(std::make_unique<Model>("Data/Model/Mark/mark.mdl"));
+		model.push_back(std::make_unique<Model>("Data/Model/Mark/MarkTex.mdl"));
 
 		model[1]->position.x = -5.5f;
-		model[1]->position.y = 21.4f;
+		model[1]->position.y = 22.4f;
 		model[1]->position.z = -10.5f;
-		model[1]->scale.x = 0.01f;
-		model[1]->scale.y = 0.05f;
-		model[1]->scale.z = 0.05f;
-		model[1]->angle.x = DirectX::XMConvertToRadians(70.0f);
-		model[1]->angle.y = DirectX::XMConvertToRadians(180.0f);
+		model[1]->scale.x = 0.02f;
+		model[1]->scale.y = 0.02f;
+		model[1]->scale.z = 0.02f;
+		model[1]->angle.x = DirectX::XMConvertToRadians(110.0f);
+		model[1]->angle.y = DirectX::XMConvertToRadians(25.0f);
 		model[1]->angle.z = DirectX::XMConvertToRadians(70.0f);
 		model[1]->count = 1;
-
+		model[1]->name = "Mark1";
 
 		//position.x = -5.5f;
 		//position.y = 21.4f;
@@ -79,22 +83,25 @@ Mark::Mark()
 
 	{
 		//mark2 = new Model("Data/Model/Mark/mark.mdl");
-		model.push_back(std::make_unique<Model>("Data/Model/Mark/mark.mdl"));
+		model.push_back(std::make_unique<Model>("Data/Model/Mark/MarkTex.mdl"));
 
-		model[2]->position.x = 0.0f;
-		model[2]->position.y = 20.0f;
+		model[2]->position.x = 5.0f;
+		model[2]->position.y = 19.5f;
 		model[2]->position.z = 5.0f;
-		model[2]->scale.x = 0.01f;
-		model[2]->scale.y = 0.05f;
-		model[2]->scale.z = 0.05f;
+		model[2]->scale.x = 0.02f;
+		model[2]->scale.y = 0.02f;
+		model[2]->scale.z = 0.02f;
 		model[2]->angle.x = DirectX::XMConvertToRadians(90.0f);
 		model[2]->angle.y = DirectX::XMConvertToRadians(180.0f);
 		model[2]->angle.z = DirectX::XMConvertToRadians(90.0f);
 		model[2]->count = 2;
-	
+		model[2]->name = "Mark2";
+
 	}
 	StageManager::Instance().Register(this);
 	StageManager::Instance().SetMarkCount(model.size()); //ここでMarkの表示数を記録してその数分ヒットしていたらクリア...StageManager::ClearFlag()
+
+	
 
 }
 
@@ -103,6 +110,8 @@ Mark::~Mark()
 	//delete mark0;
 	//delete mark1;
 	//delete mark2;
+
+	
 }
 
 
@@ -170,13 +179,16 @@ void Mark::Update(float elapsedTime)
 	if (StageManager::Instance().GetRetry())
 	{
 		for (int i = 0; i < model.size(); i++) {
-			model[i]->scale.x = 0.01f;
-			model[i]->scale.y = 0.05f;
-			model[i]->scale.z = 0.05f;
+			model[i]->scale.x = 0.02f;
+			model[i]->scale.y = 0.02f;
+			model[i]->scale.z = 0.02f;
 			StageManager::Instance().flag_r[i] = false;
 		}
 			StageManager::Instance().SetRetry(false);
 	}
+
+	Player::Instance().GetPosition();
+
 
 }
 
@@ -233,7 +245,7 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 
 		if (flag[models->count] == true)
 		{
-			if (StageManager::Instance().flag0_r)return false;
+			if (StageManager::Instance().flag0_r || CameraController::Instance().GetCameraMode() == 2)return false;
 			StageManager::Instance().hitObject = 2;
 			if (BulletManager::Instance().GetisMaterial()) {
 				StageManager::Instance().flag_r[models->count] = true;
@@ -283,57 +295,33 @@ void Mark::Destroy()
 
 void Mark::DrawDebugGUI()
 {
+
+	
+
 	ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_FirstUseEver);
 	if (ImGui::Begin("Mark", nullptr, ImGuiWindowFlags_None))
 	{
-		if (ImGui::CollapsingHeader("Mark0", ImGuiTreeNodeFlags_DefaultOpen))
+		
+		for (int i = 0; i < model.size(); i++)
 		{
-			////position
-			//ImGui::InputFloat3("Position0", &position[0].x);
-			////angle
-			//DirectX::XMFLOAT3 a;
-			//a.x = DirectX::XMConvertToDegrees(angle[0].x);
-			//a.y = DirectX::XMConvertToDegrees(angle[0].y);
-			//a.z = DirectX::XMConvertToDegrees(angle[0].z);
-			//ImGui::InputFloat3("Angle0", &a.x);
-			//angle[0].x = DirectX::XMConvertToRadians(a.x);
-			//angle[0].y = DirectX::XMConvertToRadians(a.y);
-			//angle[0].z = DirectX::XMConvertToRadians(a.z);
-			////scale
-			//ImGui::InputFloat3("Scale0", &scale[0].x);
-		}
-		if (ImGui::CollapsingHeader("Mark1", ImGuiTreeNodeFlags_DefaultOpen))
-		{
-			////position
-			//ImGui::InputFloat3("Position1", &position[1].x);
-			////angle
-			//DirectX::XMFLOAT3 b;
-			//b.x = DirectX::XMConvertToDegrees(angle[1].x);
-			//b.y = DirectX::XMConvertToDegrees(angle[1].y);
-			//b.z = DirectX::XMConvertToDegrees(angle[1].z);
-			//ImGui::InputFloat3("Angle1", &b.x);
-			//angle[1].x = DirectX::XMConvertToRadians(b.x);
-			//angle[1].y = DirectX::XMConvertToRadians(b.y);
-			//angle[1].z = DirectX::XMConvertToRadians(b.z);
-			////scale
-			//ImGui::InputFloat3("Scale1", &scale[1].x);
-		}
-		if (ImGui::CollapsingHeader("Mark2", ImGuiTreeNodeFlags_DefaultOpen))
-		{
-			////position
-			//ImGui::InputFloat3("Position2", &position[2].x);
-			////angle
-			//DirectX::XMFLOAT3 c;
-			//c.x = DirectX::XMConvertToDegrees(angle[2].x);
-			//c.y = DirectX::XMConvertToDegrees(angle[2].y);
-			//c.z = DirectX::XMConvertToDegrees(angle[2].z);
-			//ImGui::InputFloat3("Angle2", &c.x);
-			//angle[2].x = DirectX::XMConvertToRadians(c.x);
-			//angle[2].y = DirectX::XMConvertToRadians(c.y);
-			//angle[2].z = DirectX::XMConvertToRadians(c.z);
-			////scale
-			//ImGui::InputFloat3("Scale2", &scale[2].x);
+			if (ImGui::CollapsingHeader(model[i]->name, ImGuiTreeNodeFlags_DefaultOpen))
+			{
+				//position
+				ImGui::InputFloat3("Position", &model[i]->position.x);
+				//angle
+				DirectX::XMFLOAT3 a;
+				a.x = DirectX::XMConvertToDegrees(model[i]->angle.x);
+				a.y = DirectX::XMConvertToDegrees(model[i]->angle.y);
+				a.z = DirectX::XMConvertToDegrees(model[i]->angle.z);
+				ImGui::InputFloat3("Angle", &a.x);
+				model[i]->angle.x = DirectX::XMConvertToRadians(a.x);
+				model[i]->angle.y = DirectX::XMConvertToRadians(a.y);
+				model[i]->angle.z = DirectX::XMConvertToRadians(a.z);
+				//scale
+				ImGui::InputFloat3("Scale", &model[i]->scale.x);
+
+			}
 		}
 	}
 	ImGui::End();

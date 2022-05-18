@@ -280,9 +280,14 @@ void Bullet::BulletRays(float elapsedTime)
 			count++;
 			StageManager::Instance().SetHitCount(count); //反射した回数をHitCountに記憶
 
-			if (StageManager::Instance().ClearFlag(StageManager::Instance().GetMarkCount(), StageManager::Instance().GetHitCount())) //ここでMarkの数と反射した回数を引数に渡す
+			if (BulletManager::Instance().GetisMaterial())
 			{
-				Player::Instance().DestroyBullet();  // Trueであれば弾を消し、反射しないようにしている
+				if (StageManager::Instance().ClearFlag(StageManager::Instance().GetMarkCount(), StageManager::Instance().GetHitCount()))  //ここでMarkの数と反射した回数を引数に渡す
+				{
+					Player::Instance().DestroyBullet();  // Trueであれば弾を消し、反射しないようにしている
+
+				}
+				Reflection(direction, hit.normal);
 			}
 			else
 				Reflection(direction, hit.normal);
@@ -308,8 +313,14 @@ void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLO
 	FN = { Dir.x * Normal.x + Dir.y * Normal.y + Dir.z * Normal.z };            // -DirNormal
 	Vec = { 2.0f * FN * Normal.x,2.0f * FN * Normal.y,2.0f * FN * Normal.z };    // 2(-FN)Normal
 	Reflect = { Vec.x - Dir.x,Vec.y - Dir.y,Vec.z - Dir.z };                    // Vec-(-Dir)
-	if (reflectCount < 4)
+	/*if (reflectCount < 4)
+		this->direction = Reflect;*/
+
+	if (reflectCount < StageManager::Instance().GetMarkCount())
 		this->direction = Reflect;
+
+	else 	speed = 0;
+
 }
 
 

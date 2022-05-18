@@ -157,6 +157,7 @@ void Player::InputBullet()
     if (gamePad.GetButtonDown() & GamePad::BTN_Y/*LEFT_SHOULDER*//* && !Player::Instance().GetFiring()*/)
     {
         //Player::Instance().SetFiring(true);
+        BulletManager::Instance().Remove(bullet);
 
         //‘O•ûŒü
         DirectX::XMFLOAT3 dir;

@@ -71,8 +71,11 @@ void StageManager::Remove(Stage* stage)
 bool StageManager::ClearFlag(int MarkCount, int HitCount)
 {
 
-    if (MarkCount == HitCount)return true;
-
+    if (MarkCount == HitCount)
+    {
+        StageClearFlag = true;
+        return true;
+    }
     return false;
 
 }

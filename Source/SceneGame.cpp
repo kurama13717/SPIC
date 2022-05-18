@@ -11,6 +11,10 @@
 #include "Cube.h"
 #include "Bullet.h"
 #include "BulletManager.h"
+#include "SceneManager.h"
+#include "SceneLoading.h"
+#include "SceneTitle.h"
+
 // 初期化
 void SceneGame::Initialize()
 {
@@ -40,7 +44,8 @@ void SceneGame::Initialize()
 	cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(15), 0.0f, 0.0f));
 	cameracontroller->SetFov(90.0f);
 
-	cameramode = Mode::viewMode;
+	//cameramode = Mode::viewMode;
+	CameraController::Instance().SetCameraMode(Mode::viewMode);
 	ViewCameraInitialize();
 
 	fixedpositions[0] = { 0.0f,20.0f,-18.0f };
@@ -90,7 +95,7 @@ void SceneGame::Update(float elapsedTime)
 	GamePad& gamePad = Input::Instance().GetGamePad();
 
 	// カメラモードで分岐
-	switch (cameramode)
+	switch (CameraController::Instance().GetCameraMode())
 	{
 	case Mode::viewMode:
 		// 面選択処理
@@ -101,10 +106,10 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->ViewUpdate(elapsedTime);
 
 		// FPSモードへ移行
-		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameramode);
+		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameracontroller->GetCameraMode());
 
 
-		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(cameramode);
+		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
 		break;
 
 	case Mode::fpsMode:
@@ -120,7 +125,7 @@ void SceneGame::Update(float elapsedTime)
 		if (PushPower > 120)ViewCameraInitialize();
 
 		// スペクテイターモードへ移行
-		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(cameramode);
+		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
 
 		break;
 
@@ -141,7 +146,7 @@ void SceneGame::Update(float elapsedTime)
 				ViewCameraInitialize();
 				break;
 			case Mode::fpsMode:
-				FpsCameraInitialize(cameramode);
+				FpsCameraInitialize(CameraController::Instance().GetCameraMode());
 				break;
 			}
 		}
@@ -169,6 +174,9 @@ void SceneGame::Update(float elapsedTime)
 	shake.ShakeUpdate(elapsedTime);
 
 	player->ct = cameracontroller->GetForward();
+
+	if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
+
 
 }
 
@@ -226,7 +234,7 @@ void SceneGame::Render()
 		Shader* shader = graphics.GetShader(0);
 		shader->Begin(dc, rc);
 		StageManager::Instance().Render(dc, shader,false);
-		cube->Render(dc, shader, cameramode, selectedsurface);
+		cube->Render(dc, shader, CameraController::Instance().GetCameraMode(), selectedsurface);
 		BulletManager::Instance().Render(dc, shader);
 
 		//mark->Render(dc, shader,true);
@@ -387,16 +395,18 @@ void SceneGame::FpsCameraInitialize(int BeforeMode)
 		cameracontroller->SetTarget({ 0,15,0 });
 		cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
 		player->SetPosition(fixedpositions[selectedsurface]);
+		//player->SetAngle()
 		break;
 	case Mode::spectatorMode:
-		cameracontroller->SetAngle(fixedangles[selectedsurface]);
+		//cameracontroller->SetAngle(fixedangles[selectedsurface]);
+		cameracontroller->SetAngle(KeepAngle);
 		cameracontroller->SetTarget({ 0,15,0 });
 		cameracontroller->SetCurrentAngle(cameracontroller->GetAngle());
 		player->SetPosition(fixedpositions[selectedsurface]);
 		break;
 	}
 	// モード切り替え
-	cameramode = Mode::fpsMode;
+	CameraController::Instance().SetCameraMode(Mode::fpsMode);
 
 }
 
@@ -423,7 +433,8 @@ void SceneGame::ViewCameraInitialize()
 	}
 
 	// モード切り替え
-	cameramode = Mode::viewMode;
+	//cameramode = Mode::viewMode;
+	CameraController::Instance().SetCameraMode(Mode::viewMode);
 }
 
 // スペクテイターカメライニシャライズ
@@ -431,6 +442,7 @@ void SceneGame::SpectatorCameraInitialize(int BeforeMode)
 {
 	BeforeCM = BeforeMode;
 	PushPower = 0;
+	KeepAngle = cameracontroller->GetAngle();
 
 	switch (BeforeMode)
 	{
@@ -445,7 +457,8 @@ void SceneGame::SpectatorCameraInitialize(int BeforeMode)
 	}
 
 	// モード切り替え
-	cameramode = Mode::spectatorMode;
+	//cameramode = Mode::spectatorMode;
+	CameraController::Instance().SetCameraMode(Mode::spectatorMode);
 }
 
 // 面選択

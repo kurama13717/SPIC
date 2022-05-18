@@ -60,5 +60,6 @@ public:
 	DirectX::XMFLOAT4X4 transform;
 
 	int count = 0;
+	 const char* name;
 
 };
