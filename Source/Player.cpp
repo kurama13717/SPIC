@@ -96,6 +96,9 @@ void Player::SpectatorUpdate(float elapsedTime)
 {
     InputMove(elapsedTime);
 
+    BulletManager::Instance().Update(elapsedTime);
+
+
     //ステート毎の処理
     switch (state)
     {
@@ -149,7 +152,7 @@ void Player::InputBullet()
         bullet = new Bullet();
         //bullet->SetisMateril(true);
         BulletManager::Instance().SetisMateril(true);
-        //bullet->SetSpeed(20);
+        bullet->SetSpeed(20);
         bullet->Launch(dir, pos);
         BulletManager::Instance().Register(bullet);
     }
@@ -179,6 +182,7 @@ void Player::InputBullet()
         bullet2 = new Bullet();
         BulletManager::Instance().Register(bullet2);
         bullet2->SetSpeed(80.0f);
+       // bullet2->SetRadius(1.0f);
         //bullet->SetisMateril(false);
         BulletManager::Instance().SetisMateril(false);
         bullet2->Launch(dir, pos);

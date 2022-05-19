@@ -79,3 +79,12 @@ bool StageManager::ClearFlag(int MarkCount, int HitCount)
     return false;
 
 }
+
+bool StageManager::ReflectFlag(DirectX::XMFLOAT3 reflectPos, DirectX::XMFLOAT3 Pos)
+{
+    if (reflectPos.x == Pos.x && reflectPos.y == Pos.z && reflectPos.z == Pos.z)
+    {
+        return true;
+    }
+    return false;
+}

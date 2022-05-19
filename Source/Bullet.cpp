@@ -167,10 +167,14 @@ void Bullet::Update(float elapsedTime)
 		my = direction.y * elapsedTime * speed;
 		mz = direction.z * elapsedTime * speed;
 
-		position.x += mx;
-		position.y += my;
-		position.z += mz;
+		position.x += mx ;
+		position.y += my ;
+		position.z += mz ;
 	}
+
+
+
+
 
 	BulletRays(elapsedTime);
 	//オブジェクト行列を更新
@@ -219,7 +223,7 @@ void Bullet::RenderReflectingRay()
 	DebugRenderer* debugRenderer = Graphics::Instance().GetDebugRenderer();
 	for (int i = 0; i < 10; i++)
 	{
-		debugRenderer->DrawSphere(reflectedPosition[i], radius, DirectX::XMFLOAT4(0, 0, 0, 1));
+		debugRenderer->DrawSphere(BulletManager::Instance().GetPosition(i), radius, DirectX::XMFLOAT4(0, 0, 0, 1));
 	}
 
 	if (!BulletManager::Instance().GetisMaterial())
@@ -285,12 +289,24 @@ void Bullet::BulletRays(float elapsedTime)
 				if (StageManager::Instance().ClearFlag(StageManager::Instance().GetMarkCount(), StageManager::Instance().GetHitCount()))  //ここでMarkの数と反射した回数を引数に渡す
 				{
 					Player::Instance().DestroyBullet();  // Trueであれば弾を消し、反射しないようにしている
-
 				}
-				Reflection(direction, hit.normal);
+				//if(reflectedPosition[count].x == position.x && reflectedPosition[count].y == position.y && reflectedPosition[count].z == position.z)Reflection(direction, hit.normal);
+				//if (StageManager::Instance().ReflectFlag(BulletManager::Instance().GetPosition(count), position))
+				//{
+				//	Reflection(direction, hit.normal);    //2回目　-1.2,0.8,0.5
+				//}
+				//else Reflection(direction, hit.normal);
+
+				position = BulletManager::Instance().GetPosition(count);
+				
+
 			}
-			else
-				Reflection(direction, hit.normal);
+			
+
+			//else
+			Reflection(direction, hit.normal);    //2回目　-1.2,0.8,0.5
+
+
 
 		}
 	}
@@ -301,7 +317,8 @@ void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLO
 {
 	reflectCount++;
 	// 反射点保持
-	reflectedPosition[reflectCount] = position;
+	//reflectedPosition[reflectCount] = position;
+	BulletManager::Instance().SetPosition(position, reflectCount);
 
 	DirectX::XMFLOAT3 Dir, Reflect, Vec;
 	float FN;
@@ -313,8 +330,7 @@ void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLO
 	FN = { Dir.x * Normal.x + Dir.y * Normal.y + Dir.z * Normal.z };            // -DirNormal
 	Vec = { 2.0f * FN * Normal.x,2.0f * FN * Normal.y,2.0f * FN * Normal.z };    // 2(-FN)Normal
 	Reflect = { Vec.x - Dir.x,Vec.y - Dir.y,Vec.z - Dir.z };                    // Vec-(-Dir)
-	/*if (reflectCount < 4)
-		this->direction = Reflect;*/
+
 
 	//Markの数分しか反射しない条件式
 	if (reflectCount < StageManager::Instance().GetMarkCount())

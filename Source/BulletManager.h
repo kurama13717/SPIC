@@ -44,6 +44,8 @@ public:
 	bool GetisClearFlag() { return ClearFlag; }
 	void SetClearFlag(bool ClearFlag) { this->ClearFlag = ClearFlag; }
 
+	const DirectX::XMFLOAT3 GetPosition(int index) const { return reflectedPosition[index]; }
+	void SetPosition( DirectX::XMFLOAT3 Position,int index) { this->reflectedPosition[index] = Position; }
 	
 
 	//íeä€çÌèú
@@ -57,6 +59,8 @@ public:
 private:
 	std::vector<Bullet*> bullets;
 	std::vector<Bullet*> removes;
+
+	DirectX::XMFLOAT3 reflectedPosition[10] = {};
 
 	bool isMaterial = true;
 	bool ClearFlag = false;

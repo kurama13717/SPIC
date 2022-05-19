@@ -47,6 +47,9 @@ public:
     void SetMarkCount(int MarkCount) { this->MarkCount = MarkCount; }
 
     bool ClearFlag(int MarkCount, int HitCount);
+    bool ReflectFlag(DirectX::XMFLOAT3 reflectPos, DirectX::XMFLOAT3 Pos);
+
+
 
 
     int hitObject = 0;

@@ -52,6 +52,7 @@ public:
 
 	//スケール取得
 	const DirectX::XMFLOAT3& GetScale() const { return scale; }
+	
 
 	//半径取得
 	float GetRadius()const { return radius; }
@@ -60,6 +61,7 @@ public:
 	//void SetisMateril(bool ismaterial) { this->isMaterial = ismaterial; }
 
 	void SetSpeed(float speed) { this->speed = speed; }
+	void SetRadius(float radius) { this->radius = radius; }
 
 	void RenderReflectingRay();
 
@@ -96,7 +98,7 @@ private:
 
 	// レイ描画バレット用
 	//bool isMaterial = true;
-	DirectX::XMFLOAT3 reflectedPosition[10] = {};
+	//DirectX::XMFLOAT3 reflectedPosition[10] = {};
 	int reflectCount = 0;
 
 	DirectX::XMFLOAT3 currentPosition[999] = {};
