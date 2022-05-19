@@ -107,6 +107,25 @@ private:
 	// ÉNÉçÉXÉwÉA
 	Sprite* cross = nullptr;
 
-	bool isMenuMode = false;
+	Sprite* Menu = nullptr;
+	Sprite* MenuGame = nullptr;
+	Sprite* MenuHelp = nullptr;
+	Sprite* MenuTitle = nullptr;
+	bool isMenuFlag = false;
+	int MenuMode = 0;
+	float axisY = 0;
+	bool MenuMove_U = false;
+	bool MenuMove_D = false;
+
+	enum  menu
+	{
+		menuGame,
+		menuHelp,
+		menuTitle,
+	};
+	int menuDelayTimer = 0;
+	DirectX::XMFLOAT4 menuGameColor = { 1,1,1,1 };
+	DirectX::XMFLOAT4 menuHelpColor = { 1,1,1,1 };
+	DirectX::XMFLOAT4 menuTitleColor = { 1,1,1,1 };
 
 };

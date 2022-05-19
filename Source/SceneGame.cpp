@@ -14,6 +14,7 @@
 #include "SceneManager.h"
 #include "SceneLoading.h"
 #include "SceneTitle.h"
+#include "SceneRule.h"
 
 // ‰Šú‰»
 void SceneGame::Initialize()
@@ -63,6 +64,11 @@ void SceneGame::Initialize()
 	frame = new Sprite("Data/Sprite/frame.png");
 	cross = new Sprite("Data/Sprite/CrossHair.png");
 
+	Menu = new Sprite();
+	MenuGame = new Sprite("Data/Sprite/MenuGame.png");
+	MenuHelp = new Sprite("Data/Sprite/MenuHelp.png");
+	MenuTitle = new Sprite("Data/Sprite/MenuTitle.png");
+
 	ID3D11Device* device = graphics.GetDevice();
 }
 
@@ -85,6 +91,27 @@ void SceneGame::Finalize()
 		delete cross;
 		cross = nullptr;
 	}
+	if (Menu != nullptr)
+	{
+		delete Menu;
+		Menu = nullptr;
+	}
+	if (MenuGame != nullptr)
+	{
+		delete MenuGame;
+		MenuGame = nullptr;
+	}
+	if (MenuHelp != nullptr)
+	{
+		delete MenuHelp;
+		MenuHelp = nullptr;
+	}
+	if (MenuTitle != nullptr)
+	{
+		delete MenuTitle;
+		MenuTitle = nullptr;
+	}
+
 	/*EnemyManager& enemyManager = EnemyManager::Instance();
 	enemyManager.Clear();*/
 	//EnemyManager::Instance().Clear();
@@ -108,10 +135,74 @@ void SceneGame::Update(float elapsedTime)
 {
 	GamePad& gamePad = Input::Instance().GetGamePad();
 
-	if (gamePad.GetButtonDown() & GamePad::BTN_Y)isMenuMode = true;
-	if (isMenuMode)
+	if (gamePad.GetButtonDown() & GamePad::BTN_Y)
+		isMenuFlag = true;
+	if (isMenuFlag == true)
 	{
+		axisY = gamePad.GetAxisLY();
+		Graphics& graphics = Graphics::Instance();
+
+		if (MenuMove_U == false && MenuMove_D == false)
+		{
+			menuDelayTimer++;
+			if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)
+			{
+				if (MenuMode > 0 && menuDelayTimer > 30)
+				{
+					MenuMove_U = true;
+				}
+			}
+
+			if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)
+			{
+				if (MenuMode < 2 && menuDelayTimer > 30)
+				{
+					MenuMove_D = true;
+				}
+			}
+		}
+		if (MenuMove_U == true)
+		{
+			MenuMode--;
+			menuDelayTimer = 0;
+			MenuMove_U = false;
+		}
+		if (MenuMove_D == true)
+		{
+			MenuMode++;
+			menuDelayTimer = 0;
+			MenuMove_D = false;
+		}
+
+		menuGameColor = { 1,1,1,1 };
+		menuHelpColor = { 1,1,1,1 };
+		menuTitleColor = { 1,1,1,1 };
 		// ƒƒjƒ…ƒ‚[ƒh
+		switch (MenuMode)
+		{
+		case menu::menuGame:
+			menuGameColor = { 1,0,0,1 };
+			if (gamePad.GetButtonDown() & GamePad::BTN_A)
+				isMenuFlag = false;
+			break;
+		case menu::menuHelp:
+			menuHelpColor = { 1,0,0,1 };
+			if (gamePad.GetButtonDown() & GamePad::BTN_A)
+			{
+				isMenuFlag = false;
+				SceneManager::Instance().ChangeScene(new SceneRule);
+			}
+			break;
+		case menu::menuTitle:
+			menuTitleColor = { 1,0,0,1 };
+			if (gamePad.GetButtonDown() & GamePad::BTN_A)
+			{
+				isMenuFlag = false;
+				SceneManager::Instance().ChangeScene(new SceneTitle);
+			}
+			break;
+		}
+
 	}
 	else
 	{
@@ -335,6 +426,42 @@ void SceneGame::Render()
 				1, 1, 1, 1);
 		}
 
+		float MenuWidth = 300;
+		float MenuHeight = 100;
+		if (isMenuFlag)
+		{
+			MenuGame->Render(dc,
+				screenWidth / 2 - MenuWidth / 2, 200,
+				MenuWidth,
+				MenuHeight,
+				0, 0, MenuWidth, MenuHeight,
+				0,
+				menuGameColor.x, menuGameColor.y, menuGameColor.z, menuGameColor.w);
+
+			MenuHelp->Render(dc,
+				screenWidth / 2 - MenuWidth / 2, 400,
+				MenuWidth,
+				MenuHeight,
+				0, 0, MenuWidth, MenuHeight,
+				0,
+				menuHelpColor.x, menuHelpColor.y, menuHelpColor.z, menuHelpColor.w);
+
+			MenuTitle->Render(dc,
+				screenWidth / 2 - MenuWidth / 2, 600,
+				MenuWidth,
+				MenuHeight,
+				0, 0, MenuWidth, MenuHeight,
+				0,
+				menuTitleColor.x, menuTitleColor.y, menuTitleColor.z, menuTitleColor.w);
+
+			Menu->Render(dc,
+				0,0,
+				screenWidth,
+				screenHeight,
+				0, 0, screenWidth, screenHeight,
+				0,
+				0, 0, 0, 0.5f);
+		}
 		shader->End(dc);
 
 	}
