@@ -20,10 +20,10 @@
 //コンストラクタ
 Bullet::Bullet()
 {
-	model = new Model("Data/model/Sword/Sword.mdl");
+	model = new Model("Data/model/Bullet/ball.mdl");
 
 	//表示サイズを調整
-	scale.x = scale.y = scale.z = 3.0f;
+	scale.x = scale.y = scale.z = 0.01f;
 }
 
 //デバッグプリミティブ描画
@@ -32,6 +32,7 @@ void Bullet::DrawDebugPrimitive()
 	DebugRenderer* debugRenderer = Graphics::Instance().GetDebugRenderer();
 
 	//衝突判定用のデバッグ球を描画
+	if(!BulletManager::Instance().GetisMaterial())
 	debugRenderer->DrawSphere(position, radius, DirectX::XMFLOAT4(0, 0, 0, 1));
 }
 
@@ -186,7 +187,7 @@ void Bullet::Update(float elapsedTime)
 	{
 		currentPosition[num] = position;
 		num++;
-		if (num > 998)num = 0;
+		if (num > 2999)num = 0;
 	}
 }
 
@@ -228,11 +229,13 @@ void Bullet::RenderReflectingRay()
 
 	if (!BulletManager::Instance().GetisMaterial())
 	{
-		for (int j = 4; j < 999; j++)
+		for (int j = 4; j < 3000; j++)
 		{
-			debugRenderer->DrawSphere(currentPosition[j], 0.5f, DirectX::XMFLOAT4(0, 0, 0, 0.2f));
+			 debugRenderer->DrawSphere(currentPosition[j], 0.5f, DirectX::XMFLOAT4(0, 0, 0, 0.2f));
 		}
 	}
+
+	
 }
 
 //発射
@@ -305,7 +308,7 @@ void Bullet::BulletRays(float elapsedTime)
 
 			//else
 			Reflection(direction, hit.normal);    //2回目　-1.2,0.8,0.5
-
+			//if(BulletManager::Instance().GetPrediction())
 
 
 		}
@@ -336,8 +339,15 @@ void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLO
 	if (reflectCount < StageManager::Instance().GetMarkCount())
 		this->direction = Reflect;
 
-	else 	speed = 0;
+	else {
+		speed = 0; 
+		BulletManager::Instance().SetPrediction(true);
+		position = { 0,0,0 };
 
+		//reflectCount++;
+		//BulletManager::Instance().SetPosition(DirectX::XMFLOAT3(0,0,0), reflectCount);
+
+	}
 }
 
 

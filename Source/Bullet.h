@@ -93,6 +93,8 @@ private:
 	DirectX::XMFLOAT3 start ={0,0,0};
 	DirectX::XMFLOAT3 end	={0,0,0};
 
+	bool prediction = false;
+	int predictionKeep = 0;
 
 	Model* model = nullptr;
 
@@ -101,7 +103,7 @@ private:
 	//DirectX::XMFLOAT3 reflectedPosition[10] = {};
 	int reflectCount = 0;
 
-	DirectX::XMFLOAT3 currentPosition[999] = {};
+	DirectX::XMFLOAT3 currentPosition[3000] = {};
 	int timer, num = 0;
 	int count = 0;
 	float mx, my, mz = 0.0f;

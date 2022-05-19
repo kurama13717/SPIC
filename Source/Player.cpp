@@ -158,7 +158,7 @@ void Player::InputBullet()
     }
 
     // ‹O“¹•`‰æ—p’e”­ŽË
-    if (gamePad.GetButtonDown() & GamePad::BTN_Y/*LEFT_SHOULDER*//* && !Player::Instance().GetFiring()*/)
+    if (gamePad.GetButtonDown() & GamePad::BTN_ENTER || gamePad.GetButtonDown() & GamePad::BTN_LEFT_SHOULDER /*LEFT_SHOULDER*//* && !Player::Instance().GetFiring()*/)
     {
 
         //Player::Instance().SetFiring(true);

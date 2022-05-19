@@ -44,6 +44,11 @@ public:
 	bool GetisClearFlag() { return ClearFlag; }
 	void SetClearFlag(bool ClearFlag) { this->ClearFlag = ClearFlag; }
 
+	bool GetPrediction() { return prediction; }
+	void SetPrediction(bool prediction) { this->prediction = prediction; }
+
+
+
 	const DirectX::XMFLOAT3 GetPosition(int index) const { return reflectedPosition[index]; }
 	void SetPosition( DirectX::XMFLOAT3 Position,int index) { this->reflectedPosition[index] = Position; }
 	
@@ -64,5 +69,6 @@ private:
 
 	bool isMaterial = true;
 	bool ClearFlag = false;
+	bool prediction = false;
 
 };

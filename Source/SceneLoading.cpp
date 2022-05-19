@@ -6,7 +6,7 @@
 
 void SceneLoading::Initialize()
 {
-    sprite = new Sprite("Data/Sprite/LoadingIcon.png");
+    sprite = new Sprite("Data/Sprite/yagirusigauge.png");
     //スレッド開始
     //コンストラクタに関数のポインタを渡す
     //自分のクラスの関数をマルチスレッドにする場合、thisポインタを渡す
