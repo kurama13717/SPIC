@@ -72,6 +72,7 @@ private:
 
 	EnemySlime* enemyslime = nullptr;
 	Sprite* gauge = nullptr;
+	Sprite* frame = nullptr;
 	CoordinateTransformation* coordinateTransformation = nullptr;
 	Shake& shake = Shake::Instance();
 
@@ -105,6 +106,5 @@ private:
 
 	// ÉNÉçÉXÉwÉA
 	Sprite* cross = nullptr;
-	bool fpsFlag = false;
 
 };

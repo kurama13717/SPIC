@@ -59,6 +59,8 @@ void SceneGame::Initialize()
 	fixedangles[3] = { 0.0f,-1.71f,0.0f };
 
 	// スプライト
+	gauge = new Sprite();
+	frame = new Sprite("Data/Sprite/frame.png");
 	cross = new Sprite("Data/Sprite/CrossHair.png");
 
 	ID3D11Device* device = graphics.GetDevice();
@@ -72,6 +74,11 @@ void SceneGame::Finalize()
 	{
 		delete gauge;
 		gauge = nullptr;
+	}
+	if (frame != nullptr)
+	{
+		delete frame;
+		frame = nullptr;
 	}
 	if (cross != nullptr)
 	{
@@ -112,8 +119,6 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->SetTarget({ 0,15,0 });
 		cameracontroller->ViewUpdate(elapsedTime);
 
-		fpsFlag == false;
-
 		// FPSモードへ移行
 		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameracontroller->GetCameraMode());
 
@@ -129,10 +134,10 @@ void SceneGame::Update(float elapsedTime)
 		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->FpsUpdate(elapsedTime);
 
-		fpsFlag = true;
-
 		// Viewモードへ移行
-		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
+		if (PushPower > 0)
+			PushPower -= 1.0f;
+		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 3;
 		if (PushPower > 120)ViewCameraInitialize();
 
 		// スペクテイターモードへ移行
@@ -147,8 +152,6 @@ void SceneGame::Update(float elapsedTime)
 		// カメラ専用アップデート呼び出し
 		cameracontroller->SetEye(player->GetPosition());
 		cameracontroller->SpectatorUpdate(elapsedTime);
-
-		fpsFlag = false;
 
 		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
 		if (PushPower > 120)
@@ -276,6 +279,9 @@ void SceneGame::Render()
 
 	// 2Dスプライト描画
 	{
+		#define GAUGE_WIDTH 300.0f
+		#define GAUGE_HEIGHT 300.0f
+
 		Shader* shader = graphics.GetShader(2);
 		shader->Begin(dc, rc);
 
@@ -284,12 +290,39 @@ void SceneGame::Render()
 
 		float crossWidth = static_cast<float>(cross->GetTextureWidth());
 		float crossHeight = static_cast<float>(cross->GetTextureHeight());
+		float frameWidth = static_cast<float>(frame->GetTextureWidth());
+		float frameHeight = static_cast<float>(frame->GetTextureHeight());
+		// ゲージの MAX 長さと高さ
+		const float gaugeWidth = GAUGE_WIDTH;
+		const float gaugeHeight = GAUGE_HEIGHT;
+		// 現在 HP/MAXHP で 0.0(HP-MIN)～1.0(HP-MAX)の比率を出す。
+		float gaugeRate = PushPower / 120;
 
-		if (fpsFlag)
+		if (CameraController::Instance().GetCameraMode() == Mode::fpsMode)
 		{
 			cross->Render(dc,
-				screenWidth / 2 - crossWidth / 4, screenHeight / 2 - crossHeight / 4, crossWidth / 2, crossHeight / 2,
+				screenWidth / 2 - crossWidth / 4, screenHeight / 2 - crossHeight / 4,
+				crossWidth / 2,
+				crossHeight / 2,
 				0, 0, crossWidth, crossHeight,
+				0,
+				1, 1, 1, 1);
+
+			gauge->Render(dc,
+				screenWidth - gaugeWidth - 50, screenHeight - 50,
+				gaugeWidth,
+				gaugeHeight * -gaugeRate,	// もともと長さに比率をかける
+				0, 0,
+				static_cast<float>(gauge->GetTextureWidth()),
+				static_cast<float>(gauge->GetTextureHeight()),
+				0.0f,
+				1.0f, 0.0f, 0.0f, 1.0f);
+
+			frame->Render(dc,
+				screenWidth - gaugeWidth - 50, screenHeight - gaugeHeight - 50,
+				gaugeWidth,
+				gaugeHeight,
+				0, 0, frameWidth, frameHeight,
 				0,
 				1, 1, 1, 1);
 		}
