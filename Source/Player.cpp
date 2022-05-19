@@ -149,6 +149,7 @@ void Player::InputBullet()
         bullet = new Bullet();
         //bullet->SetisMateril(true);
         BulletManager::Instance().SetisMateril(true);
+        //bullet->SetSpeed(20);
         bullet->Launch(dir, pos);
         BulletManager::Instance().Register(bullet);
     }
@@ -156,9 +157,12 @@ void Player::InputBullet()
     // 軌道描画用弾発射
     if (gamePad.GetButtonDown() & GamePad::BTN_Y/*LEFT_SHOULDER*//* && !Player::Instance().GetFiring()*/)
     {
-        //Player::Instance().SetFiring(true);
-        BulletManager::Instance().Remove(bullet);
 
+        //Player::Instance().SetFiring(true);
+        //if(!BulletManager::Instance().GetisMaterial())
+             BulletManager::Instance().Remove(bullet2);
+            
+        
         //前方向
         DirectX::XMFLOAT3 dir;
         dir.x = ct.x;
@@ -172,12 +176,12 @@ void Player::InputBullet()
         pos.z = position.z;
         //発射   ここで発射される位置（プレイヤーのposition）と角度をbulletに情報を入れる
         //BulletManager::Instance().Remove(bullet);
-        bullet = new Bullet();
-        BulletManager::Instance().Register(bullet);
-        bullet->SetSpeed(80.0f);
+        bullet2 = new Bullet();
+        BulletManager::Instance().Register(bullet2);
+        bullet2->SetSpeed(80.0f);
         //bullet->SetisMateril(false);
         BulletManager::Instance().SetisMateril(false);
-        bullet->Launch(dir, pos);
+        bullet2->Launch(dir, pos);
     }
 
 }

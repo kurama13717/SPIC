@@ -26,6 +26,8 @@ void SceneTitle::Initialize()
     {
         font = std::make_unique<Font>(device, "Data/Font/MS Gothic.fnt", 1024);
     }
+    StageManager::Instance().SetStageClear(false);
+
 }
 void SceneTitle::Finalize()
 {
@@ -74,7 +76,11 @@ void SceneTitle::TitleInput()
     if (gamePad.GetButtonDown() & anyButton)
     {
         if (arrowPosX == 500)
+        {
+            //ステージ選択で番号を持たせMarkの引数に渡して遷移する
+            StageManager::Instance().SetStageNum(2);
             SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
+        }
         if (arrowPosX == 1250)
             // 変更点
             SceneManager::Instance().ChangeScene(new SceneRule);

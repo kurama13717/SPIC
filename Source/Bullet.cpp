@@ -224,7 +224,7 @@ void Bullet::RenderReflectingRay()
 
 	if (!BulletManager::Instance().GetisMaterial())
 	{
-		for (int j = 0; j < 999; j++)
+		for (int j = 4; j < 999; j++)
 		{
 			debugRenderer->DrawSphere(currentPosition[j], 0.5f, DirectX::XMFLOAT4(0, 0, 0, 0.2f));
 		}
@@ -316,6 +316,7 @@ void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLO
 	/*if (reflectCount < 4)
 		this->direction = Reflect;*/
 
+	//Markの数分しか反射しない条件式
 	if (reflectCount < StageManager::Instance().GetMarkCount())
 		this->direction = Reflect;
 

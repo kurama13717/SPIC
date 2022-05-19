@@ -4,12 +4,14 @@
 #include "StageManager.h"
 #include "Audio/Audio.h"
 #include"BulletManager.h"
+#include "Input/Input.h"
+
 
 
 class Mark : public Stage
 {
 public:
-	Mark();
+	Mark(int StageNum);
 	~Mark()override;
 	void Update(float elapsedTime)override;
 	void Render(ID3D11DeviceContext* dc, Shader* shader) {};
@@ -31,6 +33,7 @@ private:
 
 	std::vector<std::unique_ptr<Model>> model;
 
+	//std::vector<std::unique_ptr<AudioSource>> MusicalScales;
 
 	//std::vector<std::tuple<std::unique_ptr<Model>, std::unique_ptr<Stage>>> ms;
 	//
@@ -51,5 +54,8 @@ private:
 	std::unique_ptr<AudioSource> Do;
 	std::unique_ptr<AudioSource> Re;
 	std::unique_ptr<AudioSource> Mi;
+	std::unique_ptr<AudioSource> Fa;
+	std::unique_ptr<AudioSource> So;
+	std::unique_ptr<AudioSource> Ra;
 
 };

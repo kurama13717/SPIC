@@ -22,7 +22,7 @@ void SceneGame::Initialize()
 	//stageManager.Register(stageMain);
 
 
-	mark = new Mark();
+	mark = new Mark(StageManager::Instance().GetStageNum());
 	//stageManager.Register(mark);
 	
 	StageManager& stageManager = StageManager::Instance();
@@ -189,7 +189,11 @@ void SceneGame::Update(float elapsedTime)
 	player->ct = cameracontroller->GetForward();
 
 	if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
-
+	/*if (StageManager::Instance().GetStageClear())
+	{
+		StageManager::Instance().SetStageNum(2);
+		Initialize();
+	}*/
 
 }
 
@@ -250,11 +254,7 @@ void SceneGame::Render()
 		cube->Render(dc, shader, CameraController::Instance().GetCameraMode(), selectedsurface);
 		BulletManager::Instance().Render(dc, shader);
 
-		//mark->Render(dc, shader,true);
-		//stageMain->Render(dc, shader,viewMode);
-		//player->Render(dc, shader);
-		//EnemyManager::Instance().Render(dc, shader);
-
+		
 		shader->End(dc);
 	}
 	//3Dエフェクト描画

@@ -29,24 +29,17 @@ public:
     void SetStageClear(bool StageClearFlag) { this->StageClearFlag = StageClearFlag; }
 
 
-    //bool Getflag0_r() { return flag0_r; }
-    //bool Getflag1_r() { return flag1_r; }
-    //bool Getflag2_r() { return flag2_r; }
-    //void Setflag0_r(bool flag0_r) { this->flag0_r = flag0_r; }
-    //void Setflag1_r(bool flag1_r) { this->flag1_r = flag1_r; }
-    //void Setflag2_r(bool flag2_r) { this->flag2_r = flag2_r; }
-
-
     bool Getflag_r(int index) { return flag_r[index]; }
     
     
-    //bool GetCheckFlag() { return checkFlag; }
-    //void SetCheckFlag(bool checkFlag) { this->checkFlag = checkFlag; }
-
-
+   
     //反射した回数でクリアしたかをとる
     int GetHitCount() { return HitCount; }
     void SetHitCount(int HitCount) { this->HitCount = HitCount; } 
+
+
+    int GetStageNum() { return StageNum; }
+    void SetStageNum(int StageNum) { this->StageNum = StageNum; }
 
 
     //的が何枚あるかでクリアしたときに反射処理を通らないようにする
@@ -54,10 +47,6 @@ public:
     void SetMarkCount(int MarkCount) { this->MarkCount = MarkCount; }
 
     bool ClearFlag(int MarkCount, int HitCount);
-
-
-
-
 
 
     int hitObject = 0;
@@ -73,9 +62,7 @@ public:
 
     bool flag_r[50];
 
-    
-
-
+   
 private:
     std::vector<Stage*> stages;
     std::vector<Stage*> removes;
@@ -85,4 +72,5 @@ private:
     bool Retry = false;           // 的全てに的中せず弾が外に当たった時にゲームをリトライするのフラグ
     bool StageClearFlag = false;  // 的全てに的中してクリアしたときに判定をとるフラグ
 
+    int StageNum = 0;
 };

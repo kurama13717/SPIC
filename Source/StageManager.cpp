@@ -73,7 +73,7 @@ bool StageManager::ClearFlag(int MarkCount, int HitCount)
 
     if (MarkCount == HitCount)
     {
-        StageClearFlag = true;
+        //StageClearFlag = true;
         return true;
     }
     return false;

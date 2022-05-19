@@ -104,6 +104,7 @@ private:
     State state = State::Idle;
     Model* model = nullptr;
     Bullet* bullet = nullptr;
+    Bullet* bullet2 = nullptr;
     float moveSpeed = 5.0f;
     float turnSpeed = DirectX::XMConvertToRadians(720);
 
