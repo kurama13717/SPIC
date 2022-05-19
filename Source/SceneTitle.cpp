@@ -2,6 +2,7 @@
 #include "SceneGame.h"
 #include "SceneManager.h"
 #include "SceneLoading.h"
+#include "SceneSelectStage.h"
 #include "Input/Input.h"
 
 // 変更点
@@ -77,9 +78,7 @@ void SceneTitle::TitleInput()
     {
         if (arrowPosX == 500)
         {
-            //ステージ選択で番号を持たせMarkの引数に渡して遷移する
-            StageManager::Instance().SetStageNum(2);
-            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
+            SceneManager::Instance().ChangeScene(new SceneSelectStage);
         }
         if (arrowPosX == 1250)
             // 変更点

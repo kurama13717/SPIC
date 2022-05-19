@@ -252,6 +252,7 @@
     <ClInclude Include="Source\SceneLoading.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\SceneRule.h" />
+    <ClInclude Include="Source\SceneSelectStage.h" />
     <ClInclude Include="Source\SceneTitle.h" />
     <ClInclude Include="Source\Shake.h" />
     <ClInclude Include="Source\Stage.h" />
@@ -307,6 +308,7 @@
     <ClCompile Include="Source\SceneLoading.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\SceneRule.cpp" />
+    <ClCompile Include="Source\SceneSelectStage.cpp" />
     <ClCompile Include="Source\SceneTitle.cpp" />
     <ClCompile Include="Source\Shake.cpp" />
     <ClCompile Include="Source\StageMain.cpp" />

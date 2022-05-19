@@ -207,6 +207,9 @@
     <ClInclude Include="Source\SceneRule.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SceneSelectStage.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -363,6 +366,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneRule.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneSelectStage.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -107,4 +107,6 @@ private:
 	// ƒNƒƒXƒwƒA
 	Sprite* cross = nullptr;
 
+	bool isMenuMode = false;
+
 };

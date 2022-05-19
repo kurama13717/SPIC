@@ -108,96 +108,104 @@ void SceneGame::Update(float elapsedTime)
 {
 	GamePad& gamePad = Input::Instance().GetGamePad();
 
-	// カメラモードで分岐
-	switch (CameraController::Instance().GetCameraMode())
+	if (gamePad.GetButtonDown() & GamePad::BTN_Y)isMenuMode = true;
+	if (isMenuMode)
 	{
-	case Mode::viewMode:
-		// 面選択処理
-		ChooseSurface();
-
-		// カメラの専用アップデート呼び出し
-		cameracontroller->SetTarget({ 0,15,0 });
-		cameracontroller->ViewUpdate(elapsedTime);
-
-		// FPSモードへ移行
-		if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameracontroller->GetCameraMode());
-
-
-		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
-		break;
-
-	case Mode::fpsMode:
-		// プレイヤーアップデート呼び出し
-		player->Update(elapsedTime);
-
-		// カメラ専用アップデート呼び出し
-		cameracontroller->SetEye(player->GetPosition());
-		cameracontroller->FpsUpdate(elapsedTime);
-
-		// Viewモードへ移行
-		if (PushPower > 0)
-			PushPower -= 1.0f;
-		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 3;
-		if (PushPower > 120)ViewCameraInitialize();
-
-		// スペクテイターモードへ移行
-		if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
-
-		break;
-
-	case Mode::spectatorMode:
-		// プレイヤーアップデート呼び出し
-		player->SpectatorUpdate(elapsedTime);
-
-		// カメラ専用アップデート呼び出し
-		cameracontroller->SetEye(player->GetPosition());
-		cameracontroller->SpectatorUpdate(elapsedTime);
-
-		if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
-		if (PushPower > 120)
+		// メニュモード
+	}
+	else
+	{
+		// カメラモードで分岐
+		switch (CameraController::Instance().GetCameraMode())
 		{
-			switch (BeforeCM)	// スペクテイターモードに入った際のモードで分岐
+		case Mode::viewMode:
+			// 面選択処理
+			ChooseSurface();
+
+			// カメラの専用アップデート呼び出し
+			cameracontroller->SetTarget({ 0,15,0 });
+			cameracontroller->ViewUpdate(elapsedTime);
+
+			// FPSモードへ移行
+			if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameracontroller->GetCameraMode());
+
+
+			if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
+			break;
+
+		case Mode::fpsMode:
+			// プレイヤーアップデート呼び出し
+			player->Update(elapsedTime);
+
+			// カメラ専用アップデート呼び出し
+			cameracontroller->SetEye(player->GetPosition());
+			cameracontroller->FpsUpdate(elapsedTime);
+
+			// Viewモードへ移行
+			if (PushPower > 0)
+				PushPower -= 1.0f;
+			if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 3;
+			if (PushPower > 120)ViewCameraInitialize();
+
+			// スペクテイターモードへ移行
+			if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
+
+			break;
+
+		case Mode::spectatorMode:
+			// プレイヤーアップデート呼び出し
+			player->SpectatorUpdate(elapsedTime);
+
+			// カメラ専用アップデート呼び出し
+			cameracontroller->SetEye(player->GetPosition());
+			cameracontroller->SpectatorUpdate(elapsedTime);
+
+			if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
+			if (PushPower > 120)
 			{
-			case Mode::viewMode:
-				ViewCameraInitialize();
-				break;
-			case Mode::fpsMode:
-				FpsCameraInitialize(CameraController::Instance().GetCameraMode());
-				break;
+				switch (BeforeCM)	// スペクテイターモードに入った際のモードで分岐
+				{
+				case Mode::viewMode:
+					ViewCameraInitialize();
+					break;
+				case Mode::fpsMode:
+					FpsCameraInitialize(CameraController::Instance().GetCameraMode());
+					break;
+				}
 			}
+
+			break;
 		}
 
-		break;
+		//弾が発射中の場合カメラを弾に設定する
+		if (Player::Instance().GetFiring())
+		{
+			TrackingCamera();
+			//cameracontroller->FpsUpdate(elapsedTime);
+		}
+
+
+
+
+		StageManager::Instance().Update(elapsedTime);
+		//stageMain->Update(elapsedTime);
+		//player->Update(elapsedTime);
+		//EnemyManager::Instance().Update(elapsedTime);
+		//エフェクト更新処理
+		EffectManager::Instance().Update(elapsedTime);
+
+		shake.ShakeUpdate(elapsedTime);
+
+		player->ct = cameracontroller->GetForward();
+
+		if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
+		/*if (StageManager::Instance().GetStageClear())
+		{
+			StageManager::Instance().SetStageNum(2);
+			Initialize();
+		}*/
+
 	}
-
-	//弾が発射中の場合カメラを弾に設定する
-	if (Player::Instance().GetFiring())
-	{
-		TrackingCamera();
-		//cameracontroller->FpsUpdate(elapsedTime);
-	}
-
-
-
-
-	StageManager::Instance().Update(elapsedTime);
-	//stageMain->Update(elapsedTime);
-	//player->Update(elapsedTime);
-	//EnemyManager::Instance().Update(elapsedTime);
-	//エフェクト更新処理
-	EffectManager::Instance().Update(elapsedTime);
-
-	shake.ShakeUpdate(elapsedTime);
-
-	player->ct = cameracontroller->GetForward();
-
-	if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
-	/*if (StageManager::Instance().GetStageClear())
-	{
-		StageManager::Instance().SetStageNum(2);
-		Initialize();
-	}*/
-
 }
 
 // 描画処理

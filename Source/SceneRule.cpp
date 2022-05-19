@@ -106,10 +106,11 @@ void SceneRule::Render()
         float SignalHeight = static_cast<float>(Signal->GetTextureHeight());
 
         Rule->Render(dc,
-            0, 0, screenWidth * 3, screenHeight,
+            0, 0, screenWidth*3, screenHeight,
             Pos.x, 0, RuleWidth, RuleHeight,
             0,
             1, 1, 1, 1);
+
         if (SignalTimer % 60 >= 6) 
         {
             if (SceneCount == 1)
