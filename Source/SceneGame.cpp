@@ -160,59 +160,74 @@ void SceneGame::Update(float elapsedTime)
 	{
 		axisY = gamePad.GetAxisLY();
 		Graphics& graphics = Graphics::Instance();
-
-		if (MenuMove_U == false && MenuMove_D == false)
+		if (!HelpFlag)
 		{
-			menuDelayTimer++;
-			if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)
+			if (MenuMove_U == false && MenuMove_D == false)
 			{
-				if (MenuMode > 0 && menuDelayTimer > 30)
+				menuDelayTimer++;
+				if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)
 				{
-					MenuMove_U = true;
+					if (MenuMode > 0 && menuDelayTimer > 30)
+					{
+						MenuMove_U = true;
+					}
+				}
+
+				if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)
+				{
+					if (MenuMode < 2 && menuDelayTimer > 30)
+					{
+						MenuMove_D = true;
+					}
 				}
 			}
-
-			if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)
+			if (MenuMove_U == true)
 			{
-				if (MenuMode < 2 && menuDelayTimer > 30)
-				{
-					MenuMove_D = true;
-				}
+				MenuMode--;
+				menuDelayTimer = 0;
+				MenuMove_U = false;
+			}
+			if (MenuMove_D == true)
+			{
+				MenuMode++;
+				menuDelayTimer = 0;
+				MenuMove_D = false;
 			}
 		}
-		if (MenuMove_U == true)
-		{
-			MenuMode--;
-			menuDelayTimer = 0;
-			MenuMove_U = false;
-		}
-		if (MenuMove_D == true)
-		{
-			MenuMode++;
-			menuDelayTimer = 0;
-			MenuMove_D = false;
-		}
-
 		menuGameColor = { 1,1,1,1 };
 		menuHelpColor = { 1,1,1,1 };
 		menuTitleColor = { 1,1,1,1 };
+
+		menuGamePos = { screenWidth / 2 - MenuWidth / 2,200 };
+		menuHelpPos = { screenWidth / 2 - MenuWidth / 2,400 };
+		menuTitlePos = { screenWidth / 2 - MenuWidth / 2,600 };
+
+		menuGameSize = { MenuWidth,MenuHeight };
+		menuHelpSize = { MenuWidth,MenuHeight };
+		menuTitleSize = { MenuWidth,MenuHeight };
 		// ƒƒjƒ…ƒ‚[ƒh
 		switch (MenuMode)
 		{
 		case menu::menuGame:
-			menuGameColor = { 1,0,0,1 };
+			//menuGameColor = { 1,0,0,1 };
+			menuGamePos = { screenWidth / 2 - MenuWidth / 2 - 50,200 - 50 };
+			menuGameSize = { MenuWidth + 100,MenuHeight + 50 };
 			if (gamePad.GetButtonDown() & GamePad::BTN_A)
 				isMenuFlag = false;
 			break;
 		case menu::menuHelp:
-			menuHelpColor = { 1,0,0,1 };
+			//menuHelpColor = { 1,0,0,1 };
+			menuHelpPos = { screenWidth / 2 - MenuWidth / 2 - 50,400 - 50 };
+			menuHelpSize = { MenuWidth + 100,MenuHeight + 50 };
 			if (gamePad.GetButtonDown() & GamePad::BTN_A)
 			{
 				HelpFlag = true;
 			}
 			break;
 		case menu::menuTitle:
-			menuTitleColor = { 1,0,0,1 };
+			//menuTitleColor = { 1,0,0,1 };
+			menuTitlePos = { screenWidth / 2 - MenuWidth / 2 - 50,600 - 50 };
+			menuTitleSize = { MenuWidth + 100,MenuHeight + 50 };
 			if (gamePad.GetButtonDown() & GamePad::BTN_A)
 			{
 				isMenuFlag = false;
@@ -404,9 +419,6 @@ void SceneGame::Render()
 		Shader* shader = graphics.GetShader(2);
 		shader->Begin(dc, rc);
 
-		float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-		float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-
 		float crossWidth = static_cast<float>(cross->GetTextureWidth());
 		float crossHeight = static_cast<float>(cross->GetTextureHeight());
 		float frameWidth = static_cast<float>(frame->GetTextureWidth());
@@ -451,41 +463,39 @@ void SceneGame::Render()
 				1, 1, 1, 1);
 		}
 
-		float MenuWidth = 300;
-		float MenuHeight = 100;
 		if (isMenuFlag)
 		{
-			MenuGame->Render(dc,
-				screenWidth / 2 - MenuWidth / 2, 200,
-				MenuWidth,
-				MenuHeight,
-				0, 0, MenuWidth, MenuHeight,
-				0,
-				menuGameColor.x, menuGameColor.y, menuGameColor.z, menuGameColor.w);
-
-			MenuHelp->Render(dc,
-				screenWidth / 2 - MenuWidth / 2, 400,
-				MenuWidth,
-				MenuHeight,
-				0, 0, MenuWidth, MenuHeight,
-				0,
-				menuHelpColor.x, menuHelpColor.y, menuHelpColor.z, menuHelpColor.w);
-
-			MenuTitle->Render(dc,
-				screenWidth / 2 - MenuWidth / 2, 600,
-				MenuWidth,
-				MenuHeight,
-				0, 0, MenuWidth, MenuHeight,
-				0,
-				menuTitleColor.x, menuTitleColor.y, menuTitleColor.z, menuTitleColor.w);
-
 			Menu->Render(dc,
-				0,0,
+				0, 0,
 				screenWidth,
 				screenHeight,
 				0, 0, screenWidth, screenHeight,
 				0,
 				0, 0, 0, 0.5f);
+
+			MenuGame->Render(dc,
+				menuGamePos.x, menuGamePos.y,
+				menuGameSize.x,
+				menuGameSize.y,
+				0, 0, MenuWidth, MenuHeight,
+				0,
+				menuGameColor.x, menuGameColor.y, menuGameColor.z, menuGameColor.w);
+
+			MenuHelp->Render(dc,
+				menuHelpPos.x, menuHelpPos.y,
+				menuHelpSize.x,
+				menuHelpSize.y,
+				0, 0, MenuWidth, MenuHeight,
+				0,
+				menuHelpColor.x, menuHelpColor.y, menuHelpColor.z, menuHelpColor.w);
+
+			MenuTitle->Render(dc,
+				menuTitlePos.x, menuTitlePos.y,
+				menuTitleSize.x,
+				menuTitleSize.y,
+				0, 0, MenuWidth, MenuHeight,
+				0,
+				menuTitleColor.x, menuTitleColor.y, menuTitleColor.z, menuTitleColor.w);
 		}
 		if (HelpFlag)
 		{

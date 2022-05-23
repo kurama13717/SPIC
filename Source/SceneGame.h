@@ -80,6 +80,8 @@ private:
 
 
 private:
+	float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+	float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 	// ÉJÉÅÉâÉÇÅ[Éh
 	//int cameramode = 0;
 	enum  Mode
@@ -119,6 +121,9 @@ private:
 	bool MenuMove_U = false;
 	bool MenuMove_D = false;
 
+	float MenuWidth = 300;
+	float MenuHeight = 100;
+
 	Sprite* Rule = nullptr;
 	Sprite* Signal = nullptr;
 	Sprite* B = nullptr;
@@ -141,4 +146,11 @@ private:
 	DirectX::XMFLOAT4 menuHelpColor = { 1,1,1,1 };
 	DirectX::XMFLOAT4 menuTitleColor = { 1,1,1,1 };
 
+	DirectX::XMFLOAT2 menuGamePos = { screenWidth / 2 - MenuWidth / 2,200 };
+	DirectX::XMFLOAT2 menuHelpPos = { screenWidth / 2 - MenuWidth / 2,400 };
+	DirectX::XMFLOAT2 menuTitlePos = { screenWidth / 2 - MenuWidth / 2,600 };
+
+	DirectX::XMFLOAT2 menuGameSize = { MenuWidth,MenuHeight };
+	DirectX::XMFLOAT2 menuHelpSize = { MenuWidth,MenuHeight };
+	DirectX::XMFLOAT2 menuTitleSize = { MenuWidth,MenuHeight };
 };
