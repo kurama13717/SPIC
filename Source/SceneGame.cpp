@@ -69,6 +69,10 @@ void SceneGame::Initialize()
 	MenuHelp = new Sprite("Data/Sprite/MenuHelp.png");
 	MenuTitle = new Sprite("Data/Sprite/MenuTitle.png");
 
+	Rule = new Sprite("Data/Sprite/Rule.png");
+	Signal = new Sprite("Data/Sprite/Signal.png");
+	B = new Sprite("Data/Sprite/Bbutton.png");
+
 	ID3D11Device* device = graphics.GetDevice();
 }
 
@@ -110,6 +114,21 @@ void SceneGame::Finalize()
 	{
 		delete MenuTitle;
 		MenuTitle = nullptr;
+	}
+	if (Rule != nullptr)
+	{
+		delete Rule;
+		Rule = nullptr;
+	}
+	if (Signal != nullptr)
+	{
+		delete Signal;
+		Signal = nullptr;
+	}
+	if (B != nullptr)
+	{
+		delete B;
+		B = nullptr;
 	}
 
 	/*EnemyManager& enemyManager = EnemyManager::Instance();
@@ -189,8 +208,7 @@ void SceneGame::Update(float elapsedTime)
 			menuHelpColor = { 1,0,0,1 };
 			if (gamePad.GetButtonDown() & GamePad::BTN_A)
 			{
-				isMenuFlag = false;
-				SceneManager::Instance().ChangeScene(new SceneRule);
+				HelpFlag = true;
 			}
 			break;
 		case menu::menuTitle:
@@ -202,8 +220,10 @@ void SceneGame::Update(float elapsedTime)
 			}
 			break;
 		}
-
+		if (HelpFlag)
+			Help();
 	}
+
 	else
 	{
 		// カメラモードで分岐
@@ -397,6 +417,11 @@ void SceneGame::Render()
 		// 現在 HP/MAXHP で 0.0(HP-MIN)～1.0(HP-MAX)の比率を出す。
 		float gaugeRate = PushPower / 120;
 
+		float RuleWidth = static_cast<float>(Rule->GetTextureWidth());
+		float RuleHeight = static_cast<float>(Rule->GetTextureHeight());
+		float SignalWidth = static_cast<float>(Signal->GetTextureWidth());
+		float SignalHeight = static_cast<float>(Signal->GetTextureHeight());
+
 		if (CameraController::Instance().GetCameraMode() == Mode::fpsMode)
 		{
 			cross->Render(dc,
@@ -461,6 +486,52 @@ void SceneGame::Render()
 				0, 0, screenWidth, screenHeight,
 				0,
 				0, 0, 0, 0.5f);
+		}
+		if (HelpFlag)
+		{
+			Rule->Render(dc,
+				0, 0, screenWidth * 3, screenHeight,
+				Pos.x, 0, RuleWidth, RuleHeight,
+				0,
+				1, 1, 1, 1);
+
+			if (SignalTimer % 60 >= 6)
+			{
+				if (SceneCount == 1)
+				{
+					Signal->Render(dc,
+						screenWidth - SignalWidth / 2, screenHeight / 2 - SignalHeight / 4, SignalWidth / 2, SignalHeight / 2,
+						0, 0, SignalWidth, SignalHeight,
+						0,
+						1, 1, 1, 1);
+				}
+				if (SceneCount == 2)
+				{
+					Signal->Render(dc,
+						0, screenHeight / 2 - SignalHeight / 4, SignalWidth / 2, SignalHeight / 2,
+						0, 0, SignalWidth, SignalHeight,
+						180,
+						1, 1, 1, 1);
+					Signal->Render(dc,
+						screenWidth - SignalWidth / 2, screenHeight / 2 - SignalHeight / 4, SignalWidth / 2, SignalHeight / 2,
+						0, 0, SignalWidth, SignalHeight,
+						0,
+						1, 1, 1, 1);
+				}
+				if (SceneCount == 3)
+				{
+					Signal->Render(dc,
+						0, screenHeight / 2 - SignalHeight / 4, SignalWidth / 2, SignalHeight / 2,
+						0, 0, SignalWidth, SignalHeight,
+						180,
+						1, 1, 1, 1);
+					B->Render(dc,
+						screenWidth - SignalWidth / 2, screenHeight / 2 - SignalHeight / 4, SignalWidth / 2, SignalHeight / 2,
+						0, 0, SignalWidth, SignalHeight,
+						0,
+						1, 1, 1, 1);
+				}
+			}
 		}
 		shader->End(dc);
 
@@ -700,3 +771,60 @@ void SceneGame::TrackingCamera()
 	//cameracontroller->SetEye(BulletManager);
 }
 
+// ヘルプ画面
+void SceneGame::Help()
+{
+	GamePad& gamePad = Input::Instance().GetGamePad();
+	axisX = gamePad.GetAxisLX();
+	Graphics& graphics = Graphics::Instance();
+	float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+
+	if (RuleMove_R == false && RuleMove_L == false)
+	{
+		if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT || axisX > 0.8f)
+		{
+			if (Pos.x < 1280 * 2)
+			{
+				RulePosX = Pos.x;
+				RuleMove_R = true;
+			}
+		}
+
+		if (gamePad.GetButtonDown() & GamePad::BTN_LEFT || axisX < -0.8f)
+		{
+			if (Pos.x > 0)
+			{
+				RulePosX = Pos.x;
+				RuleMove_L = true;
+			}
+		}
+
+		if (Pos.x == 1280 * 2 && gamePad.GetButtonDown() & GamePad::BTN_B)
+		{
+			HelpFlag = false;
+		}
+	}
+	// ルール画面移動処理(右回り)
+	if (RuleMove_R == true)
+	{
+		Pos.x += 20;
+		if (Pos.x > RulePosX + 1280)
+		{
+			RuleMove_R = false;
+			SceneCount++;
+			Pos.x = RulePosX + 1280;
+		}
+	}
+	// ルール画面移動処理(左回り)
+	if (RuleMove_L == true)
+	{
+		Pos.x -= 20;
+		if (Pos.x < RulePosX - 1280)
+		{
+			RuleMove_L = false;
+			SceneCount--;
+			Pos.x = RulePosX - 1280;
+		}
+	}
+	SignalTimer++;
+}

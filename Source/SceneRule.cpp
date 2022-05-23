@@ -58,6 +58,7 @@ void SceneRule::Update(float elapsedTime)
         if (Pos.x == 1280 * 2 && gamePad.GetButtonDown() & GamePad::BTN_B)
         {
             SceneManager::Instance().ChangeScene(new SceneTitle);
+            //SceneManager::Instance().ChangeScene(nextScene);
         }
     }
     // ƒ‹[ƒ‹‰æ–ÊˆÚ“®ˆ—(‰E‰ñ‚è)

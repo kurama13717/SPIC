@@ -7,6 +7,7 @@ class SceneRule : public Scene
 {
 public:
     SceneRule() {}
+    //SceneRule(Scene* nextScene) :nextScene(nextScene) {}
     //SceneLoading() {}
     ~SceneRule() {}
     void Initialize() override;
@@ -14,6 +15,7 @@ public:
     void Update(float elapsedTime)override;
     void Render()override;
 private:
+    //Scene* nextScene = nullptr;
     Sprite* Rule = nullptr;
     Sprite* Signal = nullptr;
     Sprite* B = nullptr;

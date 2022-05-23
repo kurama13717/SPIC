@@ -55,6 +55,8 @@ private:
 
 	void SetObjects();
 
+	// ゲームシーンヘルプ
+	void Help();
 
 private:
 	Graphics& graphics = Graphics::Instance();
@@ -116,6 +118,17 @@ private:
 	float axisY = 0;
 	bool MenuMove_U = false;
 	bool MenuMove_D = false;
+
+	Sprite* Rule = nullptr;
+	Sprite* Signal = nullptr;
+	Sprite* B = nullptr;
+	bool HelpFlag = false;
+	int SignalTimer = 0;
+	int SceneCount = 1;
+	float RulePosX = 0.0f;
+	bool RuleMove_R = false;
+	bool RuleMove_L = false;
+	DirectX::XMFLOAT2 Pos = { 0.0f,0.0f };
 
 	enum  menu
 	{

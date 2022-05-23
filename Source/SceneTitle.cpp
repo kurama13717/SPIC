@@ -82,7 +82,8 @@ void SceneTitle::TitleInput()
         }
         if (arrowPosX == 1250)
             // ïœçXì_
-            SceneManager::Instance().ChangeScene(new SceneRule);
+            //SceneManager::Instance().ChangeScene(new SceneRule);
+            PostQuitMessage(0);
     }
     if (gamePad.GetButtonDown() & GamePad::BTN_LEFT)
     {
