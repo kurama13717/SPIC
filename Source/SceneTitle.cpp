@@ -8,12 +8,26 @@
 // 変更点
 #include "SceneRule.h"
 
+float lerp(float start, float end, float t)
+{
+    return (1 - t) * start + t * end;
+}
+
 void SceneTitle::Initialize()
 {
-    sprite = new Sprite("Data/Sprite/Title().png");
-    X = new Sprite("Data/Sprite/X.png");
+    sprite = new Sprite("Data/Sprite/Title.png");
+    Title = new Sprite("Data/Sprite/ReflecT ne.png");
+    o = new Sprite("Data/Sprite/o.png");
     arrow = new Sprite("Data/Sprite/arrow.png");
+    TitleGame =new Sprite("Data/Sprite/TitleGame.png");
+    TitleHelp =new Sprite("Data/Sprite/TitleHelp.png");
+    TitleEnd = new Sprite("Data/Sprite/TitleEnd.png");
     cameracontroller = new CameraController();
+
+    screenWidth = static_cast<float>(graphics.GetScreenWidth());
+    screenHeight = static_cast<float>(graphics.GetScreenHeight());
+    opos = { screenWidth/3 - 128,screenHeight - 128 };
+
     //カメラ初期設定
     camera.SetLookAt(DirectX::XMFLOAT3(0, 10, -10), DirectX::XMFLOAT3(0, 0, 0), DirectX::XMFLOAT3(0, 1, 0));
     camera.SetPerspectiveFov(
@@ -37,10 +51,35 @@ void SceneTitle::Finalize()
         delete sprite;
         sprite = nullptr;
     }
+    if (Title != nullptr)
+    {
+        delete Title;
+        Title = nullptr;
+    }
+    if (o != nullptr)
+    {
+        delete o;
+        o = nullptr;
+    }
     if (arrow != nullptr)
     {
         delete arrow;
         arrow = nullptr;
+    }
+    if (TitleGame != nullptr)
+    {
+        delete TitleGame;
+        TitleGame = nullptr;
+    }
+    if (TitleHelp != nullptr)
+    {
+        delete TitleHelp;
+        TitleHelp = nullptr;
+    }
+    if (TitleEnd != nullptr)
+    {
+        delete TitleEnd;
+        TitleEnd = nullptr;
     }
     if (cameracontroller != nullptr)
     {
@@ -51,48 +90,114 @@ void SceneTitle::Finalize()
 void SceneTitle::Update(float elapsedTime)
 {
     cameracontroller->Update(elapsedTime);
-    UpdateTransform();
+    //UpdateTransform();
     TitleInput();
     // 変更点
-    ArrowTimer++;
-}
-void SceneTitle::UpdateTransform()
-{
-    DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
-    DirectX::XMMATRIX X = DirectX::XMMatrixRotationX(angle.x);
-    DirectX::XMMATRIX Y = DirectX::XMMatrixRotationY(angle.y);
-    DirectX::XMMATRIX Z = DirectX::XMMatrixRotationZ(angle.z);
-    DirectX::XMMATRIX R = X * Y * Z;
-    DirectX::XMMATRIX T = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
-    DirectX::XMMATRIX W = S * R * T;
-    DirectX::XMStoreFloat4x4(&transform, W);
 
+    opos.x += -oSpeed.x;
+    opos.y += oSpeed.y;
+    if (oCount < 6)
+    {
+        if (opos.x < 0 || opos.x > screenWidth - 128) {
+            oSpeed.x *= -1;
+            oCount++;
+        }
+
+        if (opos.y < 0 || opos.y > screenHeight - 128) {
+            oSpeed.y *= -1;
+            oCount++;
+        }
+    }
+    if (oCount == 6)
+    {
+        oCurrntPos = { opos.x,opos.y };
+        oSpeed.x = 0;
+        oSpeed.y = 0;
+        oCount++;
+    }
+    if (oCount == 7)
+    {
+        opos.x = lerp(oCurrntPos.x, 1000, i);
+        opos.y = lerp(oCurrntPos.y, 82, i);
+        i += 0.1;
+        if (i > 1)
+        {
+            oCount++;
+        }
+    }
+    
+    Timer++;
 }
+//void SceneTitle::UpdateTransform()
+//{
+//    DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
+//    DirectX::XMMATRIX X = DirectX::XMMatrixRotationX(angle.x);
+//    DirectX::XMMATRIX Y = DirectX::XMMatrixRotationY(angle.y);
+//    DirectX::XMMATRIX Z = DirectX::XMMatrixRotationZ(angle.z);
+//    DirectX::XMMATRIX R = X * Y * Z;
+//    DirectX::XMMATRIX T = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
+//    DirectX::XMMATRIX W = S * R * T;
+//    DirectX::XMStoreFloat4x4(&transform, W);
+//
+//}
 void SceneTitle::TitleInput()
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
 
-    const GamePadButton anyButton =
-        GamePad::BTN_A | GamePad::BTN_B | GamePad::BTN_X | GamePad::BTN_Y;
-    if (gamePad.GetButtonDown() & anyButton)
-    {
-        if (arrowPosX == 500)
+        axisY = gamePad.GetAxisLY();
+        TitleMove_D = TitleMove_U = false;
+        if (axisY == 0) Moveble = true;
+        if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)TitleMove_U = true;
+        if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)TitleMove_D = true;
+        if (TitleMove_D && Moveble)
         {
-            SceneManager::Instance().ChangeScene(new SceneSelectStage);
+            TitleMode++;
+            Moveble = false;
         }
-        if (arrowPosX == 1250)
-            // 変更点
-            //SceneManager::Instance().ChangeScene(new SceneRule);
-            PostQuitMessage(0);
-    }
-    if (gamePad.GetButtonDown() & GamePad::BTN_LEFT)
-    {
-        arrowPosX = 500;
-    }
-    if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT)
-    {
-        arrowPosX = 1250;
-    }
+        if (TitleMove_U && Moveble)
+        {
+            TitleMode--;
+            Moveble = false;
+        }
+
+        if (TitleMode > 2)TitleMode = 2;
+        if (TitleMode < 0)TitleMode = 0;
+
+        titleGamePos = { screenWidth / 2 - TitleWidth / 2,350 };
+        titleHelpPos = { screenWidth / 2 - TitleWidth / 2,500 };
+        titleEndPos = { screenWidth / 2 - TitleWidth / 2,650 };
+
+        titleGameSize = { TitleWidth,TitleHeight };
+        titleHelpSize = { TitleWidth,TitleHeight };
+        titleEndSize = { TitleWidth,TitleHeight };
+        // メニュモード
+        switch (TitleMode)
+        {
+        case title::titleGame:
+            titleGamePos = { screenWidth / 2 - TitleWidth / 2 - 50,350 - 50 };
+            titleGameSize = { TitleWidth + 100,TitleHeight + 50 };
+            if (gamePad.GetButtonDown() & GamePad::BTN_A)
+            {
+                SceneManager::Instance().ChangeScene(new SceneSelectStage);
+            }
+            break;
+        case title::titleHelp:
+            titleHelpPos = { screenWidth / 2 - TitleWidth / 2 - 50,500 - 50 };
+            titleHelpSize = { TitleWidth + 100,TitleHeight + 50 };
+            if (gamePad.GetButtonDown() & GamePad::BTN_A)
+            {
+                SceneManager::Instance().ChangeScene(new SceneRule);
+            }
+            break;
+        case title::titleEnd:
+            titleEndPos = { screenWidth / 2 - TitleWidth / 2 - 50,650 - 50 };
+            titleEndSize = { TitleWidth + 100,TitleHeight + 50 };
+            if (gamePad.GetButtonDown() & GamePad::BTN_A)
+            {
+                PostQuitMessage(0);
+            }
+            break;
+        }
 }
 void SceneTitle::DrawDebugGUI()
 {
@@ -103,6 +208,11 @@ void SceneTitle::DrawDebugGUI()
     {
         if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
         {
+            //position
+            ImGui::InputFloat("PositionX", &opos.x);
+            ImGui::InputFloat("PositionY", &opos.y);
+            ImGui::InputInt("count", &oCount);
+            ImGui::InputFloat("i", &i);
         }
     }
     ImGui::End();
@@ -141,15 +251,13 @@ void SceneTitle::Render()
     
     //2Dスプライト描画
     {
-        float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-        float screenHeight = static_cast<float>(graphics.GetScreenHeight());
         float textureWidth = static_cast<float>(sprite->GetTextureWidth());
         float textureHeight = static_cast<float>(sprite->GetTextureHeight());
-        float XWidth = static_cast<float>(X->GetTextureWidth());
-        float XHeight = static_cast<float>(X->GetTextureHeight());
         float arrowWidth = static_cast<float>(arrow->GetTextureWidth());
         float arrowHeight = static_cast<float>(arrow->GetTextureHeight());
- 
+        float oWidth = static_cast<float>(o->GetTextureWidth());
+        float oHeight = static_cast<float>(o->GetTextureHeight());
+
         //タイトル描画
         sprite->Render(dc,
             0, 0, screenWidth, screenHeight,
@@ -157,7 +265,43 @@ void SceneTitle::Render()
             0,
             1, 1, 1, 1);
 
-        if (ArrowTimer % 60 >= 6)
+        Title->Render(dc,
+            0, 0, screenWidth, screenHeight,
+            0, 0, textureWidth, textureHeight,
+            0,
+            1, 1, 1, 1);
+
+        o->Render(dc,
+            opos.x, opos.y, 103*1.3, 120*1.3,
+            0, 0, oWidth, oHeight,
+            0,
+            1, 1, 1, 1);
+
+        TitleGame->Render(dc,
+            titleGamePos.x, titleGamePos.y,
+            titleGameSize.x,
+            titleGameSize.y,
+            0, 0, TitleWidth, TitleHeight,
+            0,
+            1,1,1,1);
+
+        TitleHelp->Render(dc,
+            titleHelpPos.x, titleHelpPos.y,
+            titleHelpSize.x,
+            titleHelpSize.y,
+            0, 0, TitleWidth, TitleHeight,
+            0,
+            1,1,1,1);
+
+        TitleEnd->Render(dc,
+            titleEndPos.x, titleEndPos.y,
+            titleEndSize.x,
+            titleEndSize.y,
+            0, 0, TitleWidth, TitleHeight,
+            0,
+            1,1,1,1);
+
+        if (Timer % 60 >= 6)
         {
             arrow->Render(dc,
                 arrowPosX, 480, 100, 100,
@@ -166,19 +310,15 @@ void SceneTitle::Render()
                 1, 1, 1, 1);
         }
 
-        if (flagX == true)
-        {
-            X->Render(dc,
-                1050, 430, 200, 200,
-                0, 0, XWidth, XHeight,
-                0,
-                1, 1, 1, 1);
-        }
+        //if (flagX == true)
+        //{
+        //    834, 75;
+        //}
     }
     // フォントの描画
     {
-        float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-        float screenHeight = static_cast<float>(graphics.GetScreenHeight());
+        //float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+        //float screenHeight = static_cast<float>(graphics.GetScreenHeight());
         //font->Begin(dc);
         //font->Draw(screenWidth *0.25f, screenHeight * 0.25f  + 150, L"めんどくさい~\nX O X", 1.5f, 1.5f, 1.0f, 1.0f, 1.0f, 1.0f);
         //font->End(dc);

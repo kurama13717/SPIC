@@ -60,8 +60,7 @@ void SceneGame::Initialize()
 	fixedangles[3] = { 0.0f,-1.71f,0.0f };
 
 	// スプライト
-	gauge = new Sprite();
-	frame = new Sprite("Data/Sprite/frame.png");
+	gauge = new Sprite("Data/Sprite/yazirusigauge.png");
 	cross = new Sprite("Data/Sprite/CrossHair.png");
 
 	Menu = new Sprite();
@@ -84,11 +83,6 @@ void SceneGame::Finalize()
 	{
 		delete gauge;
 		gauge = nullptr;
-	}
-	if (frame != nullptr)
-	{
-		delete frame;
-		frame = nullptr;
 	}
 	if (cross != nullptr)
 	{
@@ -159,41 +153,23 @@ void SceneGame::Update(float elapsedTime)
 	if (isMenuFlag == true)
 	{
 		axisY = gamePad.GetAxisLY();
-		Graphics& graphics = Graphics::Instance();
-		if (!HelpFlag)
+		MenuMove_D = MenuMove_U = false;
+		if (axisY == 0) Moveble = true;
+		if (gamePad.GetButtonDown() & GamePad::BTN_UP||axisY > 0.8f)MenuMove_U = true;
+		if (gamePad.GetButtonDown() & GamePad::BTN_DOWN||axisY < -0.8f)MenuMove_D = true;
+		if (MenuMove_D && Moveble)
 		{
-			if (MenuMove_U == false && MenuMove_D == false)
-			{
-				menuDelayTimer++;
-				if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)
-				{
-					if (MenuMode > 0 && menuDelayTimer > 30)
-					{
-						MenuMove_U = true;
-					}
-				}
-
-				if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)
-				{
-					if (MenuMode < 2 && menuDelayTimer > 30)
-					{
-						MenuMove_D = true;
-					}
-				}
-			}
-			if (MenuMove_U == true)
-			{
-				MenuMode--;
-				menuDelayTimer = 0;
-				MenuMove_U = false;
-			}
-			if (MenuMove_D == true)
-			{
-				MenuMode++;
-				menuDelayTimer = 0;
-				MenuMove_D = false;
-			}
+			MenuMode++;
+			Moveble = false;
 		}
+		if (MenuMove_U && Moveble)
+		{
+			MenuMode--;
+			Moveble = false;
+		}
+
+		if (MenuMode > 2)MenuMode = 2;
+		if (MenuMode < 0)MenuMode = 0;
 		menuGameColor = { 1,1,1,1 };
 		menuHelpColor = { 1,1,1,1 };
 		menuTitleColor = { 1,1,1,1 };
@@ -269,9 +245,19 @@ void SceneGame::Update(float elapsedTime)
 
 			// Viewモードへ移行
 			if (PushPower > 0)
-				PushPower -= 1.0f;
-			if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 3;
-			if (PushPower > 120)ViewCameraInitialize();
+				PushPower -= 2.0f;
+			if (PushPower == 0)
+				BackFlag = false;
+			if (gamePad.GetButton() & GamePad::BTN_B)
+			{
+				BackFlag = true;
+				PushPower += 6.0f;
+			}
+			if (PushPower > 360)
+			{
+				BackFlag = false;
+				ViewCameraInitialize();
+			}
 
 			// スペクテイターモードへ移行
 			if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
@@ -286,9 +272,18 @@ void SceneGame::Update(float elapsedTime)
 			cameracontroller->SetEye(player->GetPosition());
 			cameracontroller->SpectatorUpdate(elapsedTime);
 
-			if (gamePad.GetButton() & GamePad::BTN_B)PushPower += 1;
-			if (PushPower > 120)
+			if (PushPower > 0)
+				PushPower -= 2.0f;
+			if (PushPower == 0)
+				BackFlag = false;
+			if (gamePad.GetButton() & GamePad::BTN_B)
 			{
+				BackFlag = true;
+				PushPower += 6.0f;
+			}
+			if (PushPower > 360)
+			{
+				BackFlag = false;
 				switch (BeforeCM)	// スペクテイターモードに入った際のモードで分岐
 				{
 				case Mode::viewMode:
@@ -413,21 +408,15 @@ void SceneGame::Render()
 
 	// 2Dスプライト描画
 	{
-		#define GAUGE_WIDTH 300.0f
-		#define GAUGE_HEIGHT 300.0f
-
 		Shader* shader = graphics.GetShader(2);
 		shader->Begin(dc, rc);
 
 		float crossWidth = static_cast<float>(cross->GetTextureWidth());
 		float crossHeight = static_cast<float>(cross->GetTextureHeight());
-		float frameWidth = static_cast<float>(frame->GetTextureWidth());
-		float frameHeight = static_cast<float>(frame->GetTextureHeight());
 		// ゲージの MAX 長さと高さ
-		const float gaugeWidth = GAUGE_WIDTH;
-		const float gaugeHeight = GAUGE_HEIGHT;
+		const float gaugeWidth = static_cast<float>(gauge->GetTextureWidth());
+		const float gaugeHeight = static_cast<float>(gauge->GetTextureHeight());
 		// 現在 HP/MAXHP で 0.0(HP-MIN)～1.0(HP-MAX)の比率を出す。
-		float gaugeRate = PushPower / 120;
 
 		float RuleWidth = static_cast<float>(Rule->GetTextureWidth());
 		float RuleHeight = static_cast<float>(Rule->GetTextureHeight());
@@ -443,26 +432,17 @@ void SceneGame::Render()
 				0, 0, crossWidth, crossHeight,
 				0,
 				1, 1, 1, 1);
-
+		}
+		if (BackFlag)
+		{
 			gauge->Render(dc,
-				screenWidth - gaugeWidth - 50, screenHeight - 50,
-				gaugeWidth,
-				gaugeHeight * -gaugeRate,	// もともと長さに比率をかける
-				0, 0,
-				static_cast<float>(gauge->GetTextureWidth()),
-				static_cast<float>(gauge->GetTextureHeight()),
-				0.0f,
-				1.0f, 0.0f, 0.0f, 1.0f);
-
-			frame->Render(dc,
-				screenWidth - gaugeWidth - 50, screenHeight - gaugeHeight - 50,
+				screenWidth - gaugeWidth, screenHeight - gaugeHeight,
 				gaugeWidth,
 				gaugeHeight,
-				0, 0, frameWidth, frameHeight,
-				0,
-				1, 1, 1, 1);
+				0, 0, gaugeWidth, gaugeHeight,
+				PushPower,
+				1.0f, 1.0f, 1.0f, 1.0f);
 		}
-
 		if (isMenuFlag)
 		{
 			Menu->Render(dc,

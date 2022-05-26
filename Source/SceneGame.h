@@ -74,7 +74,6 @@ private:
 
 	EnemySlime* enemyslime = nullptr;
 	Sprite* gauge = nullptr;
-	Sprite* frame = nullptr;
 	CoordinateTransformation* coordinateTransformation = nullptr;
 	Shake& shake = Shake::Instance();
 
@@ -103,6 +102,7 @@ private:
 	int selectedsurface = 0;
 	float axisX = 0;
 
+	bool BackFlag = false;
 	float PushPower = 0;
 
 	//ï€éù
@@ -120,6 +120,7 @@ private:
 	float axisY = 0;
 	bool MenuMove_U = false;
 	bool MenuMove_D = false;
+	bool Moveble = false;
 
 	float MenuWidth = 300;
 	float MenuHeight = 100;

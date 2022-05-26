@@ -35,8 +35,8 @@ private:
 
     Microsoft::WRL::ComPtr<ID3D11DeviceContext>		immediateContext;
     Sprite* sprite = nullptr;
-    Sprite* X = nullptr;
-    bool flagX = false;
+    Sprite* Title = nullptr;
+    Sprite* o = nullptr;
     Sprite* arrow = nullptr;
     float arrowPosX = 500;
     //Camera
@@ -63,6 +63,37 @@ private:
     };
 
     // ïœçXì_
-    int ArrowTimer = 0;
+    int Timer = 0;
+    //XMFLOAT2 opos = { 1000,82 };
+    XMFLOAT2 opos = { 1000,82 };
+    XMFLOAT2 oSpeed = { 10,10 };
+    int oCount = 0;
+    float screenWidth;
+    float screenHeight;
+    XMFLOAT2 oCurrntPos = {};
+    float i;
 
+    float axisY = 0;
+    bool TitleMove_U = false;
+    bool TitleMove_D = false;
+    bool Moveble = false;
+    int TitleMode = 0;
+    Sprite* TitleGame = nullptr;
+    Sprite* TitleHelp = nullptr;
+    Sprite* TitleEnd = nullptr;
+    enum  title
+    {
+        titleGame,
+        titleHelp,
+        titleEnd,
+    };
+    float TitleWidth = 300;
+    float TitleHeight = 100;
+    DirectX::XMFLOAT2 titleGamePos ={};
+    DirectX::XMFLOAT2 titleHelpPos ={};
+    DirectX::XMFLOAT2 titleEndPos  ={};
+    DirectX::XMFLOAT2 titleGameSize={};
+    DirectX::XMFLOAT2 titleHelpSize={};
+    DirectX::XMFLOAT2 titleEndSize ={};
 };
+
