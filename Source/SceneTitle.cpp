@@ -144,60 +144,75 @@ void SceneTitle::TitleInput()
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
 
-        axisY = gamePad.GetAxisLY();
-        TitleMove_D = TitleMove_U = false;
-        if (axisY == 0) Moveble = true;
-        if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)TitleMove_U = true;
-        if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)TitleMove_D = true;
-        if (TitleMove_D && Moveble)
+    axisY = gamePad.GetAxisLY();
+    TitleMove_D = TitleMove_U = false;
+    if (axisY == 0) Moveble = true;
+    if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)TitleMove_U = true;
+    if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)TitleMove_D = true;
+    if (TitleMove_D && Moveble)
+    {
+        TitleMode++;
+        Moveble = false;
+    }
+    if (TitleMove_U && Moveble)
+    {
+        TitleMode--;
+        Moveble = false;
+    }
+    
+    if (TitleMode > 2)TitleMode = 2;
+    if (TitleMode < 0)TitleMode = 0;
+    
+    titleGamePos = { screenWidth / 2 - TitleWidth / 2,350 };
+    titleHelpPos = { screenWidth / 2 - TitleWidth / 2,500 };
+    titleEndPos = { screenWidth / 2 - TitleWidth / 2,650 };
+    
+    titleGameSize = { TitleWidth,TitleHeight };
+    titleHelpSize = { TitleWidth,TitleHeight };
+    titleEndSize = { TitleWidth,TitleHeight };
+    
+    titleGameAlpha = 1;
+    titleHelpAlpha = 1;
+    titleEndAlpha = 1;
+    if (Timer % 60 >= 6)
+    {
+        alpha = 1;
+    }
+    else
+    {
+        alpha = 0;
+    }
+    // メニュモード
+    switch (TitleMode)
+    {
+    case title::titleGame:
+        titleGamePos = { screenWidth / 2 - TitleWidth / 2 - 50,350 - 50 };
+        titleGameSize = { TitleWidth + 100,TitleHeight + 50 };
+        titleGameAlpha = alpha;
+        if (gamePad.GetButtonDown() & GamePad::BTN_A)
         {
-            TitleMode++;
-            Moveble = false;
+            SceneManager::Instance().ChangeScene(new SceneSelectStage);
         }
-        if (TitleMove_U && Moveble)
+        break;
+    case title::titleHelp:
+        titleHelpPos = { screenWidth / 2 - TitleWidth / 2 - 50,500 - 50 };
+        titleHelpSize = { TitleWidth + 100,TitleHeight + 50 };
+        titleHelpAlpha = alpha;
+        if (gamePad.GetButtonDown() & GamePad::BTN_A)
         {
-            TitleMode--;
-            Moveble = false;
+            SceneManager::Instance().ChangeScene(new SceneRule);
         }
-
-        if (TitleMode > 2)TitleMode = 2;
-        if (TitleMode < 0)TitleMode = 0;
-
-        titleGamePos = { screenWidth / 2 - TitleWidth / 2,350 };
-        titleHelpPos = { screenWidth / 2 - TitleWidth / 2,500 };
-        titleEndPos = { screenWidth / 2 - TitleWidth / 2,650 };
-
-        titleGameSize = { TitleWidth,TitleHeight };
-        titleHelpSize = { TitleWidth,TitleHeight };
-        titleEndSize = { TitleWidth,TitleHeight };
-        // メニュモード
-        switch (TitleMode)
+        break;
+    case title::titleEnd:
+        titleEndPos = { screenWidth / 2 - TitleWidth / 2 - 50,650 - 50 };
+        titleEndSize = { TitleWidth + 100,TitleHeight + 50 };
+        titleEndAlpha = alpha;
+        if (gamePad.GetButtonDown() & GamePad::BTN_A)
         {
-        case title::titleGame:
-            titleGamePos = { screenWidth / 2 - TitleWidth / 2 - 50,350 - 50 };
-            titleGameSize = { TitleWidth + 100,TitleHeight + 50 };
-            if (gamePad.GetButtonDown() & GamePad::BTN_A)
-            {
-                SceneManager::Instance().ChangeScene(new SceneSelectStage);
-            }
-            break;
-        case title::titleHelp:
-            titleHelpPos = { screenWidth / 2 - TitleWidth / 2 - 50,500 - 50 };
-            titleHelpSize = { TitleWidth + 100,TitleHeight + 50 };
-            if (gamePad.GetButtonDown() & GamePad::BTN_A)
-            {
-                SceneManager::Instance().ChangeScene(new SceneRule);
-            }
-            break;
-        case title::titleEnd:
-            titleEndPos = { screenWidth / 2 - TitleWidth / 2 - 50,650 - 50 };
-            titleEndSize = { TitleWidth + 100,TitleHeight + 50 };
-            if (gamePad.GetButtonDown() & GamePad::BTN_A)
-            {
-                PostQuitMessage(0);
-            }
-            break;
+            PostQuitMessage(0);
         }
+        break;
+    }
 }
 void SceneTitle::DrawDebugGUI()
 {
@@ -283,7 +298,7 @@ void SceneTitle::Render()
             titleGameSize.y,
             0, 0, TitleWidth, TitleHeight,
             0,
-            1,1,1,1);
+            1, 1, 1, titleGameAlpha);
 
         TitleHelp->Render(dc,
             titleHelpPos.x, titleHelpPos.y,
@@ -291,7 +306,7 @@ void SceneTitle::Render()
             titleHelpSize.y,
             0, 0, TitleWidth, TitleHeight,
             0,
-            1,1,1,1);
+            1, 1, 1, titleHelpAlpha);
 
         TitleEnd->Render(dc,
             titleEndPos.x, titleEndPos.y,
@@ -299,16 +314,16 @@ void SceneTitle::Render()
             titleEndSize.y,
             0, 0, TitleWidth, TitleHeight,
             0,
-            1,1,1,1);
+            1, 1, 1, titleEndAlpha);
 
-        if (Timer % 60 >= 6)
-        {
-            arrow->Render(dc,
-                arrowPosX, 480, 100, 100,
-                0, 0, arrowWidth, arrowHeight,
-                0,
-                1, 1, 1, 1);
-        }
+        //if (Timer % 60 >= 6)
+        //{
+        //    arrow->Render(dc,
+        //        arrowPosX, 480, 100, 100,
+        //        0, 0, arrowWidth, arrowHeight,
+        //        0,
+        //        1, 1, 1, 1);
+        //}
 
         //if (flagX == true)
         //{

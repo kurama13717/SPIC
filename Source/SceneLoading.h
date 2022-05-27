@@ -19,4 +19,5 @@ private:
     Sprite* sprite = nullptr;
     float angle = 0.0f;
     Scene* nextScene = nullptr;
+    int Timer = 0;
 };

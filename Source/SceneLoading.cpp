@@ -6,7 +6,7 @@
 
 void SceneLoading::Initialize()
 {
-    sprite = new Sprite("Data/Sprite/yazirusigauge.png");
+    sprite = new Sprite("Data/Sprite/loading ball.png");
     //スレッド開始
     //コンストラクタに関数のポインタを渡す
     //自分のクラスの関数をマルチスレッドにする場合、thisポインタを渡す
@@ -24,8 +24,11 @@ void SceneLoading::Finalize()
 }
 void SceneLoading::Update(float elapsedTime)
 {
-    constexpr float speed = 180;
-    angle += speed * elapsedTime;
+    constexpr float speed = 45;
+    if (Timer % 6 == 0)
+    {
+        angle -= speed;
+    }
     
     //準備完了ならシーン遷移
     if (nextScene->IsReady())
@@ -33,7 +36,7 @@ void SceneLoading::Update(float elapsedTime)
         SceneManager::Instance().ChangeScene(nextScene);
         nextScene = nullptr;
     }
-
+    Timer++;
 }
 void SceneLoading::Render()
 {

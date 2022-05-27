@@ -95,5 +95,9 @@ private:
     DirectX::XMFLOAT2 titleGameSize={};
     DirectX::XMFLOAT2 titleHelpSize={};
     DirectX::XMFLOAT2 titleEndSize ={};
+    float titleGameAlpha;
+    float titleHelpAlpha;
+    float titleEndAlpha;
+    float alpha = 0;
 };
 
