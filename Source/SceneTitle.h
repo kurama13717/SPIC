@@ -25,6 +25,10 @@ public:
     void TitleInput();
     void UpdateTransform();
     void DrawDebugGUI();
+    float lerp(float start, float end, float t)
+    {
+        return (1 - t) * start + t * end;
+    }
 private:
     Graphics& graphics = Graphics::Instance();
     ID3D11Device* device = graphics.GetDevice();

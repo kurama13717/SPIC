@@ -19,6 +19,7 @@ public:
     void SetAngle(DirectX::XMFLOAT3 angle_) { angle = angle_; }                 // アングル
     void SetCurrentAngle(DirectX::XMFLOAT3 angle_) { currentangle = angle_; }   // アングル（瞬間）
     void SetFov(float fov_) { fov = fov_; }                                     // 視野角
+    void SetRollSpeed(float speed) { this->rollSpeed = speed; }                 // カメラ速度
 
     // ゲッター
     const DirectX::XMFLOAT3& GetEye() const { return eye; }             // ポジション
@@ -51,7 +52,7 @@ private:
     DirectX::XMFLOAT3 cameraUp;
     bool Inversion = false;
     int reverse = 1;
-    float rollSpeed = DirectX::XMConvertToRadians(90);
+    float rollSpeed = 1.0f;
     float range = 45.0f;
     float maxAngleX = DirectX::XMConvertToRadians(45);
     float minAngleX = DirectX::XMConvertToRadians(-45);
@@ -62,6 +63,9 @@ private:
 
     bool cameraturn_r = false;
     bool cameraturn_l = false;
+    bool canTurn = false;
+    bool turning_R = false;
+    bool turning_L = false;
     DirectX::XMFLOAT3 currentangle = {0,0,0};
     float axisX = 0;
 

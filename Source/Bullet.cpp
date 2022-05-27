@@ -262,9 +262,6 @@ void Bullet::BulletRays(float elapsedTime)
 	HitResult hit;
 	if (StageManager::Instance().RayCast(start, end, hit))
 	{
-
-
-
 		if (StageManager::Instance().hitObject == 1)
 		{
 			if (BulletManager::Instance().GetisMaterial())

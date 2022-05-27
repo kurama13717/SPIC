@@ -6,14 +6,11 @@
 #include "SceneGame.h"
 #include "SceneLoading.h"
 
+
 void SceneSelectStage::Initialize()
 {
     SelectStage = new Sprite("Data/Sprite/SceneSelect.png");
-    Number1 = new Sprite("Data/Sprite/Bbutton.png");
-    Number2 = new Sprite("Data/Sprite/Bbutton.png");
-    Number3 = new Sprite("Data/Sprite/Bbutton.png");
-    Number4 = new Sprite("Data/Sprite/Bbutton.png");
-    Number5 = new Sprite("Data/Sprite/Bbutton.png");
+    cursor = new Cursor();
 }
 
 void SceneSelectStage::Finalize()
@@ -23,10 +20,17 @@ void SceneSelectStage::Finalize()
         delete SelectStage;
         SelectStage = nullptr;
     }
+    if (cursor != nullptr)
+    {
+        delete cursor;
+        cursor = nullptr;
+    }
 }
 
 void SceneSelectStage::Update(float elapsedTime)
 {
+    cursor->Update();
+
     GamePad& gamePad = Input::Instance().GetGamePad();
     if (gamePad.GetButtonDown() & GamePad::BTN_A)
     {
@@ -51,12 +55,13 @@ void SceneSelectStage::Render()
     dc->ClearRenderTargetView(rtv, color);
     dc->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     dc->OMSetRenderTargets(1, &rtv, dsv);
+
+    Shader* shader = graphics.GetShader(2);
+
     //2Dスプライト描画
     {
         float screenWidth = static_cast<float>(graphics.GetScreenWidth());
         float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-        float number1width = static_cast<float>(Number1->GetTextureWidth());
-        float number1height = static_cast<float>(Number1->GetTextureHeight());
 
         SelectStage->Render(dc,
             0, 0, screenWidth, screenHeight,
@@ -65,4 +70,5 @@ void SceneSelectStage::Render()
             0,
             1, 1, 1, 1);
     }
+    cursor->Render(dc);
 }

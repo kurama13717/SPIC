@@ -181,7 +181,7 @@ void Player::InputBullet()
         //BulletManager::Instance().Remove(bullet);
         bullet2 = new Bullet();
         BulletManager::Instance().Register(bullet2);
-        bullet2->SetSpeed(80.0f);
+        bullet2->SetSpeed(120.0f);
        // bullet2->SetRadius(1.0f);
         //bullet->SetisMateril(false);
         BulletManager::Instance().SetisMateril(false);

@@ -59,6 +59,8 @@ void SceneGame::Initialize()
 	fixedangles[2] = { 0.0f,0.0f,0.0f };
 	fixedangles[3] = { 0.0f,-1.71f,0.0f };
 
+	speedNo = 1;
+
 	// スプライト
 	gauge = new Sprite("Data/Sprite/yazirusigauge.png");
 	cross = new Sprite("Data/Sprite/CrossHair.png");
@@ -67,6 +69,10 @@ void SceneGame::Initialize()
 	MenuGame = new Sprite("Data/Sprite/MenuGame.png");
 	MenuHelp = new Sprite("Data/Sprite/MenuHelp.png");
 	MenuTitle = new Sprite("Data/Sprite/MenuTitle.png");
+
+	SpeedSprite_Slow = new Sprite("Data/Sprite/CameraSlow.png");
+	SpeedSprite_Normal = new Sprite("Data/Sprite/CameraNormal.png");
+	SpeedSprite_Fast = new Sprite("Data/Sprite/CameraFast.png");
 
 	Rule = new Sprite("Data/Sprite/Rule.png");
 	Signal = new Sprite("Data/Sprite/Signal.png");
@@ -124,7 +130,21 @@ void SceneGame::Finalize()
 		delete B;
 		B = nullptr;
 	}
-
+	if (SpeedSprite_Slow != nullptr)
+	{
+		delete SpeedSprite_Slow;
+		SpeedSprite_Slow = nullptr;
+	}
+	if (SpeedSprite_Normal != nullptr)
+	{
+		delete SpeedSprite_Normal;
+		SpeedSprite_Normal = nullptr;
+	}
+	if (SpeedSprite_Fast != nullptr)
+	{
+		delete SpeedSprite_Fast;
+		SpeedSprite_Fast = nullptr;
+	}
 	/*EnemyManager& enemyManager = EnemyManager::Instance();
 	enemyManager.Clear();*/
 	//EnemyManager::Instance().Clear();
@@ -243,6 +263,12 @@ void SceneGame::Update(float elapsedTime)
 			cameracontroller->SetEye(player->GetPosition());
 			cameracontroller->FpsUpdate(elapsedTime);
 
+			// カメラ速度関連
+			if (color_slow > 0)color_slow -= 0.01f;
+			if (color_normal > 0)color_normal -= 0.01f;
+			if (color_fast > 0)color_fast -= 0.01f;
+			if (gamePad.GetButtonDown() & GamePad::BTN_B)ChangeSpeed();
+
 			// Viewモードへ移行
 			if (PushPower > 0)
 				PushPower -= 2.0f;
@@ -297,16 +323,6 @@ void SceneGame::Update(float elapsedTime)
 
 			break;
 		}
-
-		//弾が発射中の場合カメラを弾に設定する
-		if (Player::Instance().GetFiring())
-		{
-			TrackingCamera();
-			//cameracontroller->FpsUpdate(elapsedTime);
-		}
-
-
-
 
 		StageManager::Instance().Update(elapsedTime);
 		//stageMain->Update(elapsedTime);
@@ -432,6 +448,23 @@ void SceneGame::Render()
 				0, 0, crossWidth, crossHeight,
 				0,
 				1, 1, 1, 1);
+			float speedWidth = 800;
+			float speedHeight = 100;
+			SpeedSprite_Slow->Render(dc,
+				0, 0, speedWidth, speedHeight,
+				0, 0, speedWidth, speedHeight,
+				0,
+				1, 1, 1, color_slow);
+			SpeedSprite_Normal->Render(dc,
+				0, 0, speedWidth, speedHeight,
+				0, 0, speedWidth, speedHeight,
+				0,
+				1, 1, 1, color_normal);
+			SpeedSprite_Fast->Render(dc,
+				0, 0, speedWidth, speedHeight,
+				0, 0, speedWidth, speedHeight,
+				0,
+				1, 1, 1, color_fast);
 		}
 		if (BackFlag)
 		{
@@ -755,10 +788,33 @@ void SceneGame::ChooseSurface()
 	if (selectedsurface > 3)selectedsurface = 0;
 }
 
-//弾の追尾カメラ
-void SceneGame::TrackingCamera()
+// カメラスピード関連
+void SceneGame::ChangeSpeed()
 {
-	//cameracontroller->SetEye(BulletManager);
+	speedNo++;
+	if (speedNo > 2)speedNo = 0;
+
+	if (speedNo == 0)
+	{
+		color_slow = 1;
+		color_normal = 0;
+		color_fast = 0;
+	}
+	if (speedNo == 1)
+	{
+		color_slow = 0;
+		color_normal = 1;
+		color_fast = 0;
+	}
+	if (speedNo == 2)
+	{
+		color_slow = 0;
+		color_normal = 0;
+		color_fast = 1;
+	}
+
+
+	cameracontroller->SetRollSpeed(rollSpeeds[speedNo]);
 }
 
 // ヘルプ画面

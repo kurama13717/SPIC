@@ -8,11 +8,6 @@
 // •ÏX“_
 #include "SceneRule.h"
 
-float lerp(float start, float end, float t)
-{
-    return (1 - t) * start + t * end;
-}
-
 void SceneTitle::Initialize()
 {
     sprite = new Sprite("Data/Sprite/Title.png");

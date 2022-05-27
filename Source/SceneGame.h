@@ -51,7 +51,8 @@ private:
 	// 面選択
 	void ChooseSurface();
 
-	void TrackingCamera();
+	// カメラスピード関連
+	void ChangeSpeed();
 
 	void SetObjects();
 
@@ -115,12 +116,21 @@ private:
 	Sprite* MenuGame = nullptr;
 	Sprite* MenuHelp = nullptr;
 	Sprite* MenuTitle = nullptr;
+
+	Sprite* SpeedSprite_Slow = nullptr;
+	Sprite* SpeedSprite_Normal = nullptr;
+	Sprite* SpeedSprite_Fast = nullptr;
+
 	bool isMenuFlag = false;
 	int MenuMode = 0;
 	float axisY = 0;
 	bool MenuMove_U = false;
 	bool MenuMove_D = false;
 	bool Moveble = false;
+
+	bool selectable = false;
+	bool slide_R = false;
+	bool slide_L = false;
 
 	float MenuWidth = 300;
 	float MenuHeight = 100;
@@ -154,4 +164,15 @@ private:
 	DirectX::XMFLOAT2 menuGameSize = { MenuWidth,MenuHeight };
 	DirectX::XMFLOAT2 menuHelpSize = { MenuWidth,MenuHeight };
 	DirectX::XMFLOAT2 menuTitleSize = { MenuWidth,MenuHeight };
+
+	int speedNo = 0;
+	float rollSpeeds[3] =
+	{
+		0.5f,
+		1.0f,
+		1.5f
+	};
+	float color_slow = 0.0f;
+	float color_normal = 0.0f;
+	float color_fast = 0.0f;
 };

@@ -92,40 +92,77 @@ void CameraController::ViewUpdate(float elapsedTime)
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
     axisX = gamePad.GetAxisLX();
-    if (cameraturn_r == false && cameraturn_l == false)
+    cameraturn_l = cameraturn_r = false;
+    if (axisX == 0)canTurn = true;
+    if (axisX > 0.8f)cameraturn_r = true;
+    if (axisX < -0.8f)cameraturn_l = true;    
+    //if (gamePad.GetButton() & GamePad::BTN_RIGHT)cameraturn_r = true;
+    //if (gamePad.GetButton() & GamePad::BTN_LEFT)cameraturn_l = true;
+    if (canTurn && cameraturn_r)
     {
-        if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT || axisX > 0.8f)
-        {
-            currentangle.y = angle.y;
-            cameraturn_r = true;
-        }
-
-        if (gamePad.GetButtonDown() & GamePad::BTN_LEFT || axisX < -0.8f)
-        {
-            currentangle.y = angle.y;
-            cameraturn_l = true;
-        }
+        currentangle.y = angle.y;
+        turning_R = true;
+        canTurn = false;
     }
-    // カメラ旋回処理(右回り)
-    if (cameraturn_r == true)
+    if (canTurn && cameraturn_l)
+    {
+        currentangle.y = angle.y;
+        turning_L = true;
+        canTurn = false;
+    }
+    if (turning_R)
     {
         angle.y -= DirectX::XM_2PI * 0.25f / 45;
         if (angle.y < currentangle.y - 1.57f)
         {
-            cameraturn_r = false;
+            turning_R = false;
             angle.y = currentangle.y - DirectX::XM_PI * 0.5f;
         }
     }
-    // カメラ旋回処理(左回り)
-    if (cameraturn_l == true)
+    if (turning_L)
     {
         angle.y += DirectX::XM_2PI * 0.25f / 45;
         if (angle.y > currentangle.y + 1.57f)
         {
-            cameraturn_l = false;
+            turning_L = false;
             angle.y = currentangle.y + DirectX::XM_PI * 0.5f;
         }
     }
+
+    //if (cameraturn_r == false && cameraturn_l == false)
+    //{
+    //    if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT || axisX > 0.8f)
+    //    {
+    //        currentangle.y = angle.y;
+    //        cameraturn_r = true;
+    //    }
+
+    //    if (gamePad.GetButtonDown() & GamePad::BTN_LEFT || axisX < -0.8f)
+    //    {
+    //        currentangle.y = angle.y;
+    //        cameraturn_l = true;
+    //    }
+    //}
+    //// カメラ旋回処理(右回り)
+    //if (cameraturn_r == true)
+    //{
+    //    angle.y -= DirectX::XM_2PI * 0.25f / 45;
+    //    if (angle.y < currentangle.y - 1.57f)
+    //    {
+    //        cameraturn_r = false;
+    //        angle.y = currentangle.y - DirectX::XM_PI * 0.5f;
+    //    }
+    //}
+    //// カメラ旋回処理(左回り)
+    //if (cameraturn_l == true)
+    //{
+    //    angle.y += DirectX::XM_2PI * 0.25f / 45;
+    //    if (angle.y > currentangle.y + 1.57f)
+    //    {
+    //        cameraturn_l = false;
+    //        angle.y = currentangle.y + DirectX::XM_PI * 0.5f;
+    //    }
+    //}
 
     //カメラ回転値を回転行列に変換
     DirectX::XMMATRIX Transform = DirectX::XMMatrixRotationRollPitchYaw(angle.x, angle.y, angle.z);
@@ -248,7 +285,7 @@ void CameraController::cameraDebugGUI()
                 Inversion = false;
             }
 
-            ImGui::InputFloat("Axis", &axisX);
+            ImGui::SliderFloat("rollspeed", &rollSpeed, 0, 100.0f);
         }
 
     }
