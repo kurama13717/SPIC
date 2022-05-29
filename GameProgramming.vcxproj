@@ -256,6 +256,7 @@
     <ClInclude Include="Source\SceneSelectStage.h" />
     <ClInclude Include="Source\SceneTitle.h" />
     <ClInclude Include="Source\Shake.h" />
+    <ClInclude Include="Source\Space.h" />
     <ClInclude Include="Source\Stage.h" />
     <ClInclude Include="Source\StageMain.h" />
     <ClInclude Include="Source\StageManager.h" />
@@ -313,6 +314,7 @@
     <ClCompile Include="Source\SceneSelectStage.cpp" />
     <ClCompile Include="Source\SceneTitle.cpp" />
     <ClCompile Include="Source\Shake.cpp" />
+    <ClCompile Include="Source\Space.cpp" />
     <ClCompile Include="Source\StageMain.cpp" />
     <ClCompile Include="Source\StageManager.cpp" />
   </ItemGroup>

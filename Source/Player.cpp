@@ -133,7 +133,7 @@ void Player::InputBullet()
     GamePad& gamePad = Input::Instance().GetGamePad();
 
     //’¼i’eŠÛ”­ŽË
-    if (gamePad.GetButtonDown() & GamePad::BTN_A && !Player::Instance().GetFiring())
+    if (gamePad.GetButtonDown() & GamePad::BTN_A && !Player::Instance().GetFiring() && !BulletManager::Instance().GetisMaterial())
     {
         Player::Instance().SetFiring(true);
 
@@ -158,12 +158,11 @@ void Player::InputBullet()
     }
 
     // ‹O“¹•`‰æ—p’e”­ŽË
-    if (gamePad.GetButtonDown() & GamePad::BTN_ENTER || gamePad.GetButtonDown() & GamePad::BTN_LEFT_SHOULDER /*LEFT_SHOULDER*//* && !Player::Instance().GetFiring()*/)
+    if ((gamePad.GetButtonDown() & GamePad::BTN_ENTER || gamePad.GetButtonDown() & GamePad::BTN_LEFT_SHOULDER) && !BulletManager::Instance().GetPrediction())
     {
-
+       
         //Player::Instance().SetFiring(true);
         //if(!BulletManager::Instance().GetisMaterial())
-             BulletManager::Instance().Remove(bullet2);
             
         
         //‘O•ûŒü
@@ -186,7 +185,17 @@ void Player::InputBullet()
         //bullet->SetisMateril(false);
         BulletManager::Instance().SetisMateril(false);
         bullet2->Launch(dir, pos);
+        BulletManager::Instance().SetPrediction(true);
     }
+
+    if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT_SHOULDER && BulletManager::Instance().GetPrediction())
+    {
+        BulletManager::Instance().Remove(bullet2);
+        BulletManager::Instance().SetPrediction(false);
+
+    }
+
+
 
 }
 

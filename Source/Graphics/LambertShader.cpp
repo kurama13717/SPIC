@@ -252,7 +252,7 @@ void LambertInsideShader::Begin(ID3D11DeviceContext* dc, const RenderContext& rc
 	const float blend_factor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	dc->OMSetBlendState(blendState.Get(), blend_factor, 0xFFFFFFFF);
 	dc->OMSetDepthStencilState(depthStencilStates[0].Get(), 0);
-	dc->RSSetState(rasterizerStates[2].Get());
+	dc->RSSetState(rasterizerStates[1].Get());
 	dc->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 
 	// シーン用定数バッファ更新

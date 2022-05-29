@@ -1,6 +1,7 @@
 #include <imgui.h>
 #include "CameraController.h"
 #include "Camera.h"
+#include "BulletManager.h"
 #include "Input/Input.h"
 
 
@@ -181,15 +182,15 @@ void CameraController::ViewUpdate(float elapsedTime)
 void CameraController::FpsUpdate(float elapsedTime)
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
-    float ax = gamePad.GetAxisRY();
-    float ay = gamePad.GetAxisRX();
-
+    
+        float ax = gamePad.GetAxisRY();
+        float ay = gamePad.GetAxisRX();
     //カメラの回転速度
     float speed = rollSpeed * elapsedTime;
-
-    angle.x += (ax * speed);
-    angle.y += (ay * speed);
-
+    if (!BulletManager::Instance().GetPrediction()) {
+        angle.x += (ax * speed);
+        angle.y += (ay * speed);
+    }
     // カメラアングル制御
     if (angle.y > currentangle.y + DirectX::XM_PI * 0.5f)angle.y = currentangle.y + DirectX::XM_PI * 0.5f;
     if (angle.y < currentangle.y - DirectX::XM_PI * 0.5f)angle.y = currentangle.y - DirectX::XM_PI * 0.5f;

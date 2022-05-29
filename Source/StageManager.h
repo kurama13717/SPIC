@@ -25,6 +25,10 @@ public:
     bool GetRetry() { return Retry; }
     void SetRetry(bool Retry) { this->Retry = Retry; }
 
+    //MarkSplitの再配置用フラグ
+    bool GetRetryMsp() { return MspRetry; }
+    void SetRetryMsp(bool MspRetry) { this->MspRetry = MspRetry; }
+
     bool GetStageClear() { return StageClearFlag; }
     void SetStageClear(bool StageClearFlag) { this->StageClearFlag = StageClearFlag; }
 
@@ -73,6 +77,7 @@ private:
     Stage* currentState = nullptr;
 
     bool Retry = false;           // 的全てに的中せず弾が外に当たった時にゲームをリトライするのフラグ
+    bool MspRetry = false;
     bool StageClearFlag = false;  // 的全てに的中してクリアしたときに判定をとるフラグ
 
     int StageNum = 0;

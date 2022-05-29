@@ -19,6 +19,10 @@
 // 初期化
 void SceneGame::Initialize()
 {
+	//宇宙空間
+	SpDome = new SpaceDome();
+
+
 	cube = new Cube();
 	//stageManager.Register(stageMain);
 
@@ -160,7 +164,11 @@ void SceneGame::Finalize()
 		delete player;
 		player = nullptr;
 	}
-
+	if (SpDome != nullptr)
+	{
+		delete SpDome;
+		SpDome = nullptr;
+	}
 }
 
 // 更新処理
@@ -291,6 +299,10 @@ void SceneGame::Update(float elapsedTime)
 			break;
 
 		case Mode::spectatorMode:
+
+			// プレイヤーアップデート呼び出し
+			player->Update(elapsedTime);
+
 			// プレイヤーアップデート呼び出し
 			player->SpectatorUpdate(elapsedTime);
 
@@ -334,6 +346,9 @@ void SceneGame::Update(float elapsedTime)
 		shake.ShakeUpdate(elapsedTime);
 
 		player->ct = cameracontroller->GetForward();
+
+		SpDome->Update(elapsedTime);
+
 
 		if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
 		/*if (StageManager::Instance().GetStageClear())
@@ -401,6 +416,12 @@ void SceneGame::Render()
 		StageManager::Instance().Render(dc, shader,false);
 		cube->Render(dc, shader, CameraController::Instance().GetCameraMode(), selectedsurface);
 		BulletManager::Instance().Render(dc, shader);
+		shader->End(dc);
+
+
+		shader = graphics.GetShader(1);
+		shader->Begin(dc, rc);
+		SpDome->Render(dc, shader, false);
 
 		
 		shader->End(dc);

@@ -13,6 +13,7 @@
 #include "BulletStraite.h"
 #include "Bullet.h"
 #include "Mark.h"
+#include "Space.h"
 
 
 // ÉQÅ[ÉÄÉVÅ[Éì
@@ -68,6 +69,7 @@ private:
 	RenderContext rc;
 	Player* player = nullptr;
 	Cube* cube = nullptr;
+	SpaceDome* SpDome = nullptr;
 	Bullet* bullet = nullptr;
 	Mark* mark = nullptr;
 

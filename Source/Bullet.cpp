@@ -216,7 +216,42 @@ void Bullet::UpdateTransform()
 
 void Bullet::Render(ID3D11DeviceContext* dc, Shader* shader, int flag)
 {
-	if (BulletManager::Instance().GetisMaterial())shader->Draw(dc, model, c);
+
+	DirectX::XMFLOAT4 normal{ 1.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 red{ 1.0f, 0.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 cyan{ 0.0f, 1.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 green{ 0.0f, 1.0f, 0.0f, 1.0f };
+	DirectX::XMFLOAT4 purple{ 1.0f, 0.0f, 1.0f, 1.0f };
+	DirectX::XMFLOAT4 yellow{ 1.0f, 1.0f, 0.0f, 1.0f };
+
+
+
+
+	if (BulletManager::Instance().GetisMaterial())
+	{
+
+		shader->Draw(dc, model, &normal);
+		if (StageManager::Instance().GetHitCount() == 1)
+		{
+			shader->Draw(dc, model, &red);
+		}
+		if (StageManager::Instance().GetHitCount() == 2)
+		{
+			shader->Draw(dc, model, &cyan);
+		}
+		if (StageManager::Instance().GetHitCount() == 3)
+		{
+			shader->Draw(dc, model, &green);
+		}
+		if (StageManager::Instance().GetHitCount() == 4)
+		{
+			shader->Draw(dc, model, &purple);
+		}
+		if (StageManager::Instance().GetHitCount() == 5)
+		{
+			shader->Draw(dc, model, &yellow);
+		}
+	}
 }
 
 void Bullet::RenderReflectingRay()
@@ -224,7 +259,7 @@ void Bullet::RenderReflectingRay()
 	DebugRenderer* debugRenderer = Graphics::Instance().GetDebugRenderer();
 	for (int i = 0; i < 10; i++)
 	{
-		debugRenderer->DrawSphere(BulletManager::Instance().GetPosition(i), radius, DirectX::XMFLOAT4(0, 0, 0, 1));
+		//debugRenderer->DrawSphere(BulletManager::Instance().GetPosition(i), radius, DirectX::XMFLOAT4(0, 0, 0, 1));
 	}
 
 	if (!BulletManager::Instance().GetisMaterial())
@@ -270,12 +305,16 @@ void Bullet::BulletRays(float elapsedTime)
 
 				//Cubeに当たった時点で失敗なのでリトライフラグをTrueにしリトライする...Mark::Updateに記載
 				StageManager::Instance().SetRetry(true);
+				StageManager::Instance().SetRetryMsp(true);
+				//BulletManager::Instance().SetPrediction(false);
 
 
 			}
 			if (!BulletManager::Instance().GetisMaterial())
 			{
 				speed = 0;
+				//Player::Instance().DestroyBullet();
+
 
 			}
 		}

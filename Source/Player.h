@@ -50,6 +50,9 @@ public:
 
     bool GetisFire()const { return isFire; }
     void SetisFire(const bool isfire) { this->isFire = isfire; }
+
+    bool GetPredictionFlag()const { return bullet2Flag; }
+    void SetPredictionFlag(const bool bullet2Flag) { this->bullet2Flag = bullet2Flag; }
     
     DirectX::XMFLOAT3 ct = {};
 
@@ -119,6 +122,8 @@ private:
 
     //”­Ë’†‚Ìƒtƒ‰ƒO
     bool Firing = false;
+
+    bool bullet2Flag = false;         //‹O“¹—\‘ªONAOFF
 
     //BulletManager bulletManager;
 

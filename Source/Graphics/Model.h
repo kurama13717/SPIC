@@ -59,6 +59,10 @@ public:
 	DirectX::XMFLOAT3   scale = {};
 	DirectX::XMFLOAT4X4 transform;
 
+	bool testFlag = false;
+	DirectX::XMFLOAT3 impulse;
+
+
 	int count = 0;
 	 const char* name;
 

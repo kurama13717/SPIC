@@ -25,13 +25,17 @@ public:
 	void Check();
 
 private:
-	Model* mark0 = nullptr;
-	Model* mark1 = nullptr;
-	Model* mark2 = nullptr;
 
 
 
 	std::vector<std::unique_ptr<Model>> model;
+
+	//std::vector<std::unique_ptr<MarkSplit>> markSplit;
+
+	//std::vector<std::unique_ptr<MarkSplit>> marksplit;
+
+
+	//std::vector<std::unique_ptr<Model>> modelsplit;
 
 	//std::vector<std::unique_ptr<AudioSource>> MusicalScales;
 
@@ -40,7 +44,7 @@ private:
 	//std::get<1>(ms[0]);
 
 
-	
+
 	int MarkHitCount = 0;
 
 	bool flag0 = false;
@@ -59,3 +63,46 @@ private:
 	std::unique_ptr<AudioSource> Ra;
 
 };
+
+
+class MarkSplit : public Stage
+{
+public:
+
+	MarkSplit();
+	~MarkSplit()override {};
+
+
+	void UpdateTransform();
+
+
+	void Update(float elapsedTime)override;
+
+	void Render(ID3D11DeviceContext* dc, Shader* shader) {};
+
+	void DrawDebugGUI();
+
+	void Render(ID3D11DeviceContext* dc, Shader* shader, int flag = false)override;
+
+	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)override;
+
+
+private:
+	std::vector<std::unique_ptr<Model>> modelsplit;
+	std::vector<std::unique_ptr<Model>> modelcrack;  //‹T—ôƒ‚ƒfƒ‹
+	std::vector<MarkSplit> marksp[10];
+	DirectX::XMFLOAT3 velocity = { 0,0,0 };
+	bool MarkSpflag[50];
+	bool testSpflag[10];
+	bool scaleFlag = false;
+
+	int a = 5;
+	int b = -5;
+	float c = 0.0f;
+
+	float fram = 300.0f;
+
+
+
+};
+
