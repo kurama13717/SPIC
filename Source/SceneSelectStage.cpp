@@ -11,6 +11,10 @@ void SceneSelectStage::Initialize()
 {
     SelectStage = new Sprite("Data/Sprite/SceneSelect.png");
     cursor = new Cursor();
+
+    SelectStageBGM = Audio::Instance().LoadAudioSource("Data/BGM/wav/HelpBGM.wav");
+    SelectSE = Audio::Instance().LoadAudioSource("Data/Sound/Select.wav");
+    flag = false;
 }
 
 void SceneSelectStage::Finalize()
@@ -30,9 +34,27 @@ void SceneSelectStage::Finalize()
 void SceneSelectStage::Update(float elapsedTime)
 {
     cursor->Update();
+    SelectStageBGM->Play(true, 0.5f);
 
     GamePad& gamePad = Input::Instance().GetGamePad();
-    if (gamePad.GetButtonDown() & GamePad::BTN_A)
+    if (gamePad.GetButtonDown() & GamePad::BTN_A && !flag)
+    {
+        if (cursor->GetonCursorNo() <= 3) {
+            SelectSE->Play(false, 5.0f);
+            flag = true;
+        }
+    }
+    if (gamePad.GetButtonDown() & GamePad::BTN_B)
+    {
+        SceneManager::Instance().ChangeScene(new SceneTitle);
+    }
+
+    if (flag)
+    {
+        ChangeTimer++;
+    }
+
+    if (ChangeTimer > 60.0f)
     {
         if (cursor->GetonCursorNo() < 5)
         {
@@ -40,11 +62,10 @@ void SceneSelectStage::Update(float elapsedTime)
             StageManager::Instance().SetStageNum(cursor->GetonCursorNo() + 1);
             SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
         }
+        flag = false;
     }
-    if (gamePad.GetButtonDown() & GamePad::BTN_B)
-    {
-        SceneManager::Instance().ChangeScene(new SceneTitle);
-    }
+
+
 }
 
 void SceneSelectStage::Render()

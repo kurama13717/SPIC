@@ -46,15 +46,17 @@ private:
     Sprite* Stage6 = nullptr;
 
     float Radius = 140.0f;
-    float distance = 0;
+    float distance[6] = {};
     DirectX::XMFLOAT2 StageNumPos[6] =
     {
-        {210,290},
-        {525,290},
-        {840,290},
-        {210,650},
-        {525,650},
-        {840,650},
+        {284,320},
+        {675,326},
+        {286,700},
+        {674,695},
+        //{525,650},
+        //{840,650},
     };
     int onCursorNo = 10;
+    int keep = 0;
+    bool flag = false;
 };

@@ -19,6 +19,11 @@ void SceneTitle::Initialize()
     TitleEnd = new Sprite("Data/Sprite/TitleEnd.png");
     cameracontroller = new CameraController();
 
+    TitleBGM = Audio::Instance().LoadAudioSource("Data/BGM/wav/TitleBGM.wav");
+    SelectSE = Audio::Instance().LoadAudioSource("Data/Sound/Select.wav");
+    
+
+
     screenWidth = static_cast<float>(graphics.GetScreenWidth());
     screenHeight = static_cast<float>(graphics.GetScreenHeight());
     opos = { screenWidth/3 - 128,screenHeight - 128 };
@@ -37,6 +42,8 @@ void SceneTitle::Initialize()
         font = std::make_unique<Font>(device, "Data/Font/MS Gothic.fnt", 1024);
     }
     StageManager::Instance().SetStageClear(false);
+  
+    flag = false;
 
 }
 void SceneTitle::Finalize()
@@ -84,6 +91,26 @@ void SceneTitle::Finalize()
 }
 void SceneTitle::Update(float elapsedTime)
 {
+    TitleBGM->Play(true,0.5f);
+    
+    if (flag)
+    {
+        ChangeTimer++;
+    }
+    if (ChangeTimer > 60.0f) {
+        if (/*Selectflag*/TitleMode == title::titleGame) 
+        {
+            SceneManager::Instance().ChangeScene(new SceneSelectStage);
+        }
+        if (TitleMode == title::titleHelp)
+        {
+            SceneManager::Instance().ChangeScene(new SceneRule);
+        }
+        ChangeTimer = 0.0f;
+        flag = false;
+    }
+
+
     cameracontroller->Update(elapsedTime);
     //UpdateTransform();
     TitleInput();
@@ -184,9 +211,11 @@ void SceneTitle::TitleInput()
         titleGamePos = { screenWidth / 2 - TitleWidth / 2 - 50,350 - 50 };
         titleGameSize = { TitleWidth + 100,TitleHeight + 50 };
         titleGameAlpha = alpha;
-        if (gamePad.GetButtonDown() & GamePad::BTN_A)
+        if (gamePad.GetButtonDown() & GamePad::BTN_A && !flag)
         {
-            SceneManager::Instance().ChangeScene(new SceneSelectStage);
+            SelectSE->Play(false,5.0f);
+            flag = true;
+            
         }
         break;
     case title::titleHelp:
@@ -195,7 +224,9 @@ void SceneTitle::TitleInput()
         titleHelpAlpha = alpha;
         if (gamePad.GetButtonDown() & GamePad::BTN_A)
         {
-            SceneManager::Instance().ChangeScene(new SceneRule);
+            SelectSE->Play(false,5.0f);
+            flag = true;
+            //SceneManager::Instance().ChangeScene(new SceneRule);
         }
         break;
     case title::titleEnd:
@@ -204,6 +235,7 @@ void SceneTitle::TitleInput()
         titleEndAlpha = alpha;
         if (gamePad.GetButtonDown() & GamePad::BTN_A)
         {
+            SelectSE->Play(false,5.0f);
             PostQuitMessage(0);
         }
         break;

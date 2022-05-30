@@ -33,7 +33,7 @@ void SceneGame::Initialize()
 	StageManager& stageManager = StageManager::Instance();
 	BulletManager& bulletManager = BulletManager::Instance();
 	
-
+	GameBGM = Audio::Instance().LoadAudioSource("Data/BGM/wav/GameBGM.wav");
 
 	player = new Player();
 	cameracontroller = new CameraController();
@@ -49,7 +49,6 @@ void SceneGame::Initialize()
 	cameracontroller->SetAngle(DirectX::XMFLOAT3(DirectX::XMConvertToRadians(15), 0.0f, 0.0f));
 	cameracontroller->SetFov(90.0f);
 
-	//cameramode = Mode::viewMode;
 	CameraController::Instance().SetCameraMode(Mode::viewMode);
 	ViewCameraInitialize();
 
@@ -175,6 +174,7 @@ void SceneGame::Finalize()
 void SceneGame::Update(float elapsedTime)
 {
 	GamePad& gamePad = Input::Instance().GetGamePad();
+	GameBGM->Play(true, 0.5f);
 
 	if (gamePad.GetButtonDown() & GamePad::BTN_Y)
 		isMenuFlag = true;
@@ -347,14 +347,6 @@ void SceneGame::Update(float elapsedTime)
 
 		SpDome->Update(elapsedTime);
 
-
-		//if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
-		/*if (StageManager::Instance().GetStageClear())
-		{
-			StageManager::Instance().SetStageNum(2);
-			Initialize();
-		}*/
-
 	}
 }
 
@@ -381,29 +373,7 @@ void SceneGame::Render()
 		0.1f,
 		1000.0f
 	);
-	//// ビュー行列
-	//{
-	//	DirectX::XMFLOAT3 eye = { 0, 10, -10 };	// カメラの視点（位置）
-	//	DirectX::XMFLOAT3 focus = { 0, 0, 0 };	// カメラの注視点（ターゲット）
-	//	DirectX::XMFLOAT3 up = { 0, 1, 0 };		// カメラの上方向
-	//	//vectorに変換してあげる(箱に入れる) 
-	//	DirectX::XMVECTOR Eye = DirectX::XMLoadFloat3(&eye);
-	//	DirectX::XMVECTOR Focus = DirectX::XMLoadFloat3(&focus);
-	//	DirectX::XMVECTOR Up = DirectX::XMLoadFloat3(&up);
-	//	//計算
-	//	DirectX::XMMATRIX View = DirectX::XMMatrixLookAtLH(Eye, Focus, Up);
-	//	//情報を取り出す
-	//	DirectX::XMStoreFloat4x4(&rc.view, View);
-	//}
-	//// プロジェクション行列
-	//{
-	//	float fovY = DirectX::XMConvertToRadians(60);	// 視野角
-	//	float aspectRatio = graphics.GetScreenWidth() / graphics.GetScreenHeight();	// 画面縦横比率(幅÷高さ)
-	//	float nearZ = 0.1f;	// カメラが映し出すの最近距離
-	//	float farZ = 1000.0f;	// カメラが映し出すの最遠距離
-	//	DirectX::XMMATRIX Projection = DirectX::XMMatrixPerspectiveFovLH(fovY, aspectRatio, nearZ, farZ);
-	//	DirectX::XMStoreFloat4x4(&rc.projection, Projection);
-	//}
+	
 
 #if true
 
@@ -597,105 +567,6 @@ void SceneGame::Render()
 #endif // _DEBUG
 	
 }
-
-
-//void SceneGame::RenderEnemyGauge(ID3D11DeviceContext* dc,
-//	const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection)
-//{
-//	//ビューポート左上X位置//ビューポート左上Y位置// ビューポート幅// ビューポート高さ
-//	// 深度値の範囲を表す最小値// 深度値の範囲を表す最大値
-//	D3D11_VIEWPORT viewport;
-//	UINT numViewports = 1;
-//	dc->RSGetViewports(&numViewports, &viewport);
-//	//変換行列
-//	DirectX::XMMATRIX View = DirectX::XMLoadFloat4x4(&view);
-//	DirectX::XMMATRIX Projection = DirectX::XMLoadFloat4x4(&projection);
-//	DirectX::XMMATRIX World = DirectX::XMMatrixIdentity();
-//
-//	//全ての敵の頭上にHPゲージを表示
-//	EnemyManager& enemyManager = EnemyManager::Instance();
-//	int enemyCount = enemyManager.GetEnemyCount();
-//
-//	for (int i = 0; i < enemyCount; ++i)
-//	{
-//		//表示させる場所をとってくる//WorldPosition
-//		Enemy* enemy = enemyManager.GetEnemy(i);
-//		DirectX::XMFLOAT3 worldPosition = enemy->GetPosition();
-//		worldPosition.y += enemy->GetHeight();
-//
-//		DirectX::XMFLOAT2 gaugePositon =
-//			coordinateTransformation->Get2DPosition(View, Projection, World, viewport, worldPosition);
-//		//ゲージの長さ
-//		const float gaugeWidth = 60.0f;
-//		const float gaugeHeight = 8.0f;
-//		float healthGauge = enemy->GetHealth() / static_cast<float>(enemy->GetMaxHealth());
-//		//頑張ってみたてでけた
-//		Camera& camera = Camera::Instance();
-//		DirectX::XMVECTOR cameraEye = DirectX::XMLoadFloat3(&camera.GetEye());
-//		DirectX::XMVECTOR cameraFront = DirectX::XMLoadFloat3(&camera.GetFront());
-//		DirectX::XMVECTOR enemyPosition = DirectX::XMLoadFloat3(&enemy->GetPosition());
-//		/*DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(cameraEye, enemyPosition);
-//		float dot;
-//		DirectX::XMStoreFloat(&dot, Dot);*/
-//
-//		DirectX::XMVECTOR CE = DirectX::XMVectorSubtract(cameraEye, enemyPosition);
-//		DirectX::XMVECTOR Dot2 = DirectX::XMVector3Dot(CE ,cameraFront);
-//		float dot2;
-//		DirectX::XMStoreFloat(&dot2, Dot2);
-//
-//		{
-//			if (dot2 > -0.9f)continue;
-//			gauge->Render(
-//				dc,
-//				gaugePositon.x - gaugeWidth * 0.5f,
-//				gaugePositon.y - gaugeHeight,
-//				gaugeWidth * healthGauge,
-//				gaugeHeight,
-//				0, 0,
-//				static_cast<float>(gauge->GetTextureWidth()),
-//				static_cast<float>(gauge->GetTextureHeight()),
-//				0.0f,
-//				1.0f, 0.0f, 0.0f, 0.0f
-//			);
-//		}
-//		
-//	}
-//
-//	//エネミー配置処理
-//	Mouse& mouse = Input::Instance().GetMouse();
-//	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
-//	{
-//		DirectX::XMFLOAT3 screenPosition;
-//		screenPosition.x = static_cast<float>(mouse.GetPositionX());
-//		screenPosition.y = static_cast<float>(mouse.GetPositionY());
-//		screenPosition.z = 0.0f;
-//		DirectX::XMVECTOR ScreenPosition, WorldPosition;
-//		// レイの始点を算出
-//		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
-//		WorldPosition = 
-//			coordinateTransformation->Get3DPosition(View, Projection, World, viewport, ScreenPosition);
-//
-//		DirectX::XMFLOAT3 rayStart;
-//		DirectX::XMStoreFloat3(&rayStart, WorldPosition);
-//		// レイの終点を算出
-//		screenPosition.z = 1.0f;
-//		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
-//		WorldPosition = 
-//			coordinateTransformation->Get3DPosition(View, Projection, World, viewport, ScreenPosition);
-//		DirectX::XMFLOAT3 rayEnd;
-//		DirectX::XMStoreFloat3(&rayEnd, WorldPosition);
-//		// レイキャスト
-//		HitResult hit;
-//		if (StageManager::Instance().RayCast(rayStart, rayEnd, hit))
-//		{
-//			// 敵を配置
-//			EnemySlime* slime = new EnemySlime();
-//			slime->SetPosition(hit.position);
-//			EnemyManager::Instance().Register(slime);
-//		}
-//	}
-//		
-//}
 
 // FPSカメライニシャライズ
 void SceneGame::FpsCameraInitialize(int BeforeMode)

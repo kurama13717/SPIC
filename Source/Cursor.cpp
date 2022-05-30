@@ -67,16 +67,29 @@ void Cursor::Update()
             moveble = false;
         }
     }
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 4; i++)
     {
-        distance = sqrtf(
+        distance[i] = sqrtf(
             (position.x - StageNumPos[i].x) * (position.x - StageNumPos[i].x) +
             (position.y - StageNumPos[i].y) * (position.y - StageNumPos[i].y));
-        if (distance < 140)
+        if (distance[i] < 140 /*&& !flag*/)
         {
             onCursorNo = i;
+            keep = i;
+            //flag = true;
         }
+
+        if (distance[0] > 140 && distance[1] > 140 && distance[2] > 140 && distance[3] > 140)
+        {
+            onCursorNo = 10;
+        }
+
+ 
+        /*if (onCursorNo > 4) {
+            if (distance[i] > 140)
+        }*/
     }
+  
 }
 void Cursor::Render(ID3D11DeviceContext* dc)
 {

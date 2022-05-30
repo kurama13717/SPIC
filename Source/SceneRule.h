@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Graphics/Sprite.h"
+#include "Audio/AudioSource.h"
 #include "Scene.h"
 
 class SceneRule : public Scene
@@ -26,4 +27,10 @@ private:
     bool RuleMove_R = false;
     bool RuleMove_L = false;
     DirectX::XMFLOAT2 Pos = { 0.0f,0.0f };
+    std::unique_ptr<AudioSource> HelpBGM;
+    std::unique_ptr<AudioSource> SelectSE;
+    bool flag = false;
+    float ChangeTimer = 0.0f;
+
+
 };

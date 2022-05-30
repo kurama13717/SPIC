@@ -37,6 +37,10 @@ private:
     ID3D11RenderTargetView* rtv = graphics.GetRenderTargetView();
     ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
 
+    std::unique_ptr<AudioSource> TitleBGM;
+    std::unique_ptr<AudioSource> SelectSE;
+
+
     Microsoft::WRL::ComPtr<ID3D11DeviceContext>		immediateContext;
     Sprite* sprite = nullptr;
     Sprite* Title = nullptr;
@@ -103,5 +107,10 @@ private:
     float titleHelpAlpha;
     float titleEndAlpha;
     float alpha = 0;
+
+    bool flag = false;
+    bool Flag = false;
+    float ChangeTimer = 0.0f;
+
 };
 

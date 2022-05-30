@@ -295,12 +295,12 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 
 
 
-				if (models->count == 0)Do->Play(false);
-				if (models->count == 1)Re->Play(false);
-				if (models->count == 2)Mi->Play(false);
-				if (models->count == 3)Fa->Play(false);
-				if (models->count == 4)So->Play(false);
-				if (models->count == 5)Ra->Play(false);
+				if (models->count == 0)Do->Play(false,2.0f);
+				if (models->count == 1)Re->Play(false,2.0f);
+				if (models->count == 2)Mi->Play(false,2.0f);
+				if (models->count == 3)Fa->Play(false,2.0f);
+				if (models->count == 4)So->Play(false,2.0f);
+				if (models->count == 5)Ra->Play(false,2.0f);
 			}
 			return true;
 		}

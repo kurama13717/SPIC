@@ -80,6 +80,8 @@ private:
 	CoordinateTransformation* coordinateTransformation = nullptr;
 	Shake& shake = Shake::Instance();
 
+	std::unique_ptr<AudioSource> GameBGM;
+
 
 private:
 	float screenWidth = static_cast<float>(graphics.GetScreenWidth());

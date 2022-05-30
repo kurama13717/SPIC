@@ -9,6 +9,10 @@ void SceneRule::Initialize()
     Rule = new Sprite("Data/Sprite/Rule.png");
     Signal = new Sprite("Data/Sprite/Signal.png");
     B = new Sprite("Data/Sprite/Bbutton.png");
+    HelpBGM = Audio::Instance().LoadAudioSource("Data/BGM/wav/HelpBGM.wav");
+    SelectSE = Audio::Instance().LoadAudioSource("Data/Sound/Select.wav");
+    flag = false;
+
 }
 void SceneRule::Finalize()
 {
@@ -30,6 +34,7 @@ void SceneRule::Finalize()
 }
 void SceneRule::Update(float elapsedTime)
 {
+    HelpBGM->Play(true,0.5f);
     GamePad& gamePad = Input::Instance().GetGamePad();
     axisX = gamePad.GetAxisLX();
     Graphics& graphics = Graphics::Instance();
@@ -57,7 +62,9 @@ void SceneRule::Update(float elapsedTime)
 
         if (Pos.x == 1280 * 2 && gamePad.GetButtonDown() & GamePad::BTN_B)
         {
-            SceneManager::Instance().ChangeScene(new SceneTitle);
+            SelectSE->Play(false,5.0f);
+            flag = true;
+            //SceneManager::Instance().ChangeScene(new SceneTitle);
             //SceneManager::Instance().ChangeScene(nextScene);
         }
     }
@@ -84,6 +91,19 @@ void SceneRule::Update(float elapsedTime)
         }
     }
     SignalTimer++;
+
+
+    if (flag)
+    {
+        ChangeTimer++;
+    }
+
+    if (ChangeTimer > 60.0f)
+    {
+        SceneManager::Instance().ChangeScene(new SceneTitle);
+
+    }
+
 }
 void SceneRule::Render()
 {
