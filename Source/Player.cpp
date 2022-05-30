@@ -33,9 +33,6 @@ Player::Player()
     hitEffect = new Effect("Data/Effect/Hit.efk");
     //待機ステートへ遷移
     TransitionIdleState();
-
-    
-
 }
 
 Player::~Player()
@@ -87,6 +84,14 @@ void Player::Update(float elapsedTime)
         UpdateReviveState(elapsedTime);
         break;
     }
+
+    if (position.x > 18.0f)position.x = 18.0f;
+    if (position.x < -18.0f)position.x = -18.0f;
+    if (position.z > 18.0f)position.z = 18.0f;
+    if (position.z < -18.0f)position.z = -18.0f;
+    if (position.y > 39.0f)position.y = 39.0f;
+    if (position.y < 1.0f)position.y = 1.0f;
+
     //UpdateVelocity(elapsedTime);
     UpdateTransform();
 
@@ -113,6 +118,14 @@ void Player::SpectatorUpdate(float elapsedTime)
         UpdateMoveState(elapsedTime);
         break;
     }
+
+    if (position.x > 18.0f)position.x = 18.0f;
+    if (position.x < -18.0f)position.x = -18.0f;
+    if (position.z > 18.0f)position.z = 18.0f;
+    if (position.z < -18.0f)position.z = -18.0f;
+    if (position.y > 39.0f)position.y = 39.0f;
+    if (position.y < 1.0f)position.y = 1.0f;
+
     UpdateVelocity(elapsedTime);
     UpdateTransform();
 }

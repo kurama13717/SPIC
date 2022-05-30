@@ -38,13 +38,6 @@ private:
 
     float i = 0;
 
-    Sprite* Stage1 = nullptr;
-    Sprite* Stage2 = nullptr;
-    Sprite* Stage3 = nullptr;
-    Sprite* Stage4 = nullptr;
-    Sprite* Stage5 = nullptr;
-    Sprite* Stage6 = nullptr;
-
     float Radius = 140.0f;
     float distance[6] = {};
     DirectX::XMFLOAT2 StageNumPos[6] =
@@ -59,4 +52,10 @@ private:
     int onCursorNo = 10;
     int keep = 0;
     bool flag = false;
+
+    Sprite* Previews1 = nullptr;
+    Sprite* Previews2 = nullptr;
+    Sprite* Previews3 = nullptr;
+    Sprite* Previews4 = nullptr;
+    float previewsColor[4] = {};
 };
