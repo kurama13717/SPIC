@@ -9,10 +9,17 @@ Cursor::Cursor()
 {
     CursorSprite = new Sprite("Data/Sprite/CrossHair.png");
     BallSprite = new Sprite("Data/Sprite/SelectBullet.png");
+    Stage1 = new Sprite("Data/Sprite/StageIcon1.png");
+    Stage2 = new Sprite("Data/Sprite/StageIcon2.png");
+    Stage3 = new Sprite("Data/Sprite/StageIcon3.png");
+    Stage4 = new Sprite("Data/Sprite/StageIcon4.png");
+    Stage5 = new Sprite("Data/Sprite/StageIcon5.png");
     cursorWidth = static_cast<float>(CursorSprite->GetTextureWidth());
     cursorHeight = static_cast<float>(CursorSprite->GetTextureHeight());
     ballWidth = static_cast<float>(BallSprite->GetTextureWidth());
     ballHeight = static_cast<float>(BallSprite->GetTextureHeight());
+    StagesWidth= static_cast<float>(Stage1->GetTextureWidth());
+    StagesHeight= static_cast<float>(Stage1->GetTextureHeight());
     screenWidth = static_cast<float>(graphics.GetScreenWidth());
     screenHeight = static_cast<float>(graphics.GetScreenHeight());
 }
@@ -44,7 +51,7 @@ void Cursor::Update()
     // 入力（カーソル）
     position.x += axisX * speed;
     position.y -= axisY * speed;
-    if (gamePad.GetButtonDown() & GamePad::BTN_X)Launch();
+    //if (gamePad.GetButtonDown() & GamePad::BTN_X)Launch();
 
     // 移動（ボール）
     if (moveble == true)
@@ -60,6 +67,16 @@ void Cursor::Update()
             moveble = false;
         }
     }
+    for (int i = 0; i < 6; i++)
+    {
+        distance = sqrtf(
+            (position.x - StageNumPos[i].x) * (position.x - StageNumPos[i].x) +
+            (position.y - StageNumPos[i].y) * (position.y - StageNumPos[i].y));
+        if (distance < 140)
+        {
+            onCursorNo = i;
+        }
+    }
 }
 void Cursor::Render(ID3D11DeviceContext* dc)
 {
@@ -73,6 +90,46 @@ void Cursor::Render(ID3D11DeviceContext* dc)
         0, 0, ballWidth, ballHeight,
         0,
         1, 1, 1, 1);
+    switch (onCursorNo)
+    {
+    case 0:
+        Stage1->Render(dc,
+            1100, 250, 1500, 650,
+            0, 0, StagesWidth, StagesHeight,
+            0,
+            1, 1, 1, 1);
+        break;
+    case 1:
+        Stage2->Render(dc,
+            1100, 250, 1500, 650,
+            0, 0, StagesWidth, StagesHeight,
+            0,
+            1, 1, 1, 1);
+        break;
+    case 2:
+        Stage3->Render(dc,
+            1100, 250, 1500, 650,
+            0, 0, StagesWidth, StagesHeight,
+            0,
+            1, 1, 1, 1);
+        break;
+    case 3:
+        Stage4->Render(dc,
+            1100, 250, 1500, 650,
+            0, 0, StagesWidth, StagesHeight,
+            0,
+            1, 1, 1, 1);
+        break;
+    case 4:
+        Stage5->Render(dc,
+            1100, 250, 1500, 650,
+            0, 0, StagesWidth, StagesHeight,
+            0,
+            1, 1, 1, 1);
+        break;
+    case 5:
+        break;
+    }
     DrawDebugGUI();
 }
 void Cursor::Launch()
@@ -96,7 +153,7 @@ void Cursor::DrawDebugGUI()
             ImGui::InputFloat2("ballPosition", &ballPosition.x);            
             ImGui::InputFloat2("ballSize", &ballSize.x);
 
-            ImGui::InputFloat("i", &i);
+            ImGui::InputInt("onCursorNo", &onCursorNo);
         }
     }
     ImGui::End();

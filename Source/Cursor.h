@@ -14,12 +14,13 @@ public:
     float lerp(float start, float end, float t) {
         return (1 - t) * start + t * end;
     }
+    int GetonCursorNo(){ return onCursorNo; }
 private:
     DirectX::XMFLOAT2 position = {};
     DirectX::XMFLOAT2 ballPosition = {};
     DirectX::XMFLOAT2 ballCurrentPosition = {};
     DirectX::XMFLOAT2 ballSize = {};
-    float speed = 5.0f;
+    float speed = 10.0f;
     float axisX = 0.0f;
     float axisY = 0.0f;
     bool moveble = false;
@@ -32,6 +33,28 @@ private:
     float ballHeight;
     float screenWidth;
     float screenHeight;
+    float StagesWidth;
+    float StagesHeight;
 
     float i = 0;
+
+    Sprite* Stage1 = nullptr;
+    Sprite* Stage2 = nullptr;
+    Sprite* Stage3 = nullptr;
+    Sprite* Stage4 = nullptr;
+    Sprite* Stage5 = nullptr;
+    Sprite* Stage6 = nullptr;
+
+    float Radius = 140.0f;
+    float distance = 0;
+    DirectX::XMFLOAT2 StageNumPos[6] =
+    {
+        {210,290},
+        {525,290},
+        {840,290},
+        {210,650},
+        {525,650},
+        {840,650},
+    };
+    int onCursorNo = 10;
 };
