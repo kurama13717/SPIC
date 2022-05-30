@@ -38,11 +38,7 @@ void Bullet::DrawDebugPrimitive()
 
 
 
-////void Bullet::UpdateVelocity(float elapsedTime)
-//{
-//	//水平移動更新処理
-//	UpdateHorizontalMove(elapsedTime);
-//}
+
 
 /*void Bullet::UpdateHorizontalMove(float elapsedTime)
 {
@@ -259,7 +255,8 @@ void Bullet::RenderReflectingRay()
 	DebugRenderer* debugRenderer = Graphics::Instance().GetDebugRenderer();
 	for (int i = 0; i < 10; i++)
 	{
-		//debugRenderer->DrawSphere(BulletManager::Instance().GetPosition(i), radius, DirectX::XMFLOAT4(0, 0, 0, 1));
+		if(!Player::Instance().GetFiring())		
+		debugRenderer->DrawSphere(BulletManager::Instance().GetPosition(i), radius, DirectX::XMFLOAT4(0, 0, 0, 1));
 	}
 
 	if (!BulletManager::Instance().GetisMaterial())
@@ -280,13 +277,6 @@ void Bullet::Launch(const DirectX::XMFLOAT3& direction, const DirectX::XMFLOAT3&
 	this->direction = direction;
 	this->position = position;
 }
-
-
-//bool Bullet::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
-//{
-//	return Collision::IntersectRayVsModel(start, end, model, hit);
-//}
-
 
 //当たり判定
 void Bullet::BulletRays(float elapsedTime)
@@ -342,9 +332,7 @@ void Bullet::BulletRays(float elapsedTime)
 			}
 			
 
-			//else
 			Reflection(direction, hit.normal);    //2回目　-1.2,0.8,0.5
-			//if(BulletManager::Instance().GetPrediction())
 
 
 		}
@@ -356,7 +344,6 @@ void Bullet::Reflection(const DirectX::XMFLOAT3& direction, const DirectX::XMFLO
 {
 	reflectCount++;
 	// 反射点保持
-	//reflectedPosition[reflectCount] = position;
 	BulletManager::Instance().SetPosition(position, reflectCount);
 
 	DirectX::XMFLOAT3 Dir, Reflect, Vec;

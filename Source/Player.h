@@ -114,6 +114,8 @@ private:
     float jumpSpeed = 20.0f;
     int jumpCount = 0;
     int jumpLimit = 2;
+
+    int L1 = 0;
     
 
     Effect* hitEffect = nullptr;

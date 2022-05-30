@@ -7,6 +7,7 @@
 #include "Graphics/Graphics.h"
 #include "BulletStraite.h"
 #include "CameraController.h"
+#include "StageManager.h"
 #include <functional>
 
 static Player* instance = nullptr;
@@ -51,8 +52,11 @@ void Player::Update(float elapsedTime)
     //InputJump();
     //InputProjectile();
 
-    //’eŠÛ“ü—Íˆ—
-    InputBullet();
+    if (!StageManager::Instance().GetStageClear()) {
+
+        //’eŠÛ“ü—Íˆ—
+        InputBullet();
+    }
 
     // ’eŠÛXVˆ—
     BulletManager::Instance().Update(elapsedTime);
@@ -132,10 +136,28 @@ void Player::InputBullet()
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
 
+
+    if (gamePad.GetButtonDown() & GamePad::BTN_LEFT_SHOULDER && BulletManager::Instance().GetPrediction())
+    {
+        BulletManager::Instance().SetPrediction(false);
+        Player::Instance().SetFiring(false);
+        BulletManager::Instance().SetisMateril(true);
+
+        BulletManager::Instance().Remove(bullet2);
+        L1 = 1;
+
+        for (int i = 0; i < 10; i++)
+        {
+            BulletManager::Instance().SetPosition(DirectX::XMFLOAT3(-1.0f,-1.0f,-1.0f), i);
+        }
+    }
+
     //’¼i’eŠÛ”­Ë
     if (gamePad.GetButtonDown() & GamePad::BTN_A && !Player::Instance().GetFiring() && !BulletManager::Instance().GetisMaterial())
     {
         Player::Instance().SetFiring(true);
+        BulletManager::Instance().SetPrediction(false);
+        BulletManager::Instance().Remove(bullet2);
 
         //‘O•ûŒü
         DirectX::XMFLOAT3 dir;
@@ -158,13 +180,9 @@ void Player::InputBullet()
     }
 
     // ‹O“¹•`‰æ—p’e”­Ë
-    if ((gamePad.GetButtonDown() & GamePad::BTN_ENTER || gamePad.GetButtonDown() & GamePad::BTN_LEFT_SHOULDER) && !BulletManager::Instance().GetPrediction())
+    if ((gamePad.GetButtonDown() & GamePad::BTN_ENTER || gamePad.GetButtonDown() & GamePad::BTN_LEFT_SHOULDER) && !BulletManager::Instance().GetPrediction() && L1 == 0)
     {
        
-        //Player::Instance().SetFiring(true);
-        //if(!BulletManager::Instance().GetisMaterial())
-            
-        
         //‘O•ûŒü
         DirectX::XMFLOAT3 dir;
         dir.x = ct.x;
@@ -188,14 +206,16 @@ void Player::InputBullet()
         BulletManager::Instance().SetPrediction(true);
     }
 
-    if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT_SHOULDER && BulletManager::Instance().GetPrediction())
+    L1 = 0;   // 0‚Ì‚Æ‚«‹O“¹—\‘ª•\¦’†@‚P‚Ì‚Æ‚«L1‚ª‚à‚¤ˆê‰ñ‰Ÿ‚³‚ê•\¦‚ğOFF
+
+   /* if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT_SHOULDER && BulletManager::Instance().GetPrediction())
     {
         BulletManager::Instance().Remove(bullet2);
         BulletManager::Instance().SetPrediction(false);
 
-    }
+    }*/
 
-
+   
 
 }
 

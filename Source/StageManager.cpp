@@ -73,7 +73,7 @@ bool StageManager::ClearFlag(int MarkCount, int HitCount)
 
     if (MarkCount == HitCount)
     {
-        //StageClearFlag = true;
+        StageManager::Instance().SetStageClear(true);
         return true;
     }
     return false;

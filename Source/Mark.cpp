@@ -13,6 +13,24 @@ Mark::Mark(int StageNum)
 
 	if (StageNum == 1)
 	{
+		for (int i = 0; i < 2; i++)
+		{
+			model.push_back(std::make_unique<Model>("Data/Model/Mark/MarkTex.mdl"));
+			model[i]->scale = { 0.02f,0.02f,0.02f };
+			model[i]->count = i;
+		}
+		model[0]->position = { 5.0f,10.0f,0.0f };
+		model[0]->name = "Mark0";
+		model[1]->position = { -1.0f,8.0f,0.0f };
+		model[1]->name = "Mark1";
+	
+
+	}
+
+
+
+	if (StageNum == 2)
+	{
 		{
 			model.push_back(std::make_unique<Model>("Data/Model/Mark/MarkTex.mdl"));
 
@@ -72,7 +90,7 @@ Mark::Mark(int StageNum)
 	}
 
 
-	if (StageNum == 2)
+	if (StageNum == 3)
 	{
 		for (int i = 0; i < 6; i++)
 		{
@@ -96,7 +114,7 @@ Mark::Mark(int StageNum)
 		model[3]->angle = { DirectX::XMConvertToRadians(0.0f),DirectX::XMConvertToRadians(40.0f),DirectX::XMConvertToRadians(-40.0f) };
 		model[3]->name = "Mark3";
 
-		model[4]->position = { -2.5f,5.0f,13.0f };
+		model[4]->position = { -2.5f,5.0f,13.5f };
 		model[4]->angle = { DirectX::XMConvertToRadians(0.0f),DirectX::XMConvertToRadians(90.0f),DirectX::XMConvertToRadians(48.0f) };
 		model[4]->name = "Mark4";
 
@@ -109,7 +127,7 @@ Mark::Mark(int StageNum)
 
 
 
-	if (StageNum == 3)
+	if (StageNum == 4)
 	{
 
 		for (int i = 0; i < 5; i++)
@@ -137,7 +155,7 @@ Mark::Mark(int StageNum)
 		model[3]->angle = { DirectX::XMConvertToRadians(60.0f),DirectX::XMConvertToRadians(-60.0f),DirectX::XMConvertToRadians(45.0f) };
 		model[3]->name = "Mark3";
 
-		model[4]->position = { 15.0f,32.5f,0.0f };
+		model[4]->position = { 13.5f,32.5f,0.0f };
 		model[4]->angle = { DirectX::XMConvertToRadians(0.0f),DirectX::XMConvertToRadians(90.0f),DirectX::XMConvertToRadians(-60.0f) };
 		model[4]->name = "Mark4";
 
@@ -158,7 +176,14 @@ Mark::Mark(int StageNum)
 
 	StageManager::Instance().Register(this);
 	StageManager::Instance().SetMarkCount(model.size()); //ここでMarkの表示数を記録してその数分ヒットしていたらクリア...StageManager::ClearFlag()
+	StageManager::Instance().SetStageClear(false);
+	BulletManager::Instance().SetPrediction(false);
 
+	for (int i = 0; i < model.size(); i++)
+	{
+		StageManager::Instance().flag_r[i] = false;
+		BulletManager::Instance().SetPosition(DirectX::XMFLOAT3(-1.0f, -1.0f, -1.0f), i);
+	}
 
 }
 
@@ -277,7 +302,6 @@ bool Mark::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end,
 				if (models->count == 4)So->Play(false);
 				if (models->count == 5)Ra->Play(false);
 			}
-
 			return true;
 		}
 	}
@@ -347,8 +371,8 @@ MarkSplit::MarkSplit()
 	modelsplit.push_back(std::make_unique<Model>("Data/Model/Marksp/最新mdl/MarkSplit16.mdl")); //15
 
 	//当たったら分裂するようのモデル
-	modelcrack.push_back(std::make_unique<Model>("Data/Model/Mark/MarkTex.mdl"));
-	modelcrack[0]->position = { 13.0f,25.0f,-4.0f };
+	modelcrack.push_back(std::make_unique<Model>("Data/Model/Mark/MarktexCrack.mdl"));
+	modelcrack[0]->position = { 12.0f,26.5f,-4.0f };
 	modelcrack[0]->angle = { DirectX::XMConvertToRadians(0.0f),DirectX::XMConvertToRadians(90.0f),DirectX::XMConvertToRadians(-60.0f) };
 	modelcrack[0]->scale = { 0.02f,0.02f,0.02f };
 	modelcrack[0]->count = 0;

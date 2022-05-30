@@ -211,44 +211,44 @@ void Character::UpdateHorizontalMove(float elapsedTime)
         DirectX::XMFLOAT3 start = { position.x,position.y + stepOffset,position.z };
         DirectX::XMFLOAT3 end = { position.x + mx, position.y + stepOffset, position.z + mz };
 
-        HitResult hit;
-        if (StageManager::Instance().RayCast(start, end, hit))
-        {
-            DirectX::XMVECTOR Start = DirectX::XMLoadFloat3(&start);
-            DirectX::XMVECTOR End = DirectX::XMLoadFloat3(&end);
-            DirectX::XMVECTOR Vec = DirectX::XMVectorSubtract(End, Start);
+        //HitResult hit;
+        //if (StageManager::Instance().RayCast(start, end, hit))
+        //{
+        //    DirectX::XMVECTOR Start = DirectX::XMLoadFloat3(&start);
+        //    DirectX::XMVECTOR End = DirectX::XMLoadFloat3(&end);
+        //    DirectX::XMVECTOR Vec = DirectX::XMVectorSubtract(End, Start);
 
-            DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
-            //逆ベクトルと法線ベクトルの内積
-            DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
-            
-            // 補正位置の計算
-            //法線ベクトル*内積+レイの終端//Rベクトル求める
-            DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
-            DirectX::XMFLOAT3 collectPosition;
-            DirectX::XMStoreFloat3(&collectPosition, CollectPosition);
-            // 壁ずり方向へレイキャスト
-            HitResult hit2;
-            if (!StageManager::Instance().RayCast(hit.position, collectPosition, hit2))
-            {
-                // 壁ずり方向で壁に当たらなかったら補正位置に移動
-                position.x = collectPosition.x;
-                position.z = collectPosition.z;
-            }
+        //    DirectX::XMVECTOR Normal = DirectX::XMLoadFloat3(&hit.normal);
+        //    //逆ベクトルと法線ベクトルの内積
+        //    DirectX::XMVECTOR Dot = DirectX::XMVector3Dot(DirectX::XMVectorNegate(Vec), Normal);
+        //    
+        //    // 補正位置の計算
+        //    //法線ベクトル*内積+レイの終端//Rベクトル求める
+        //    DirectX::XMVECTOR CollectPosition = DirectX::XMVectorMultiplyAdd(Normal, Dot, End);
+        //    DirectX::XMFLOAT3 collectPosition;
+        //    DirectX::XMStoreFloat3(&collectPosition, CollectPosition);
+        //    // 壁ずり方向へレイキャスト
+        //    HitResult hit2;
+        //    if (!StageManager::Instance().RayCast(hit.position, collectPosition, hit2))
+        //    {
+        //        // 壁ずり方向で壁に当たらなかったら補正位置に移動
+        //        position.x = collectPosition.x;
+        //        position.z = collectPosition.z;
+        //    }
 
-            
+        //    
 
-                else
-                {
-                    position.x = hit2.position.x;
-                    position.z = hit2.position.z;
-                }
-            }
-            else
-            {
-                position.x += mx;
-                position.z += mz;
-            }
+        //        else
+        //        {
+        //            position.x = hit2.position.x;
+        //            position.z = hit2.position.z;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        position.x += mx;
+        //        position.z += mz;
+        //    }
         }
 }
 void Character::Turn(float elapsedTime, float vx, float vz, float speed)

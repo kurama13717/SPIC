@@ -79,6 +79,7 @@ private:
     bool Retry = false;           // 的全てに的中せず弾が外に当たった時にゲームをリトライするのフラグ
     bool MspRetry = false;
     bool StageClearFlag = false;  // 的全てに的中してクリアしたときに判定をとるフラグ
+    
 
     int StageNum = 0;
 };

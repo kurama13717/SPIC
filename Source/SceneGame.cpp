@@ -300,9 +300,7 @@ void SceneGame::Update(float elapsedTime)
 
 		case Mode::spectatorMode:
 
-			// プレイヤーアップデート呼び出し
-			player->Update(elapsedTime);
-
+		
 			// プレイヤーアップデート呼び出し
 			player->SpectatorUpdate(elapsedTime);
 
@@ -350,7 +348,7 @@ void SceneGame::Update(float elapsedTime)
 		SpDome->Update(elapsedTime);
 
 
-		if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
+		//if (StageManager::Instance().GetStageClear())SceneManager::Instance().ChangeScene(new SceneTitle);
 		/*if (StageManager::Instance().GetStageClear())
 		{
 			StageManager::Instance().SetStageNum(2);
