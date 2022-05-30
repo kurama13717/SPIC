@@ -72,9 +72,13 @@ private:
 
     // ïœçXì_
     int Timer = 0;
-
+    //XMFLOAT2 opos = { 1000,82 };
+    XMFLOAT2 opos = { 1000,82 };
+    XMFLOAT2 oSpeed = { 10,10 };
+    int oCount = 0;
     float screenWidth;
     float screenHeight;
+    XMFLOAT2 oCurrntPos = {};
     float i;
 
     float axisY = 0;

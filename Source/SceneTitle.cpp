@@ -12,6 +12,7 @@ void SceneTitle::Initialize()
 {
     sprite = new Sprite("Data/Sprite/Title.png");
     Title = new Sprite("Data/Sprite/ReflecT ne.png");
+    o = new Sprite("Data/Sprite/o.png");
     arrow = new Sprite("Data/Sprite/arrow.png");
     TitleGame =new Sprite("Data/Sprite/TitleGame.png");
     TitleHelp =new Sprite("Data/Sprite/TitleHelp.png");
@@ -25,6 +26,7 @@ void SceneTitle::Initialize()
 
     screenWidth = static_cast<float>(graphics.GetScreenWidth());
     screenHeight = static_cast<float>(graphics.GetScreenHeight());
+    opos = { screenWidth/3 - 128,screenHeight - 128 };
 
     //カメラ初期設定
     camera.SetLookAt(DirectX::XMFLOAT3(0, 10, -10), DirectX::XMFLOAT3(0, 0, 0), DirectX::XMFLOAT3(0, 1, 0));
@@ -55,6 +57,11 @@ void SceneTitle::Finalize()
     {
         delete Title;
         Title = nullptr;
+    }
+    if (o != nullptr)
+    {
+        delete o;
+        o = nullptr;
     }
     if (arrow != nullptr)
     {
@@ -108,6 +115,38 @@ void SceneTitle::Update(float elapsedTime)
     //UpdateTransform();
     TitleInput();
     // 変更点
+
+    opos.x += -oSpeed.x;
+    opos.y += oSpeed.y;
+    if (oCount < 6)
+    {
+        if (opos.x < 0 || opos.x > screenWidth - 128) {
+            oSpeed.x *= -1;
+            oCount++;
+        }
+
+        if (opos.y < 0 || opos.y > screenHeight - 128) {
+            oSpeed.y *= -1;
+            oCount++;
+        }
+    }
+    if (oCount == 6)
+    {
+        oCurrntPos = { opos.x,opos.y };
+        oSpeed.x = 0;
+        oSpeed.y = 0;
+        oCount++;
+    }
+    if (oCount == 7)
+    {
+        opos.x = lerp(oCurrntPos.x, 1000, i);
+        opos.y = lerp(oCurrntPos.y, 82, i);
+        i += 0.1;
+        if (i > 1)
+        {
+            oCount++;
+        }
+    }
     
     Timer++;
 }
@@ -209,6 +248,14 @@ void SceneTitle::DrawDebugGUI()
     ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("title", nullptr, ImGuiWindowFlags_None))
     {
+        if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
+        {
+            //position
+            ImGui::InputFloat("PositionX", &opos.x);
+            ImGui::InputFloat("PositionY", &opos.y);
+            ImGui::InputInt("count", &oCount);
+            ImGui::InputFloat("i", &i);
+        }
     }
     ImGui::End();
 }
@@ -250,6 +297,8 @@ void SceneTitle::Render()
         float textureHeight = static_cast<float>(sprite->GetTextureHeight());
         float arrowWidth = static_cast<float>(arrow->GetTextureWidth());
         float arrowHeight = static_cast<float>(arrow->GetTextureHeight());
+        float oWidth = static_cast<float>(o->GetTextureWidth());
+        float oHeight = static_cast<float>(o->GetTextureHeight());
 
         //タイトル描画
         sprite->Render(dc,
@@ -264,6 +313,11 @@ void SceneTitle::Render()
             0,
             1, 1, 1, 1);
 
+        o->Render(dc,
+            opos.x, opos.y, 103*1.3, 120*1.3,
+            0, 0, oWidth, oHeight,
+            0,
+            1, 1, 1, 1);
 
         TitleGame->Render(dc,
             titleGamePos.x, titleGamePos.y,

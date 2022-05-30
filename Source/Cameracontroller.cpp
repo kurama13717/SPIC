@@ -94,7 +94,7 @@ void CameraController::ViewUpdate(float elapsedTime)
     GamePad& gamePad = Input::Instance().GetGamePad();
     axisX = gamePad.GetAxisLX();
     cameraturn_l = cameraturn_r = false;
-    if (axisX == 0 && !turning_L && !turning_R)canTurn = true;
+    if (axisX == 0)canTurn = true;
     if (axisX > 0.8f)cameraturn_r = true;
     if (axisX < -0.8f)cameraturn_l = true;    
     //if (gamePad.GetButton() & GamePad::BTN_RIGHT)cameraturn_r = true;
