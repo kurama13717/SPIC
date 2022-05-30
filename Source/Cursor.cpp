@@ -9,17 +9,15 @@ Cursor::Cursor()
 {
     CursorSprite = new Sprite("Data/Sprite/CrossHair.png");
     BallSprite = new Sprite("Data/Sprite/SelectBullet.png");
-    Stage1 = new Sprite("Data/Sprite/StageIcon1.png");
-    Stage2 = new Sprite("Data/Sprite/StageIcon2.png");
-    Stage3 = new Sprite("Data/Sprite/StageIcon3.png");
-    Stage4 = new Sprite("Data/Sprite/StageIcon4.png");
-    Stage5 = new Sprite("Data/Sprite/StageIcon5.png");
+    Previews1 = new Sprite("Data/Sprite/StagePreview1.png");
+    Previews2 = new Sprite("Data/Sprite/StagePreview2.png");
+    Previews3 = new Sprite("Data/Sprite/StagePreview3.png");
+    Previews4 = new Sprite("Data/Sprite/StagePreview4.png");
+
     cursorWidth = static_cast<float>(CursorSprite->GetTextureWidth());
     cursorHeight = static_cast<float>(CursorSprite->GetTextureHeight());
     ballWidth = static_cast<float>(BallSprite->GetTextureWidth());
     ballHeight = static_cast<float>(BallSprite->GetTextureHeight());
-    StagesWidth= static_cast<float>(Stage1->GetTextureWidth());
-    StagesHeight= static_cast<float>(Stage1->GetTextureHeight());
     screenWidth = static_cast<float>(graphics.GetScreenWidth());
     screenHeight = static_cast<float>(graphics.GetScreenHeight());
 }
@@ -35,9 +33,33 @@ Cursor::~Cursor()
         delete BallSprite;
         BallSprite = nullptr;
     }
+    if (Previews1 != nullptr)
+    {
+        delete Previews1;
+        Previews1 = nullptr;
+    }
+    if (Previews2 != nullptr)
+    {
+        delete Previews2;
+        Previews2 = nullptr;
+    }
+    if (Previews3 != nullptr)
+    {
+        delete Previews3;
+        Previews3 = nullptr;
+    }
+    if (Previews4 != nullptr)
+    {
+        delete Previews4;
+        Previews4 = nullptr;
+    }
 }
 void Cursor::Update()
 {
+    for (int i = 0; i < 4; i++)
+    {
+        previewsColor[i] = 0;
+    }
     // 画面端（カーソル）
     if (position.x + 50 > screenWidth)position.x = screenWidth - 50;
     if (position.x - 50 < 0)position.x = 50;
@@ -89,6 +111,7 @@ void Cursor::Update()
             if (distance[i] > 140)
         }*/
     }
+    previewsColor[onCursorNo] = 1;
   
 }
 void Cursor::Render(ID3D11DeviceContext* dc)
@@ -98,51 +121,31 @@ void Cursor::Render(ID3D11DeviceContext* dc)
         0,0,cursorWidth,cursorHeight,
         0,
         1,1,1,1);
-    BallSprite->Render(dc,
-        ballPosition.x-ballSize.x/2, ballPosition.y-ballSize.y/2, ballSize.x, ballSize.y,
-        0, 0, ballWidth, ballHeight,
+    //BallSprite->Render(dc,
+    //    ballPosition.x-ballSize.x/2, ballPosition.y-ballSize.y/2, ballSize.x, ballSize.y,
+    //    0, 0, ballWidth, ballHeight,
+    //    0,
+    //    1, 1, 1, 1);
+    Previews1->Render(dc,//950,250
+        950,220,600,600,
+        0,0,400,400,
         0,
-        1, 1, 1, 1);
-    switch (onCursorNo)
-    {
-    case 0:
-        Stage1->Render(dc,
-            1100, 250, 1500, 650,
-            0, 0, StagesWidth, StagesHeight,
-            0,
-            1, 1, 1, 1);
-        break;
-    case 1:
-        Stage2->Render(dc,
-            1100, 250, 1500, 650,
-            0, 0, StagesWidth, StagesHeight,
-            0,
-            1, 1, 1, 1);
-        break;
-    case 2:
-        Stage3->Render(dc,
-            1100, 250, 1500, 650,
-            0, 0, StagesWidth, StagesHeight,
-            0,
-            1, 1, 1, 1);
-        break;
-    case 3:
-        Stage4->Render(dc,
-            1100, 250, 1500, 650,
-            0, 0, StagesWidth, StagesHeight,
-            0,
-            1, 1, 1, 1);
-        break;
-    case 4:
-        Stage5->Render(dc,
-            1100, 250, 1500, 650,
-            0, 0, StagesWidth, StagesHeight,
-            0,
-            1, 1, 1, 1);
-        break;
-    case 5:
-        break;
-    }
+        1, 1, 1, previewsColor[0]);    
+    Previews2->Render(dc,
+        950, 220, 600, 600,
+        0, 0, 400, 400,
+        0,
+        1, 1, 1, previewsColor[1]);    
+    Previews3->Render(dc,
+        950, 220, 600, 600,
+        0, 0, 400, 400,
+        0,
+        1, 1, 1, previewsColor[2]);    
+    Previews4->Render(dc,
+        950, 220, 600, 600,
+        0, 0, 400, 400,
+        0,
+        1, 1, 1, previewsColor[3]);
     DrawDebugGUI();
 }
 void Cursor::Launch()

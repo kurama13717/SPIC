@@ -10,6 +10,7 @@
 void SceneSelectStage::Initialize()
 {
     SelectStage = new Sprite("Data/Sprite/SceneSelect.png");
+
     cursor = new Cursor();
 
     SelectStageBGM = Audio::Instance().LoadAudioSource("Data/BGM/wav/HelpBGM.wav");

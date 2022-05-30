@@ -102,13 +102,29 @@ private:
 	DirectX::XMFLOAT3 fixedangles[4];
 
 	// 面選択用
-	bool delayflag, delayflag2 = false;
-	float delaytimer, delaytimer2 = 0.0f;
 	int selectedsurface = 0;
+	int moveTimer_Surface = 0;
+
+	// 入力制限用
 	float axisX = 0;
+	float axisY = 0;
+	bool inputtable = false;
+	bool input_Right = false;
+	bool input_Left = false;
+	bool input_Up = false;
+	bool input_Down = false;
+	bool moving_Right = false;
+	bool moving_Left = false;
+	bool moving_Up = false;
+	bool moving_Down = false;
 
 	bool BackFlag = false;
 	float PushPower = 0;
+
+	bool isClear = false;
+	bool isClear2 = false;
+	int countForTest = 0;
+	int clearTimer = 0;
 
 	//保持
 	DirectX::XMFLOAT3 KeepAngle;
@@ -116,7 +132,7 @@ private:
 	// クロスヘア
 	Sprite* cross = nullptr;
 
-	Sprite* Menu = nullptr;
+	Sprite* Filter = nullptr;
 	Sprite* MenuGame = nullptr;
 	Sprite* MenuHelp = nullptr;
 	Sprite* MenuTitle = nullptr;
@@ -125,19 +141,23 @@ private:
 	Sprite* SpeedSprite_Normal = nullptr;
 	Sprite* SpeedSprite_Fast = nullptr;
 
+	Sprite* clearSprite = nullptr;
+	Sprite* nextSprite = nullptr;
+	Sprite* toTitleSptite = nullptr;
+
+	Sprite* cameraModeSprite_Surface = nullptr;
+	Sprite* cameraModeSprite_Fire = nullptr;
+	Sprite* cameraModeSprite_Fly = nullptr;
+
 	bool isMenuFlag = false;
 	int MenuMode = 0;
-	float axisY = 0;
-	bool MenuMove_U = false;
-	bool MenuMove_D = false;
-	bool Moveble = false;
-
-	bool selectable = false;
-	bool slide_R = false;
-	bool slide_L = false;
+	int select_Clear = 0;
 
 	float MenuWidth = 300;
 	float MenuHeight = 100;
+
+	float clearWidth = 600;
+	float clearHeight = 100;
 
 	Sprite* Rule = nullptr;
 	Sprite* Signal = nullptr;
@@ -146,8 +166,6 @@ private:
 	int SignalTimer = 0;
 	int SceneCount = 1;
 	float RulePosX = 0.0f;
-	bool RuleMove_R = false;
-	bool RuleMove_L = false;
 	DirectX::XMFLOAT2 Pos = { 0.0f,0.0f };
 
 	enum  menu
@@ -169,14 +187,23 @@ private:
 	DirectX::XMFLOAT2 menuHelpSize = { MenuWidth,MenuHeight };
 	DirectX::XMFLOAT2 menuTitleSize = { MenuWidth,MenuHeight };
 
+	DirectX::XMFLOAT2 clearNextPos = { screenWidth / 2 - clearWidth / 2,400 };
+	DirectX::XMFLOAT2 clearNextSize = { clearWidth,clearHeight };
+	DirectX::XMFLOAT2 clearToTitlePos = { screenWidth / 2 - clearWidth / 2,600 };
+	DirectX::XMFLOAT2 clearToTitleSize = { clearWidth,clearHeight };
+
 	int speedNo = 0;
 	float rollSpeeds[3] =
 	{
-		0.5f,
+		1.5f,
 		1.0f,
-		1.5f
+		0.2f,
 	};
 	float color_slow = 0.0f;
 	float color_normal = 0.0f;
 	float color_fast = 0.0f;
+
+	float color_Surface = 0.0f;
+	float color_Fire = 0.0f;
+	float color_Fly = 0.0f;
 };

@@ -68,7 +68,7 @@ void SceneGame::Initialize()
 	gauge = new Sprite("Data/Sprite/yazirusigauge.png");
 	cross = new Sprite("Data/Sprite/CrossHair.png");
 
-	Menu = new Sprite();
+	Filter = new Sprite();
 	MenuGame = new Sprite("Data/Sprite/MenuGame.png");
 	MenuHelp = new Sprite("Data/Sprite/MenuHelp.png");
 	MenuTitle = new Sprite("Data/Sprite/MenuTitle.png");
@@ -80,6 +80,14 @@ void SceneGame::Initialize()
 	Rule = new Sprite("Data/Sprite/Rule.png");
 	Signal = new Sprite("Data/Sprite/Signal.png");
 	B = new Sprite("Data/Sprite/Bbutton.png");
+
+	clearSprite = new Sprite("Data/Sprite/Clear.png");
+	nextSprite = new Sprite("Data/Sprite/ClearNext.png");
+	toTitleSptite = new Sprite("Data/Sprite/ClearTitle.png");
+
+	cameraModeSprite_Surface = new Sprite("Data/Sprite/ModeSelect.png");
+	cameraModeSprite_Fire = new Sprite("Data/Sprite/ModeFire.png");
+	cameraModeSprite_Fly = new Sprite("Data/Sprite/ModeFly.png");
 
 	ID3D11Device* device = graphics.GetDevice();
 }
@@ -98,10 +106,10 @@ void SceneGame::Finalize()
 		delete cross;
 		cross = nullptr;
 	}
-	if (Menu != nullptr)
+	if (Filter != nullptr)
 	{
-		delete Menu;
-		Menu = nullptr;
+		delete Filter;
+		Filter = nullptr;
 	}
 	if (MenuGame != nullptr)
 	{
@@ -148,6 +156,36 @@ void SceneGame::Finalize()
 		delete SpeedSprite_Fast;
 		SpeedSprite_Fast = nullptr;
 	}
+	if (clearSprite != nullptr)
+	{
+		delete clearSprite;
+		clearSprite = nullptr;
+	}
+	if (nextSprite != nullptr)
+	{
+		delete nextSprite;
+		nextSprite = nullptr;
+	}
+	if (toTitleSptite != nullptr)
+	{
+		delete toTitleSptite;
+		toTitleSptite = nullptr;
+	}
+	if (cameraModeSprite_Surface != nullptr)
+	{
+		delete cameraModeSprite_Surface;
+		cameraModeSprite_Surface = nullptr;
+	}	
+	if (cameraModeSprite_Fire != nullptr)
+	{
+		delete cameraModeSprite_Fire;
+		cameraModeSprite_Fire = nullptr;
+	}	
+	if (cameraModeSprite_Fly != nullptr)
+	{
+		delete cameraModeSprite_Fly;
+		cameraModeSprite_Fly = nullptr;
+	}
 	/*EnemyManager& enemyManager = EnemyManager::Instance();
 	enemyManager.Clear();*/
 	//EnemyManager::Instance().Clear();
@@ -175,25 +213,82 @@ void SceneGame::Update(float elapsedTime)
 {
 	GamePad& gamePad = Input::Instance().GetGamePad();
 	GameBGM->Play(true, 0.5f);
+	isClear = StageManager::Instance().GetStageClear();
+	if (isClear == true)clearTimer++;
+	if (clearTimer > 60)
+	{
+		isClear2 = true;
+		isClear = false;
+		clearTimer = 0;
+	}
+	if (isClear2 == true)
+	{
+		axisY = gamePad.GetAxisLY();
+		input_Up = input_Down = false;
+		if (axisY == 0) inputtable = true;
+		if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)input_Up = true;
+		if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)input_Down = true;
+		if (input_Down && inputtable)
+		{
+			select_Clear++;
+			inputtable = false;
+		}
+		if (input_Up && inputtable)
+		{
+			select_Clear--;
+			inputtable = false;
+		}
+		if (select_Clear > 1)select_Clear = 1;
+		if (select_Clear < 0)select_Clear = 0;
 
+		clearNextPos = { screenWidth / 2 - clearWidth / 2,400 };
+		clearNextSize = { clearWidth,clearHeight };
+		clearToTitlePos = { screenWidth / 2 - clearWidth / 2,600 };
+		clearToTitleSize = { clearWidth,clearHeight };
+
+		if (StageManager::Instance().GetStageNum() == 4)
+		{
+			select_Clear = 1;
+		}
+		switch (select_Clear)
+		{
+		case 0:
+			clearNextPos = { screenWidth / 2 - clearWidth / 2 - 50,400 - 50 };
+			clearNextSize = { clearWidth + 100,clearHeight + 50 };
+			if (gamePad.GetButtonDown() & GamePad::BTN_A)
+			{
+				StageManager::Instance().SetStageNum(1 + StageManager::Instance().GetStageNum());
+				SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
+			}
+			break;
+		case 1:
+			clearToTitlePos = { screenWidth / 2 - clearWidth / 2 - 50,600 - 50 };
+			clearToTitleSize = { clearWidth + 100,clearHeight + 50 };
+			if (gamePad.GetButtonDown() & GamePad::BTN_A)
+			{
+				SceneManager::Instance().ChangeScene(new SceneTitle);
+			}
+			break;
+		}
+	}
 	if (gamePad.GetButtonDown() & GamePad::BTN_Y)
 		isMenuFlag = true;
 	if (isMenuFlag == true)
 	{
 		axisY = gamePad.GetAxisLY();
-		MenuMove_D = MenuMove_U = false;
-		if (axisY == 0) Moveble = true;
-		if (gamePad.GetButtonDown() & GamePad::BTN_UP||axisY > 0.8f)MenuMove_U = true;
-		if (gamePad.GetButtonDown() & GamePad::BTN_DOWN||axisY < -0.8f)MenuMove_D = true;
-		if (MenuMove_D && Moveble)
+		input_Up = input_Down = false;
+		if (axisY == 0) inputtable = true;
+		if (gamePad.GetButtonDown() & GamePad::BTN_UP||axisY > 0.8f)input_Up = true;
+		if (gamePad.GetButtonDown() & GamePad::BTN_DOWN||axisY < -0.8f)input_Down = true;
+		if (input_Down && inputtable)
 		{
 			MenuMode++;
-			Moveble = false;
+			inputtable = false;
 		}
-		if (MenuMove_U && Moveble)
+		if (input_Up && inputtable)
 		{
 			MenuMode--;
-			Moveble = false;
+			inputtable = false;
 		}
 
 		if (MenuMode > 2)MenuMode = 2;
@@ -243,8 +338,11 @@ void SceneGame::Update(float elapsedTime)
 			Help();
 	}
 
-	else
+	if(isMenuFlag == false && isClear2 == false)
 	{
+		if (color_Surface > 0)color_Surface -= 0.01f;
+		if (color_Fire > 0)color_Fire -= 0.01f;
+		if (color_Fly > 0)color_Fly -= 0.01f;
 		// カメラモードで分岐
 		switch (CameraController::Instance().GetCameraMode())
 		{
@@ -257,7 +355,7 @@ void SceneGame::Update(float elapsedTime)
 			cameracontroller->ViewUpdate(elapsedTime);
 
 			// FPSモードへ移行
-			if (gamePad.GetButtonDown() & GamePad::BTN_A && delaytimer == 0 && delaytimer2 == 0)FpsCameraInitialize(cameracontroller->GetCameraMode());
+			if (gamePad.GetButtonDown() & GamePad::BTN_A && moveTimer_Surface == 0)FpsCameraInitialize(cameracontroller->GetCameraMode());
 
 
 			if (gamePad.GetButtonDown() & GamePad::BTN_X)SpectatorCameraInitialize(CameraController::Instance().GetCameraMode());
@@ -275,7 +373,7 @@ void SceneGame::Update(float elapsedTime)
 			if (color_slow > 0)color_slow -= 0.01f;
 			if (color_normal > 0)color_normal -= 0.01f;
 			if (color_fast > 0)color_fast -= 0.01f;
-			if (gamePad.GetButtonDown() & GamePad::BTN_B)ChangeSpeed();
+			if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT_SHOULDER)ChangeSpeed();
 
 			// Viewモードへ移行
 			if (PushPower > 0)
@@ -428,7 +526,68 @@ void SceneGame::Render()
 		float SignalWidth = static_cast<float>(Signal->GetTextureWidth());
 		float SignalHeight = static_cast<float>(Signal->GetTextureHeight());
 
-		if (CameraController::Instance().GetCameraMode() == Mode::fpsMode)
+		float camraModeSprite_Width = 400;
+		float camraModeSprite_Height = 100;
+		cameraModeSprite_Surface->Render(dc,
+			0, 0, camraModeSprite_Width, camraModeSprite_Height,
+			0, 0, camraModeSprite_Width, camraModeSprite_Height,
+			0,
+			1, 1, 1, color_Surface);
+		cameraModeSprite_Fire->Render(dc,
+			0, 0, camraModeSprite_Width, camraModeSprite_Height,
+			0, 0, camraModeSprite_Width, camraModeSprite_Height,
+			0,
+			1, 1, 1, color_Fire);
+		cameraModeSprite_Fly->Render(dc,
+			0, 0, camraModeSprite_Width, camraModeSprite_Height,
+			0, 0, camraModeSprite_Width, camraModeSprite_Height,
+			0,
+			1, 1, 1, color_Fly);
+
+		if (isClear2 == true)
+		{
+			Filter->Render(dc,
+				0, 0,
+				screenWidth,
+				screenHeight,
+				0, 0, screenWidth, screenHeight,
+				0,
+				1, 1, 1, 0.5f);
+			clearSprite->Render(dc,
+				0, 0, screenWidth, screenHeight,
+				0, 0, 1280, 720,
+				0,
+				1, 1, 1, 1);
+			if (StageManager::Instance().GetStageNum() != 4)
+			{
+				nextSprite->Render(dc,
+					clearNextPos.x, clearNextPos.y,
+					clearNextSize.x,
+					clearNextSize.y,
+					0, 0, clearWidth, clearHeight,
+					0,
+					1, 1, 1, 1);
+				toTitleSptite->Render(dc,
+					clearToTitlePos.x, clearToTitlePos.y,
+					clearToTitleSize.x,
+					clearToTitleSize.y,
+					0, 0, clearWidth, clearHeight,
+					0,
+					1, 1, 1, 1);
+			}
+			else
+			{
+				toTitleSptite->Render(dc,
+					clearToTitlePos.x, clearToTitlePos.y,
+					clearToTitleSize.x,
+					clearToTitleSize.y,
+					0, 0, clearWidth, clearHeight,
+					0,
+					1, 1, 1, 1);
+			}
+		}
+
+		if (CameraController::Instance().GetCameraMode() == Mode::fpsMode && !isClear2)
 		{
 			cross->Render(dc,
 				screenWidth / 2 - crossWidth / 4, screenHeight / 2 - crossHeight / 4,
@@ -467,7 +626,7 @@ void SceneGame::Render()
 		}
 		if (isMenuFlag)
 		{
-			Menu->Render(dc,
+			Filter->Render(dc,
 				0, 0,
 				screenWidth,
 				screenHeight,
@@ -571,6 +730,7 @@ void SceneGame::Render()
 // FPSカメライニシャライズ
 void SceneGame::FpsCameraInitialize(int BeforeMode)
 {
+	color_Fire = 1;
 	PushPower = 0;
 
 	switch (BeforeMode)
@@ -598,6 +758,7 @@ void SceneGame::FpsCameraInitialize(int BeforeMode)
 // Viewカメライニシャライズ
 void SceneGame::ViewCameraInitialize()
 {
+	color_Surface = 1;
 	PushPower = 0;
 	//cameracontroller->SetAngle({ 0,cameracontroller->GetAngle().y + DirectX::XM_PI,0 });
 
@@ -625,6 +786,7 @@ void SceneGame::ViewCameraInitialize()
 // スペクテイターカメライニシャライズ
 void SceneGame::SpectatorCameraInitialize(int BeforeMode)
 {
+	color_Fly = 1;
 	BeforeCM = BeforeMode;
 	PushPower = 0;
 	KeepAngle = cameracontroller->GetAngle();
@@ -650,29 +812,41 @@ void SceneGame::SpectatorCameraInitialize(int BeforeMode)
 void SceneGame::ChooseSurface()
 {
 	GamePad& gamePad = Input::Instance().GetGamePad();
-	axisX = gamePad.GetAxisLX();
-	if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT || axisX > 0.8f)
+	float axisX = gamePad.GetAxisLX();
+	input_Right = input_Left = false;
+	if (axisX == 0 && !moving_Right && !moving_Left) inputtable = true;
+	if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisX > 0.8f)input_Right = true;
+	if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisX < -0.8f)input_Left = true;
+
+	if (input_Right && inputtable)
 	{
-		if (delaytimer == 0 && delaytimer2 == 0)
-			delayflag = true;
+		moving_Right = true;
+		inputtable = false;
 	}
-	if (delayflag == true)delaytimer++;
-	if (delaytimer > 45)
+	if (input_Left && inputtable)
 	{
-		selectedsurface++;
-		delaytimer = 0;
-		delayflag = false;
+		moving_Left = true;
+		inputtable = false;
 	}
-	if (gamePad.GetButtonDown() & GamePad::BTN_LEFT || axisX < -0.8f)
+	if (moving_Right)
 	{
-		if (delaytimer == 0 && delaytimer2 == 0)delayflag2 = true;
+		moveTimer_Surface++;
+		if (moveTimer_Surface > 45)
+		{
+			selectedsurface++;
+			moveTimer_Surface = 0;
+			moving_Right = false;
+		}
 	}
-	if (delayflag2 == true)delaytimer2++;
-	if (delaytimer2 > 45)
+	if (moving_Left)
 	{
-		selectedsurface--;
-		delaytimer2 = 0;
-		delayflag2 = false;
+		moveTimer_Surface++;
+		if (moveTimer_Surface > 45)
+		{
+			selectedsurface--;
+			moveTimer_Surface = 0;
+			moving_Left = false;
+		}
 	}
 	if (selectedsurface < 0)selectedsurface = 3;
 	if (selectedsurface > 3)selectedsurface = 0;
@@ -686,21 +860,21 @@ void SceneGame::ChangeSpeed()
 
 	if (speedNo == 0)
 	{
-		color_slow = 1;
+		color_fast = 1;
+		color_slow = 0;
 		color_normal = 0;
-		color_fast = 0;
 	}
 	if (speedNo == 1)
 	{
-		color_slow = 0;
-		color_normal = 1;
 		color_fast = 0;
+		color_normal = 1;
+		color_slow = 0;
 	}
 	if (speedNo == 2)
 	{
-		color_slow = 0;
+		color_fast = 0;
 		color_normal = 0;
-		color_fast = 1;
+		color_slow = 1;
 	}
 
 
@@ -715,14 +889,14 @@ void SceneGame::Help()
 	Graphics& graphics = Graphics::Instance();
 	float screenWidth = static_cast<float>(graphics.GetScreenWidth());
 
-	if (RuleMove_R == false && RuleMove_L == false)
+	if (moving_Right == false && moving_Left == false)
 	{
 		if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT || axisX > 0.8f)
 		{
 			if (Pos.x < 1280 * 2)
 			{
 				RulePosX = Pos.x;
-				RuleMove_R = true;
+				moving_Right = true;
 			}
 		}
 
@@ -731,7 +905,7 @@ void SceneGame::Help()
 			if (Pos.x > 0)
 			{
 				RulePosX = Pos.x;
-				RuleMove_L = true;
+				moving_Left = true;
 			}
 		}
 
@@ -741,23 +915,23 @@ void SceneGame::Help()
 		}
 	}
 	// ルール画面移動処理(右回り)
-	if (RuleMove_R == true)
+	if (moving_Right == true)
 	{
 		Pos.x += 20;
 		if (Pos.x > RulePosX + 1280)
 		{
-			RuleMove_R = false;
+			moving_Right = false;
 			SceneCount++;
 			Pos.x = RulePosX + 1280;
 		}
 	}
 	// ルール画面移動処理(左回り)
-	if (RuleMove_L == true)
+	if (moving_Left == true)
 	{
 		Pos.x -= 20;
 		if (Pos.x < RulePosX - 1280)
 		{
-			RuleMove_L = false;
+			moving_Left = false;
 			SceneCount--;
 			Pos.x = RulePosX - 1280;
 		}
