@@ -34,9 +34,12 @@ void SceneSelectStage::Update(float elapsedTime)
     GamePad& gamePad = Input::Instance().GetGamePad();
     if (gamePad.GetButtonDown() & GamePad::BTN_A)
     {
-        //ステージ選択で番号を持たせMarkの引数に渡して遷移する
-        StageManager::Instance().SetStageNum(2);
-        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
+        if (cursor->GetonCursorNo() < 5)
+        {
+            //ステージ選択で番号を持たせMarkの引数に渡して遷移する
+            StageManager::Instance().SetStageNum(cursor->GetonCursorNo() + 1);
+            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
+        }
     }
     if (gamePad.GetButtonDown() & GamePad::BTN_B)
     {
