@@ -114,7 +114,7 @@ Mark::Mark(int StageNum)
 		model[3]->angle = { DirectX::XMConvertToRadians(0.0f),DirectX::XMConvertToRadians(40.0f),DirectX::XMConvertToRadians(-40.0f) };
 		model[3]->name = "Mark3";
 
-		model[4]->position = { -2.5f,5.0f,13.5f };
+		model[4]->position = { -2.5f,5.0f,11.0f };
 		model[4]->angle = { DirectX::XMConvertToRadians(0.0f),DirectX::XMConvertToRadians(90.0f),DirectX::XMConvertToRadians(48.0f) };
 		model[4]->name = "Mark4";
 

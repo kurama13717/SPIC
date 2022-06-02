@@ -158,6 +158,8 @@ void Cursor::Launch()
 
 void Cursor::DrawDebugGUI()
 {
+#ifdef _DEBUG
+
     ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_FirstUseEver);
     if (ImGui::Begin("Cursor", nullptr, ImGuiWindowFlags_None))
@@ -173,4 +175,6 @@ void Cursor::DrawDebugGUI()
         }
     }
     ImGui::End();
+#endif // _DEBUG
+
 }
