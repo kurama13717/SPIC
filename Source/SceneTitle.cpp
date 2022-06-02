@@ -130,8 +130,8 @@ void SceneTitle::TitleInput()
     axisY = gamePad.GetAxisLY();
     TitleMove_D = TitleMove_U = false;
     if (axisY == 0) Moveble = true;
-    if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)TitleMove_U = true;
-    if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)TitleMove_D = true;
+    if (axisY > 0.8f)TitleMove_U = true;
+    if (axisY < -0.8f)TitleMove_D = true;
     if (TitleMove_D && Moveble)
     {
         TitleMode++;

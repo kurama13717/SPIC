@@ -226,8 +226,8 @@ void SceneGame::Update(float elapsedTime)
 		axisY = gamePad.GetAxisLY();
 		input_Up = input_Down = false;
 		if (axisY == 0) inputtable = true;
-		if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisY > 0.8f)input_Up = true;
-		if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisY < -0.8f)input_Down = true;
+		if (axisY > 0.8f)input_Up = true;
+		if (axisY < -0.8f)input_Down = true;
 		if (input_Down && inputtable)
 		{
 			select_Clear++;
@@ -278,8 +278,8 @@ void SceneGame::Update(float elapsedTime)
 		axisY = gamePad.GetAxisLY();
 		input_Up = input_Down = false;
 		if (axisY == 0) inputtable = true;
-		if (gamePad.GetButtonDown() & GamePad::BTN_UP||axisY > 0.8f)input_Up = true;
-		if (gamePad.GetButtonDown() & GamePad::BTN_DOWN||axisY < -0.8f)input_Down = true;
+		if (axisY > 0.8f)input_Up = true;
+		if (axisY < -0.8f)input_Down = true;
 		if (input_Down && inputtable)
 		{
 			MenuMode++;
@@ -815,8 +815,8 @@ void SceneGame::ChooseSurface()
 	float axisX = gamePad.GetAxisLX();
 	input_Right = input_Left = false;
 	if (axisX == 0 && !moving_Right && !moving_Left) inputtable = true;
-	if (gamePad.GetButtonDown() & GamePad::BTN_UP || axisX > 0.8f)input_Right = true;
-	if (gamePad.GetButtonDown() & GamePad::BTN_DOWN || axisX < -0.8f)input_Left = true;
+	if (axisX > 0.8f)input_Right = true;
+	if (axisX < -0.8f)input_Left = true;
 
 	if (input_Right && inputtable)
 	{
@@ -891,7 +891,7 @@ void SceneGame::Help()
 
 	if (moving_Right == false && moving_Left == false)
 	{
-		if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT || axisX > 0.8f)
+		if (axisX > 0.8f)
 		{
 			if (Pos.x < 1280 * 2)
 			{
@@ -900,7 +900,7 @@ void SceneGame::Help()
 			}
 		}
 
-		if (gamePad.GetButtonDown() & GamePad::BTN_LEFT || axisX < -0.8f)
+		if (axisX < -0.8f)
 		{
 			if (Pos.x > 0)
 			{
